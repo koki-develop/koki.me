@@ -7,7 +7,7 @@
     "prepare": "husky",
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "lint": "eslint --max-warnings=0 .",
     "fmt": "prettier --write .",
     "preview": "vite preview"
   },
