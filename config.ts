@@ -44,7 +44,7 @@ const config: Config = {
     {
       name: "Zenn",
       url: "https://zenn.dev/kou_pg_0131",
-      handle: "koki_develop",
+      handle: "kou_pg_0131",
       icon: ZennIcon,
     },
   ],
