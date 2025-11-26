@@ -1,0 +1,6 @@
+{
+  "*": [
+    "prettier --write --ignore-unknown",
+    "eslint --no-warn-ignored --max-warnings=0"
+  ]
+}
