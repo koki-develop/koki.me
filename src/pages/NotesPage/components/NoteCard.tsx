@@ -1,4 +1,5 @@
 import type { Note } from "@/types";
+import { LuExternalLink } from "react-icons/lu";
 import { relativeTimeFromNow } from "../lib";
 
 type Props = {
@@ -14,7 +15,10 @@ export default function NoteCard({ note }: Props) {
       rel="noopener noreferrer"
     >
       <div className="flex flex-col gap-2">
-        <span className="text-base">{note.title}</span>
+        <span className="text-base">
+          {note.title}
+          <LuExternalLink className="ml-1 inline text-xs text-slate-400" />
+        </span>
         <span className="text-sm text-slate-400">
           {relativeTimeFromNow(note.publishedAt)}
         </span>
