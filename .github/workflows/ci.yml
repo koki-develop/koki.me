@@ -54,6 +54,7 @@ jobs:
         with:
           persist-credentials: false
       - uses: ./.github/actions/setup
+      - run: bun run fetch:notes
       - run: bun run lint
 
   format-check:
