@@ -86,12 +86,12 @@ export default function AboutPage() {
                 href={certification.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                title={certification.name}
               >
                 <img
                   className="size-24 md:size-28"
                   src={certification.imageUrl}
                   alt={certification.name}
-                  title={certification.name}
                 />
               </a>
             ))}
