@@ -13,7 +13,7 @@ export default function NoteCard({ note }: Props) {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-2">
         <span className="text-base">{note.title}</span>
         <span className="text-sm text-slate-400">
           {relativeTimeFromNow(note.publishedAt)}
