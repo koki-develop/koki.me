@@ -36,6 +36,7 @@ export default function WorkCard({ work }: Props) {
         >
           <GitHubIcon className="size-5" />
           <span>Source</span>
+          <LuExternalLink className="text-slate-400" />
         </a>
       )}
     </div>
