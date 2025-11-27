@@ -1,6 +1,7 @@
 import config from "@/config";
 import { LuArrowRight } from "react-icons/lu";
 import { Link } from "react-router";
+import SkillBadge from "./components/SkillBadge";
 import SocialCard from "./components/SocialCard";
 
 const navItems: {
@@ -62,16 +63,7 @@ export default function AboutPage() {
           <h2 className="mb-4 text-2xl">Skills</h2>
           <div className="flex flex-wrap gap-2">
             {config.skills.map((skill) => (
-              <a
-                key={skill.url}
-                className="flex items-center gap-2 rounded-full border border-slate-700 bg-slate-800 px-3 py-1"
-                href={skill.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <skill.icon className="size-5" />
-                <span className="text-base">{skill.name}</span>
-              </a>
+              <SkillBadge key={skill.name} skill={skill} />
             ))}
           </div>
         </section>
