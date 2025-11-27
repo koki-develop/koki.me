@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router";
+import { NavLink, Outlet, ScrollRestoration } from "react-router";
 
 const navItems: { name: string; href: string }[] = [
   { name: "About", href: "/" },
@@ -9,6 +9,8 @@ const navItems: { name: string; href: string }[] = [
 export default function Layout() {
   return (
     <div>
+      <ScrollRestoration />
+
       <header className="py-4">
         <nav>
           <ul className="flex justify-end gap-4">
