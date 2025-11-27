@@ -4,7 +4,10 @@ import WorkCard from "./components/WorkCard";
 export default function WorksPage() {
   return (
     <div className="flex flex-col gap-8">
-      <h1 className="text-3xl">Works</h1>
+      <div>
+        <h1 className="mb-2 text-3xl">Works</h1>
+        <p className="text-slate-400">今までにつくったもの。</p>
+      </div>
 
       {config.workCategories.map((category) => (
         <section key={category.name}>
