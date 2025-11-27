@@ -13,7 +13,7 @@ export default function WorkCard({ work }: Props) {
       <div className="flex flex-1 flex-col gap-2">
         <a
           className="flex w-fit flex-col"
-          href={extractDomain(work.url ?? work.githubUrl)}
+          href={work.url ?? work.githubUrl}
           target="_blank"
           rel="noopener noreferrer"
         >
