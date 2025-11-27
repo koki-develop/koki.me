@@ -19,6 +19,7 @@ concurrency:
 
 jobs:
   deploy:
+    name: Deploy
     environment:
       name: production
       url: https://koki.me
