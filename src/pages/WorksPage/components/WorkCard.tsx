@@ -29,7 +29,7 @@ export default function WorkCard({ work }: Props) {
 
       {work.githubUrl && (
         <a
-          className="flex w-fit items-center gap-2 rounded bg-slate-700 px-4 py-2 text-sm"
+          className="flex w-fit items-center gap-2 rounded border border-slate-600 bg-slate-700 px-4 py-2 text-sm"
           href={work.githubUrl}
           target="_blank"
           rel="noopener noreferrer"
