@@ -1,10 +1,12 @@
 import type { FunctionComponent, SVGProps } from "react";
+import type { IconType } from "react-icons";
 
 export type Config = {
   profile: Profile;
   socials: Social[];
   skills: Skill[];
   certifications: Certification[];
+  workCategories: WorkCategory[];
 };
 
 export type Profile = {
@@ -29,4 +31,28 @@ export type Certification = {
   name: string;
   url: string;
   imageUrl: string;
+};
+
+export type Work = {
+  name: string;
+  description: string;
+} & (
+  | {
+      url: string;
+      githubUrl: string;
+    }
+  | {
+      url: string;
+      githubUrl?: undefined;
+    }
+  | {
+      url?: undefined;
+      githubUrl: string;
+    }
+);
+
+export type WorkCategory = {
+  name: string;
+  icon: IconType;
+  works: Work[];
 };

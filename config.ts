@@ -14,6 +14,7 @@ import BlueskyIcon from "@/assets/social/bluesky.svg?react";
 import GitHubIcon from "@/assets/social/github.svg?react";
 import XIcon from "@/assets/social/x.svg?react";
 import ZennIcon from "@/assets/social/zenn.svg?react";
+import { LuChrome, LuGlobe, LuKeyboard, LuTerminal } from "react-icons/lu";
 import type { Config } from "./src/types";
 
 const config: Config = {
@@ -117,6 +118,118 @@ const config: Config = {
       name: "AWS Certified Cloud Practitioner",
       url: "https://www.credly.com/badges/fbf0ac8b-fa6b-4cf2-af2c-c69aa888d3b4/public_url",
       imageUrl: AWSCLFBadge,
+    },
+  ],
+
+  workCategories: [
+    {
+      name: "Web Application",
+      icon: LuGlobe,
+      works: [
+        {
+          name: "Koki Sato",
+          description: "ポートフォリオサイト。",
+          url: "https://koki.me",
+          githubUrl: "https://github.com/koki-develop/koki.me",
+        },
+        {
+          name: "Thredot",
+          description: "スレッド形式のメモサービス。",
+          url: "https://thredot.org",
+        },
+        {
+          name: "SAMARI",
+          description: "技術ニュースの要約サービス。",
+          url: "https://samari.news",
+          githubUrl: "https://github.com/koki-develop/samari",
+        },
+        {
+          name: "BBalloon",
+          description: "Bluesky のフォロー / フォロワー管理サービス。",
+          url: "https://bballoon.social",
+        },
+        {
+          name: "Badge Generator",
+          description: "バッジ生成サービス。",
+          url: "https://badgen.org",
+          githubUrl: "https://github.com/koki-develop/badge-generator",
+        },
+        {
+          name: "Gallery",
+          description:
+            "バックエンド・フロントエンド・インフラを Terraform でつくったサンプルアプリ。",
+          url: "https://tftftf.gallery",
+          githubUrl: "https://github.com/koki-develop/gallery",
+        },
+      ],
+    },
+    {
+      name: "Tool",
+      icon: LuTerminal,
+      works: [
+        {
+          name: "cLive",
+          description: "ターミナル操作を自動化するコマンドラインツール。",
+          githubUrl: "https://github.com/koki-develop/clive",
+        },
+        {
+          name: "gat",
+          description: "Go 製の cat コマンド。",
+          githubUrl: "https://github.com/koki-develop/gat",
+        },
+        {
+          name: "mmcp",
+          description:
+            "複数の AI エージェントツールの MCP サーバー設定を一括管理するコマンドラインツール。",
+          githubUrl: "https://github.com/koki-develop/mmcp",
+        },
+        {
+          name: "cat-code",
+          description: "猫のコーディングエージェント。",
+          githubUrl: "https://github.com/koki-develop/cat-code",
+        },
+        {
+          name: "ghats",
+          description:
+            "TypeScript で GitHub Actions Workflow 定義を記述するツール。",
+          githubUrl: "https://github.com/koki-develop/ghats",
+        },
+        {
+          name: "git-aicommit",
+          description:
+            "AI でコミットメッセージを生成するコマンドラインツール。",
+          githubUrl: "https://github.com/koki-develop/git-aicommit",
+        },
+      ],
+    },
+    {
+      name: "Chrome Extension",
+      icon: LuChrome,
+      works: [
+        {
+          name: "AWS Masking",
+          description:
+            "AWS マネジメントコンソール上の秘匿情報を自動で隠す Chrome 拡張。",
+          url: "https://chromewebstore.google.com/detail/aws-masking/nblpfncgdloilgeicnnlihegobmhjifb",
+          githubUrl: "https://github.com/koki-develop/aws-masking",
+        },
+      ],
+    },
+    {
+      name: "IME",
+      icon: LuKeyboard,
+      works: [
+        {
+          name: "Koto",
+          description: "Mac 用の IME 。",
+          githubUrl: "https://github.com/koki-develop/Koto",
+        },
+        {
+          name: "NyaIME",
+          description: "猫用の IME 。",
+          githubUrl: "https://github.com/koki-develop/NyaIME",
+        },
+      ],
     },
   ],
 };
