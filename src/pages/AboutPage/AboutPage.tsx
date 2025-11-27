@@ -26,7 +26,7 @@ export default function AboutPage() {
       <h1 className="sr-only">Koki Sato</h1>
 
       {/* Profile */}
-      <section>
+      <section className="md:pt-4">
         <h2 className="sr-only">Profile</h2>
 
         <div className="flex items-center justify-center gap-4">

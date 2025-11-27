@@ -9,7 +9,7 @@ const navItems: { name: string; href: string }[] = [
 export default function Layout() {
   return (
     <div>
-      <header className="py-4 md:py-8">
+      <header className="py-4">
         <nav>
           <ul className="flex justify-end gap-4">
             {navItems.map((item) => (
