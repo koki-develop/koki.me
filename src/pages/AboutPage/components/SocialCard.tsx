@@ -8,7 +8,6 @@ type Props = {
 export default function SocialCard({ social }: Props) {
   return (
     <a
-      key={social.url}
       className="flex items-center justify-between rounded border border-slate-700 bg-slate-800 p-4"
       href={social.url}
       target="_blank"
