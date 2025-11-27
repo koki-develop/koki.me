@@ -1,4 +1,5 @@
 import notes from "@/data/notes.json";
+import { LuExternalLink } from "react-icons/lu";
 import NoteCard from "./components/NoteCard";
 
 export default function NotesPage() {
@@ -13,6 +14,18 @@ export default function NotesPage() {
         {notes.map((note) => (
           <NoteCard key={note.url} note={note} />
         ))}
+      </div>
+
+      <div className="flex justify-center">
+        <a
+          className="flex items-center gap-2 rounded border border-slate-700 bg-slate-800 px-4 py-2 text-base"
+          href="https://zenn.dev/kou_pg_0131"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View More
+          <LuExternalLink className="text-slate-400" />
+        </a>
       </div>
     </div>
   );
