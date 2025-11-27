@@ -91,6 +91,7 @@ export default function AboutPage() {
                   className="size-24 md:size-28"
                   src={certification.imageUrl}
                   alt={certification.name}
+                  title={certification.name}
                 />
               </a>
             ))}
