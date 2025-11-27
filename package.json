@@ -16,6 +16,8 @@
     "fetch:notes": "bun run ./scripts/fetch-notes.ts"
   },
   "dependencies": {
+    "@fontsource/inter": "5.2.8",
+    "@fontsource/noto-sans-jp": "5.2.8",
     "@tailwindcss/vite": "4.1.17",
     "@vitejs/plugin-react": "5.1.1",
     "babel-plugin-react-compiler": "1.0.0",
