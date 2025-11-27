@@ -1,17 +1,18 @@
 import { writeFileSync } from "node:fs";
+import type { Note } from "../src/types";
 
-const articles = await _fetchArticles();
-writeFileSync("./data/articles.json", JSON.stringify(articles, null, 2));
+const articles = await _fetchNotes();
+writeFileSync("./data/notes.json", JSON.stringify(articles, null, 2));
 
 // ---
 
-type Article = {
+type ZennArticle = {
   title: string;
   path: string;
   published_at: string;
 };
 
-async function _fetchArticles(): Promise<Article[]> {
+async function _fetchNotes(): Promise<Note[]> {
   const endpoint =
     "https://zenn.dev/api/articles?username=kou_pg_0131&count=20&order=latest";
   const response = await fetch(endpoint);
@@ -20,11 +21,11 @@ async function _fetchArticles(): Promise<Article[]> {
   }
 
   const { articles } = (await response.json()) as {
-    articles: { title: string; path: string; published_at: string }[];
+    articles: ZennArticle[];
   };
   return articles.map(({ title, path, published_at }) => ({
     title,
-    path,
-    published_at,
+    url: new URL(path, "https://zenn.dev/").toString(),
+    publishedAt: published_at,
   }));
 }

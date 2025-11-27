@@ -56,3 +56,9 @@ export type WorkCategory = {
   icon: IconType;
   works: Work[];
 };
+
+export type Note = {
+  title: string;
+  url: string;
+  publishedAt: string;
+};
