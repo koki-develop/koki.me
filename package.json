@@ -6,11 +6,13 @@
   "scripts": {
     "prepare": "husky",
     "dev": "vite --open",
+    "prebuild": "bun run fetch:notes",
     "build": "tsc -b && vite build",
     "lint": "eslint --max-warnings=0 .",
     "fmt": "prettier --write .",
     "test": "vitest",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "fetch:notes": "bun run ./scripts/fetch-notes.ts"
   },
   "dependencies": {
     "@tailwindcss/vite": "4.1.17",
