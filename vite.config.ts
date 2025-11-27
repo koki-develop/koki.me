@@ -11,6 +11,7 @@ export default defineConfig({
       "@/config": path.resolve(__dirname, "config.ts"),
       "@/types": path.resolve(__dirname, "src/types.ts"),
       "@/assets": path.resolve(__dirname, "src/assets"),
+      "@/data": path.resolve(__dirname, "data"),
     },
   },
   plugins: [
