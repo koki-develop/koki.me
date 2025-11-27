@@ -8,21 +8,23 @@ type Props = {
 
 export default function NoteCard({ note }: Props) {
   return (
-    <a
-      className="rounded border border-slate-700 bg-slate-800 p-4"
-      href={note.url}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <div className="rounded border border-slate-700 bg-slate-800 p-4">
       <div className="flex flex-col gap-2">
-        <span className="text-base">
-          {note.title}
-          <LuExternalLink className="ml-1 inline text-xs text-slate-400" />
-        </span>
+        <div>
+          <a
+            className="text-base"
+            href={note.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {note.title}
+            <LuExternalLink className="ml-1 inline text-xs text-slate-400" />
+          </a>
+        </div>
         <span className="text-sm text-slate-400">
           {relativeTimeFromNow(note.publishedAt)}
         </span>
       </div>
-    </a>
+    </div>
   );
 }
