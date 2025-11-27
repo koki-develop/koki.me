@@ -9,6 +9,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint --max-warnings=0 .",
     "fmt": "prettier --write .",
+    "test": "vitest",
     "preview": "vite preview"
   },
   "dependencies": {
