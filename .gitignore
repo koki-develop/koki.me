@@ -1,6 +1,10 @@
 .envrc
+.env*.local
+
 /data/*
 !/data/.keep
+
+.vercel
 
 # Logs
 logs
