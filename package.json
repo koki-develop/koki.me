@@ -10,6 +10,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint --max-warnings=0 .",
     "fmt": "prettier --write .",
+    "fmt:check": "prettier --check .",
     "test": "vitest",
     "preview": "vite preview",
     "fetch:notes": "bun run ./scripts/fetch-notes.ts"
