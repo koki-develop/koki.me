@@ -61,4 +61,10 @@ export type Note = {
   title: string;
   url: string;
   publishedAt: string;
+  topics: NoteTopic[];
+};
+
+export type NoteTopic = {
+  name: string;
+  imageUrl: string;
 };

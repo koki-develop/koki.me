@@ -21,6 +21,18 @@ export default function NoteCard({ note }: Props) {
         </a>
       </div>
 
+      <div className="flex flex-wrap gap-1">
+        {note.topics.map((topic) => (
+          <div
+            key={topic.name}
+            className="flex gap-1 rounded-full border border-slate-700 bg-slate-800 px-2 py-1 text-xs text-slate-200"
+          >
+            <img className="size-4 rounded-full" src={topic.imageUrl} alt="" />
+            {topic.name}
+          </div>
+        ))}
+      </div>
+
       <span className="text-sm text-slate-400">
         {relativeTimeFromNow(note.publishedAt)}
       </span>
