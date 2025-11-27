@@ -1,3 +1,4 @@
+import FontFaceObserver from "fontfaceobserver";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
@@ -33,8 +34,15 @@ const router = createBrowserRouter([
   },
 ]);
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>,
-);
+async function loadFonts() {
+  const fonts = ["Inter Variable", "Noto Sans JP Variable"];
+  await Promise.all(fonts.map((font) => new FontFaceObserver(font).load()));
+}
+
+await loadFonts().then(() => {
+  createRoot(document.getElementById("root")!).render(
+    <StrictMode>
+      <RouterProvider router={router} />
+    </StrictMode>,
+  );
+});
