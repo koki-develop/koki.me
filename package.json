@@ -46,6 +46,7 @@
     "prettier-plugin-tailwindcss": "0.7.1",
     "typescript": "5.9.3",
     "typescript-eslint": "8.48.0",
+    "vercel": "48.11.0",
     "vitest": "4.0.14"
   }
 }
