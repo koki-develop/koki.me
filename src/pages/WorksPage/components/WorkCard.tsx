@@ -1,15 +1,11 @@
 import GitHubIcon from "@/assets/social/github.svg?react";
 import type { Work } from "@/types";
 import { LuExternalLink } from "react-icons/lu";
+import { extractDomain } from "../lib";
 
 type Props = {
   work: Work;
 };
-
-function extractDomain(url: string) {
-  const { hostname } = new URL(url);
-  return hostname;
-}
 
 export default function WorkCard({ work }: Props) {
   return (
