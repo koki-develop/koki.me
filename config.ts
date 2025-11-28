@@ -2,6 +2,7 @@ import AWSCLFBadge from "@/assets/certification/aws-clf.png";
 import AWSDOPBadge from "@/assets/certification/aws-dop.png";
 import AWSDVABadge from "@/assets/certification/aws-dva.png";
 import AWSSAABadge from "@/assets/certification/aws-saa.png";
+import AWSSAPBadge from "@/assets/certification/aws-sap.png";
 import AWSSOABadge from "@/assets/certification/aws-soa.png";
 import AWSIcon from "@/assets/skill/aws.svg?react";
 import GoIcon from "@/assets/skill/go.svg?react";
@@ -96,7 +97,7 @@ const config: Config = {
     },
     {
       name: "AWS Certified Solutions Architect - Professional",
-      imageUrl: AWSSAABadge,
+      imageUrl: AWSSAPBadge,
       url: "https://www.credly.com/badges/77ea1b7d-d676-4b47-a099-a1152e7b0cd7/public_url",
     },
     {
