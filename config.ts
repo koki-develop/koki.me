@@ -21,7 +21,7 @@ import type { Config } from "./src/types";
 const config: Config = {
   profile: {
     name: "Koki Sato",
-    bio: "埼玉県在住の 27 歳。のんびり生きています。",
+    bio: "埼玉県在住の 28 歳。のんびり生きています。",
   },
 
   socials: [
