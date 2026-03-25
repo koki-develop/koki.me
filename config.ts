@@ -134,6 +134,11 @@ const config: Config = {
           githubUrl: "https://github.com/koki-develop/koki.me",
         },
         {
+          name: "Codize",
+          description: "初学者向けのプログラミング学習サービス。",
+          url: "https://codize.dev",
+        },
+        {
           name: "Thredot",
           description: "スレッド形式のメモサービス。",
           url: "https://thredot.org",
@@ -174,9 +179,19 @@ const config: Config = {
           githubUrl: "https://github.com/koki-develop/clive",
         },
         {
+          name: "Codize Sandbox",
+          description: "サンドボックス化されたコード実行エンジン。",
+          githubUrl: "https://github.com/codize-dev/sandbox",
+        },
+        {
           name: "gat",
           description: "Go 製の cat コマンド。",
           githubUrl: "https://github.com/koki-develop/gat",
+        },
+        {
+          name: "ghasec",
+          description: "GitHub Actions ワークフロー定義の静的検査ツール。",
+          githubUrl: "https://github.com/koki-develop/ghasec",
         },
         {
           name: "mmcp",
