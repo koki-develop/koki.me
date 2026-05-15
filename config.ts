@@ -150,11 +150,6 @@ const config: Config = {
           githubUrl: "https://github.com/koki-develop/samari",
         },
         {
-          name: "BBalloon",
-          description: "Bluesky のフォロー / フォロワー管理サービス。",
-          url: "https://bballoon.social",
-        },
-        {
           name: "Badge Generator",
           description: "バッジ生成サービス。",
           url: "https://badgen.org",
@@ -194,27 +189,10 @@ const config: Config = {
           githubUrl: "https://github.com/koki-develop/ghasec",
         },
         {
-          name: "mmcp",
-          description:
-            "複数の AI エージェントツールの MCP サーバー設定を一括管理するコマンドラインツール。",
-          githubUrl: "https://github.com/koki-develop/mmcp",
-        },
-        {
-          name: "cat-code",
-          description: "猫のコーディングエージェント。",
-          githubUrl: "https://github.com/koki-develop/cat-code",
-        },
-        {
           name: "ghats",
           description:
             "TypeScript で GitHub Actions Workflow 定義を記述するツール。",
           githubUrl: "https://github.com/koki-develop/ghats",
-        },
-        {
-          name: "git-aicommit",
-          description:
-            "AI でコミットメッセージを生成するコマンドラインツール。",
-          githubUrl: "https://github.com/koki-develop/git-aicommit",
         },
       ],
     },
