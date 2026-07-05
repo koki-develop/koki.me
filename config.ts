@@ -174,14 +174,19 @@ const config: Config = {
           githubUrl: "https://github.com/koki-develop/clive",
         },
         {
-          name: "Codize Sandbox",
-          description: "サンドボックス化されたコード実行エンジン。",
-          githubUrl: "https://github.com/codize-dev/sandbox",
-        },
-        {
           name: "gat",
           description: "Go 製の cat コマンド。",
           githubUrl: "https://github.com/koki-develop/gat",
+        },
+        {
+          name: "Cork",
+          description: "マークダウンファイルベースのカンバンアプリ",
+          githubUrl: "https://github.com/koki-develop/Cork",
+        },
+        {
+          name: "Codize Sandbox",
+          description: "サンドボックス化されたコード実行エンジン。",
+          githubUrl: "https://github.com/codize-dev/sandbox",
         },
         {
           name: "ghasec",
