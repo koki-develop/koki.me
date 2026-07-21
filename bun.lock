@@ -6,7 +6,7 @@
       "name": "koki.me",
       "dependencies": {
         "@fontsource-variable/inter": "5.2.8",
-        "@fontsource-variable/noto-sans-jp": "5.2.9",
+        "@fontsource-variable/noto-sans-jp": "5.2.10",
         "@tailwindcss/vite": "4.1.17",
         "@vitejs/plugin-react": "5.1.1",
         "babel-plugin-react-compiler": "1.0.0",
@@ -178,7 +178,7 @@
 
     "@fontsource-variable/inter": ["@fontsource-variable/inter@5.2.8", "", {}, "sha512-kOfP2D+ykbcX/P3IFnokOhVRNoTozo5/JxhAIVYLpea/UBmCQ/YWPBfWIDuBImXX/15KH+eKh4xpEUyS2sQQGQ=="],
 
-    "@fontsource-variable/noto-sans-jp": ["@fontsource-variable/noto-sans-jp@5.2.9", "", {}, "sha512-osPL5f7dvGDjuMuFwDTGPLG37030D8X5zk+3BWea6txAVDFeE/ZIrKW0DY0uSDfRn9+NiKbiFn/2QvZveKXTog=="],
+    "@fontsource-variable/noto-sans-jp": ["@fontsource-variable/noto-sans-jp@5.2.10", "", {}, "sha512-m0XfZ38rZtCaGAuAQL0cBPQ6fc/RguYEOqw66zvuLOV9vNRUBf9MFqyoazTu2JVCRIcnkrxbwF29UUaHHgTKdg=="],
 
     "@humanfs/core": ["@humanfs/core@0.19.1", "", {}, "sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA=="],
 
