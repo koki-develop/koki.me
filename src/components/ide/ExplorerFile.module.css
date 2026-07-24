@@ -1,7 +1,7 @@
 .file {
   display: flex;
   align-items: center;
-  padding: 6px 18px 6px 32px;
+  padding: 6px 18px 6px 46px;
   font-size: var(--ps1ui-font-size-sm);
   color: var(--ps1ui-color-fg-muted);
   border-left: 2px solid transparent;
