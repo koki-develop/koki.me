@@ -1,6 +1,7 @@
 import { writeFileSync } from "node:fs";
 import pLimit from "p-limit";
 import config from "../config";
+import { parseRepoSlug } from "../src/lib/github";
 import type { Contributions, GitHubData, RepoStats } from "../src/types";
 
 const GITHUB_USER = "koki-develop";
@@ -30,12 +31,7 @@ function _repoSlugs(): string[] {
   for (const category of config.workCategories) {
     for (const work of category.works) {
       if (!work.githubUrl) continue;
-      const { pathname } = new URL(work.githubUrl);
-      const [owner, repo] = pathname.replace(/^\//, "").split("/");
-      if (!owner || !repo) {
-        throw new Error(`Failed to parse GitHub repo slug: ${work.githubUrl}`);
-      }
-      slugs.add(`${owner}/${repo}`);
+      slugs.add(parseRepoSlug(work.githubUrl));
     }
   }
 

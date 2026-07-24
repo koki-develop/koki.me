@@ -1,12 +1,6 @@
 import type { RepoStats, Work, WorkCategory } from "@/types";
 import { describe, expect, test } from "vitest";
-import {
-  categoryCounts,
-  filterWorks,
-  flattenWorks,
-  parseRepoSlug,
-  resolveStars,
-} from "./lib";
+import { categoryCounts, filterWorks, flattenWorks, resolveStars } from "./lib";
 
 const categories: WorkCategory[] = [
   {
@@ -41,16 +35,6 @@ const repos: Record<string, RepoStats> = {
   "koki-develop/koki.me": { stars: 0 },
   "koki-develop/clive": { stars: 392 },
 };
-
-describe("parseRepoSlug", () => {
-  test.each([
-    ["https://github.com/koki-develop/koki.me", "koki-develop/koki.me"],
-    ["https://github.com/codize-dev/sandbox", "codize-dev/sandbox"],
-    ["https://github.com/koki-develop/gat/", "koki-develop/gat"],
-  ])("parseRepoSlug(%j) -> %j", (input, expected) => {
-    expect(parseRepoSlug(input)).toBe(expected);
-  });
-});
 
 describe("flattenWorks", () => {
   test("attaches each work to its category name", () => {

@@ -63,6 +63,8 @@ bun run fetch:notes
 - `@/types` → `src/types.ts`
 - `@/assets` → `src/assets`
 - `@/data` → `data`
+- `@/components` → `src/components`
+- `@/lib` → `src/lib`
 
 ### Page Structure
 

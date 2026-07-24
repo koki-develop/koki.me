@@ -1,3 +1,4 @@
+import { parseRepoSlug } from "@/lib/github";
 import type { RepoStats, Work, WorkCategory } from "@/types";
 
 export type FlattenedWork = {
@@ -11,16 +12,6 @@ export type CategoryCount = {
 };
 
 const ALL_CATEGORY = "All";
-
-/**
- * Extracts "owner/repo" from a GitHub repository URL, matching the key
- * format used in data/github.json's `repos` map.
- */
-export function parseRepoSlug(githubUrl: string): string {
-  const { pathname } = new URL(githubUrl);
-  const [owner, repo] = pathname.split("/").filter(Boolean);
-  return `${owner}/${repo}`;
-}
 
 export function flattenWorks(categories: WorkCategory[]): FlattenedWork[] {
   return categories.flatMap((category) =>
