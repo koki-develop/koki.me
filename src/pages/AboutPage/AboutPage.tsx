@@ -20,21 +20,21 @@ export function AboutPage() {
       <Text size="md">{config.profile.bio}</Text>
 
       <Stack gap="md">
-        <Heading level={2} size="sm">
+        <Heading level={2} size="sm" variant="subtle">
           <span aria-hidden="true">## </span>Skills
         </Heading>
         <SkillList skills={config.skills} />
       </Stack>
 
       <Stack gap="md">
-        <Heading level={2} size="sm">
+        <Heading level={2} size="sm" variant="subtle">
           <span aria-hidden="true">## </span>Certifications
         </Heading>
         <CertificationList certifications={config.certifications} />
       </Stack>
 
       <Stack gap="md">
-        <Heading level={2} size="sm">
+        <Heading level={2} size="sm" variant="subtle">
           <span aria-hidden="true">## </span>Next
         </Heading>
         <NextFiles />
