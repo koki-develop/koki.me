@@ -1,0 +1,95 @@
+.explorer {
+  display: none;
+}
+
+@container ps1ui-root (min-width: 48rem) {
+  .explorer {
+    display: flex;
+    flex-direction: column;
+    width: 248px;
+    flex-shrink: 0;
+    border-right: 1px solid var(--ps1ui-color-border);
+    background: color-mix(
+      in srgb,
+      var(--ps1ui-color-bg) 60%,
+      var(--ps1ui-color-surface)
+    );
+    padding: var(--ps1ui-space-lg) 0;
+    height: 100%;
+  }
+}
+
+.label {
+  padding: 2px 18px 10px;
+  font-size: var(--ps1ui-font-size-xs);
+  color: var(--ps1ui-color-fg-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.folder {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 5px 18px;
+  font: inherit;
+  font-size: var(--ps1ui-font-size-sm);
+  text-align: left;
+  color: var(--ps1ui-color-fg-muted);
+  background: transparent;
+  transition: color var(--ps1ui-transition-fast);
+}
+
+.folderIcon {
+  flex-shrink: 0;
+  color: var(--ps1ui-color-fg-subtle);
+}
+
+.folder:hover {
+  color: var(--ps1ui-color-fg);
+}
+
+.tree {
+  display: flex;
+  flex-direction: column;
+}
+
+.file {
+  display: flex;
+  align-items: center;
+  padding: 6px 18px 6px 32px;
+  font-size: var(--ps1ui-font-size-sm);
+  color: var(--ps1ui-color-fg-muted);
+  border-left: 2px solid transparent;
+  transition:
+    color var(--ps1ui-transition-fast),
+    background-color var(--ps1ui-transition-fast);
+}
+
+.file:hover {
+  background: var(--ps1ui-color-surface);
+}
+
+.file.active {
+  color: var(--ps1ui-color-fg);
+  background: var(--ps1ui-color-surface);
+  border-left-color: var(--ps1ui-color-primary);
+}
+
+.links {
+  margin-top: auto;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 18px;
+  font-size: var(--ps1ui-font-size-sm);
+  color: var(--ps1ui-color-fg-muted);
+}
+
+.linkIcon {
+  flex-shrink: 0;
+}

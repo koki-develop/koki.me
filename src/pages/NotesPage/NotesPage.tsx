@@ -1,32 +1,41 @@
+import { SourceComment } from "@/components/SourceComment";
+import config from "@/config";
 import notes from "@/data/notes.json";
-import { LuExternalLink } from "react-icons/lu";
-import NoteCard from "./components/NoteCard";
+import { Button, Heading, Text } from "@ps1ui/core";
+import { ArrowUpRight } from "lucide-react";
+import { NoteRow } from "./components/NoteRow";
+import styles from "./NotesPage.module.css";
 
-export default function NotesPage() {
+export function NotesPage() {
+  const zennUrl = config.socials.find((social) => social.name === "Zenn")?.url;
+
   return (
-    <div className="flex flex-col gap-8">
-      <div>
-        <h1 className="mb-2 text-3xl">Notes</h1>
-        <p className="text-slate-400">最近書いた技術ブログ。</p>
-      </div>
+    <div>
+      <SourceComment>notes.md</SourceComment>
+      <Heading level={2} className={styles.heading}>
+        Notes
+      </Heading>
+      <Text variant="muted" className={styles.subtitle}>
+        Tech articles published on Zenn.
+      </Text>
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div className={styles.list}>
         {notes.map((note) => (
-          <NoteCard key={note.url} note={note} />
+          <NoteRow key={note.url} note={note} />
         ))}
       </div>
 
-      <div className="flex justify-center">
-        <a
-          className="flex items-center gap-2 rounded border border-slate-700 bg-slate-800 px-4 py-2 text-base"
-          href="https://zenn.dev/kou_pg_0131"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          View More
-          <LuExternalLink className="text-slate-400" />
-        </a>
-      </div>
+      <Button
+        variant="secondary"
+        as="a"
+        href={zennUrl}
+        target="_blank"
+        rel="noreferrer"
+        className={styles.zennButton}
+      >
+        View all posts on Zenn
+        <ArrowUpRight size={14} aria-hidden="true" />
+      </Button>
     </div>
   );
 }

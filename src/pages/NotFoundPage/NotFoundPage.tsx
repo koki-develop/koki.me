@@ -1,10 +1,23 @@
-export default function NotFoundPage() {
+import { SourceComment } from "@/components/SourceComment";
+import { Anchor, Heading, Text } from "@ps1ui/core";
+import { ArrowLeft } from "lucide-react";
+import { Link } from "react-router";
+import styles from "./NotFoundPage.module.css";
+
+export function NotFoundPage() {
   return (
     <div>
-      <h1 className="mb-2 text-3xl font-bold">Page Not Found</h1>
-      <p className="text-slate-400">
-        The page you are looking for does not exist.
-      </p>
+      <SourceComment>404</SourceComment>
+      <Heading level={1} className={styles.heading}>
+        File not found
+      </Heading>
+      <Text variant="muted">
+        The file you&apos;re looking for doesn&apos;t exist.
+      </Text>
+      <Anchor as={Link} to="/" className={styles.back}>
+        <ArrowLeft size={14} aria-hidden="true" />
+        back to about.md
+      </Anchor>
     </div>
   );
 }

@@ -1,0 +1,16 @@
+.heading {
+  margin: 12px 0 4px;
+}
+
+.subtitle {
+  margin-bottom: 26px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.zennButton {
+  margin-top: 28px;
+}

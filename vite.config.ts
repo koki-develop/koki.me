@@ -1,4 +1,3 @@
-import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import path from "node:path";
 import { defineConfig } from "vite";
@@ -12,6 +11,7 @@ export default defineConfig({
       "@/types": path.resolve(__dirname, "src/types.ts"),
       "@/assets": path.resolve(__dirname, "src/assets"),
       "@/data": path.resolve(__dirname, "data"),
+      "@/components": path.resolve(__dirname, "src/components"),
     },
   },
   plugins: [
@@ -21,6 +21,5 @@ export default defineConfig({
       },
     }),
     svgr(),
-    tailwindcss(),
   ],
 });

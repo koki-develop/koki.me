@@ -1,0 +1,21 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--ps1ui-color-border);
+  border-radius: var(--ps1ui-radius-md);
+  background: var(--ps1ui-color-surface);
+  color: var(--ps1ui-color-fg);
+  font-size: var(--ps1ui-font-size-sm);
+  text-decoration: none;
+  transition:
+    border-color var(--ps1ui-transition-fast),
+    color var(--ps1ui-transition-fast);
+}
+
+.chip:hover {
+  border-color: var(--ps1ui-color-primary);
+  color: var(--ps1ui-color-primary);
+}

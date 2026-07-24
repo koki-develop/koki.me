@@ -1,13 +1,23 @@
-@import "tailwindcss";
-@import "@fontsource-variable/inter";
-@import "@fontsource-variable/noto-sans-jp";
-
-@theme {
-  --font-sans: "Inter Variable", "Noto Sans JP Variable", sans-serif;
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
 }
 
-a {
-  &:hover {
-    opacity: 80%;
-  }
+::-webkit-scrollbar-track {
+  background: var(--ps1ui-color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--ps1ui-color-border);
+  border: 2px solid var(--ps1ui-color-bg);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--ps1ui-color-border-strong);
+}
+
+* {
+  scrollbar-color: var(--ps1ui-color-border) var(--ps1ui-color-bg);
+  scrollbar-width: thin;
 }

@@ -1,8 +1,5 @@
 import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
 
-dayjs.extend(relativeTime);
-
-export function relativeTimeFromNow(dateString: string): string {
-  return dayjs(dateString).fromNow();
+export function formatNoteDate(publishedAt: string): string {
+  return dayjs(publishedAt).format("YYYY.MM");
 }

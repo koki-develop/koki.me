@@ -1,3 +1,1 @@
-import NotesPage from "./NotesPage";
-
-export default NotesPage;
+export { NotesPage } from "./NotesPage";

@@ -1,28 +1,56 @@
+import { SourceComment } from "@/components/SourceComment";
 import config from "@/config";
-import WorkCard from "./components/WorkCard";
+import githubData from "@/data/github.json";
+import type { GitHubData } from "@/types";
+import { Grid, Heading, Text } from "@ps1ui/core";
+import { useMemo, useState } from "react";
+import { CategoryFilter } from "./components/CategoryFilter";
+import { GithubActivityCard } from "./components/GithubActivityCard";
+import { WorkCard } from "./components/WorkCard";
+import { categoryCounts, filterWorks, flattenWorks } from "./lib";
+import styles from "./WorksPage.module.css";
 
-export default function WorksPage() {
+const github = githubData as GitHubData;
+
+export function WorksPage() {
+  const [category, setCategory] = useState("All");
+
+  const items = useMemo(() => flattenWorks(config.workCategories), []);
+  const counts = useMemo(() => categoryCounts(config.workCategories), []);
+  const filtered = useMemo(
+    () => filterWorks(items, category),
+    [items, category],
+  );
+
   return (
-    <div className="flex flex-col gap-8">
-      <div>
-        <h1 className="mb-2 text-3xl">Works</h1>
-        <p className="text-slate-400">今までにつくったもの。</p>
-      </div>
+    <div>
+      <SourceComment>works.tsx</SourceComment>
 
-      {config.workCategories.map((category) => (
-        <section key={category.name}>
-          <h2 className="mb-4 flex items-center gap-2 text-2xl">
-            <category.icon />
-            <span>{category.name}</span>
-          </h2>
+      <Heading level={2} className={styles.heading}>
+        Works
+      </Heading>
+      <Text variant="muted" className={styles.subtitle}>
+        {items.length} projects
+      </Text>
 
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            {category.works.map((work) => (
-              <WorkCard key={work.url} work={work} />
-            ))}
-          </div>
-        </section>
-      ))}
+      <GithubActivityCard contributions={github.contributions} />
+
+      <CategoryFilter
+        categories={counts}
+        active={category}
+        onChange={setCategory}
+      />
+
+      <Grid columns={{ base: 1, md: 2 }} gap="lg">
+        {filtered.map(({ work, category: workCategory }) => (
+          <WorkCard
+            key={work.name}
+            work={work}
+            category={workCategory}
+            repos={github.repos}
+          />
+        ))}
+      </Grid>
     </div>
   );
 }

@@ -12,7 +12,8 @@
       "@/config": ["config.ts"],
       "@/types": ["src/types.ts"],
       "@/assets/*": ["src/assets/*"],
-      "@/data/*": ["data/*"]
+      "@/data/*": ["data/*"],
+      "@/components/*": ["src/components/*"]
     },
 
     /* Bundler mode */

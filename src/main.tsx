@@ -1,18 +1,19 @@
-import FontFaceObserver from "fontfaceobserver";
+import "@ps1ui/core/styles.css";
+import "./index.css";
+
+import { PS1Root } from "@ps1ui/core";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
-import Layout from "./Layout";
-import AboutPage from "./pages/AboutPage";
-import NotesPage from "./pages/NotesPage";
-import NotFoundPage from "./pages/NotFoundPage";
-import WorksPage from "./pages/WorksPage";
-
-import "./index.css";
+import { IdeShell } from "./components/ide";
+import { AboutPage } from "./pages/AboutPage";
+import { NotesPage } from "./pages/NotesPage";
+import { NotFoundPage } from "./pages/NotFoundPage";
+import { WorksPage } from "./pages/WorksPage";
 
 const router = createBrowserRouter([
   {
-    Component: Layout,
+    Component: IdeShell,
     children: [
       {
         index: true,
@@ -34,15 +35,10 @@ const router = createBrowserRouter([
   },
 ]);
 
-async function loadFonts() {
-  const fonts = ["Inter Variable", "Noto Sans JP Variable"];
-  await Promise.all(fonts.map((font) => new FontFaceObserver(font).load()));
-}
-
-await loadFonts().then(() => {
-  createRoot(document.getElementById("root")!).render(
-    <StrictMode>
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <PS1Root>
       <RouterProvider router={router} />
-    </StrictMode>,
-  );
-});
+    </PS1Root>
+  </StrictMode>,
+);

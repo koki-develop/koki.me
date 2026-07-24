@@ -1,116 +1,39 @@
+import { SourceComment } from "@/components/SourceComment";
 import config from "@/config";
-import { LuArrowRight } from "react-icons/lu";
-import { Link } from "react-router";
-import SkillBadge from "./components/SkillBadge";
-import SocialCard from "./components/SocialCard";
+import { Heading, Text } from "@ps1ui/core";
+import styles from "./AboutPage.module.css";
+import { CertificationList } from "./components/CertificationList";
+import { ContactLinks } from "./components/ContactLinks";
+import { NextFiles } from "./components/NextFiles";
+import { SectionLabel } from "./components/SectionLabel";
+import { SkillList } from "./components/SkillList";
 
-const navItems: {
-  name: string;
-  description: string;
-  to: string;
-}[] = [
-  {
-    name: "Works",
-    to: "/works",
-    description: "今までにつくったもの。",
-  },
-  {
-    name: "Notes",
-    to: "/notes",
-    description: "最近書いた技術ブログ。",
-  },
-];
-
-export default function AboutPage() {
+export function AboutPage() {
   return (
-    <div className="flex flex-col gap-8">
-      <h1 className="sr-only">Koki Sato</h1>
+    <div>
+      <SourceComment>about.md</SourceComment>
 
-      {/* Profile */}
-      <section className="md:pt-4">
-        <h2 className="sr-only">Profile</h2>
+      <Heading level={1} className={styles.name}>
+        {config.profile.name}
+      </Heading>
+      <Text as="span" variant="primary" size="md" className={styles.role}>
+        {config.profile.role}
+      </Text>
 
-        <div className="flex items-center justify-center gap-4">
-          <img
-            className="size-24 rounded-full bg-slate-50"
-            src="/images/profile.png"
-            alt=""
-          />
+      <ContactLinks socials={config.socials} />
 
-          <div className="flex flex-col">
-            <span className="text-2xl">{config.profile.name}</span>
-            <span className="text-base text-slate-400">
-              {config.profile.bio}
-            </span>
-          </div>
-        </div>
-      </section>
+      <Text size="md" className={styles.bio}>
+        {config.profile.bio}
+      </Text>
 
-      {/* Socials */}
-      <section>
-        <h2 className="sr-only">Socials</h2>
+      <SectionLabel>## Skills</SectionLabel>
+      <SkillList skills={config.skills} />
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {config.socials.map((social) => (
-            <SocialCard key={social.url} social={social} />
-          ))}
-        </div>
-      </section>
+      <SectionLabel>## Certifications</SectionLabel>
+      <CertificationList certifications={config.certifications} />
 
-      <div className="flex flex-col gap-8 md:flex-row md:gap-4">
-        {/* Skills */}
-        <section className="flex-1">
-          <h2 className="mb-4 text-2xl">Skills</h2>
-          <div className="flex flex-wrap gap-2">
-            {config.skills.map((skill) => (
-              <SkillBadge key={skill.name} skill={skill} />
-            ))}
-          </div>
-        </section>
-
-        {/* Certifications */}
-        <section className="flex-1">
-          <h2 className="mb-4 text-2xl">Certifications</h2>
-          <div className="flex flex-wrap justify-center gap-4">
-            {config.certifications.map((certification) => (
-              <a
-                key={certification.url}
-                href={certification.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={certification.name}
-              >
-                <img
-                  className="size-24 md:size-28"
-                  src={certification.imageUrl}
-                  alt={certification.name}
-                />
-              </a>
-            ))}
-          </div>
-        </section>
-      </div>
-
-      {/* Navigate */}
-      <section>
-        <h2 className="sr-only">Navigate</h2>
-
-        <div className="flex flex-col gap-4 md:flex-row">
-          {navItems.map((item) => (
-            <Link
-              key={item.to}
-              className="group flex flex-1 flex-col rounded border border-slate-700 bg-slate-800 px-6 py-4"
-              to={item.to}
-            >
-              <div className="mb-2 flex items-center gap-1">
-                <span className="text-xl">{item.name}</span>
-                <LuArrowRight className="size-5 text-slate-400 transition-transform group-hover:translate-x-1" />
-              </div>
-              <span className="text-sm text-slate-400">{item.description}</span>
-            </Link>
-          ))}
-        </div>
-      </section>
+      <SectionLabel>## Next</SectionLabel>
+      <NextFiles />
     </div>
   );
 }

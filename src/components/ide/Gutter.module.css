@@ -1,0 +1,23 @@
+.gutter {
+  display: none;
+}
+
+@container ps1ui-root (min-width: 48rem) {
+  .gutter {
+    display: block;
+    width: 52px;
+    flex-shrink: 0;
+    border-right: 1px solid
+      color-mix(in srgb, var(--ps1ui-color-border) 50%, transparent);
+    padding: 36px 0;
+    text-align: right;
+    font-size: var(--ps1ui-font-size-xs);
+    line-height: 1.75;
+    color: color-mix(in srgb, var(--ps1ui-color-fg-subtle) 55%, transparent);
+    user-select: none;
+  }
+}
+
+.line {
+  padding-right: 14px;
+}

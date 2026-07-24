@@ -1,44 +1,75 @@
-import GitHubIcon from "@/assets/social/github.svg?react";
-import type { Work } from "@/types";
-import { LuExternalLink } from "react-icons/lu";
-import { extractDomain } from "../lib";
+import type { RepoStats, Work } from "@/types";
+import { Anchor, Badge, Card, Text } from "@ps1ui/core";
+import { ArrowUpRight, Star } from "lucide-react";
+import { resolveStars } from "../lib";
+import styles from "./WorkCard.module.css";
 
-type Props = {
+type WorkCardProps = {
   work: Work;
+  category: string;
+  repos: Record<string, RepoStats>;
 };
 
-export default function WorkCard({ work }: Props) {
+export function WorkCard({ work, category, repos }: WorkCardProps) {
+  const stars = resolveStars(work, repos);
+  const hasLinks = Boolean(work.url || work.githubUrl);
+
   return (
-    <div className="flex flex-col gap-4 rounded border border-slate-700 bg-slate-800 p-4">
-      <div className="flex flex-1 flex-col gap-2">
-        <a
-          className="flex w-fit flex-col"
+    <Card className={styles.card}>
+      <div className={styles.header}>
+        <Anchor
+          variant="subtle"
           href={work.url ?? work.githubUrl}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noreferrer"
+          className={styles.title}
         >
-          <span className="text-xl">{work.name}</span>
-          <div className="flex items-center gap-1 text-sm text-slate-400">
-            <span>{extractDomain(work.url ?? work.githubUrl)}</span>
-            <LuExternalLink />
-          </div>
-        </a>
-
-        <span className="text-base">{work.description}</span>
+          {work.name}
+        </Anchor>
+        {typeof stars === "number" && stars > 0 && (
+          <Text as="span" variant="muted" size="xs" className={styles.stars}>
+            <Star size={12} aria-hidden="true" className={styles.starIcon} />
+            {stars}
+          </Text>
+        )}
       </div>
 
-      {work.githubUrl && (
-        <a
-          className="flex w-fit items-center gap-2 rounded border border-slate-600 bg-slate-700 px-4 py-2 text-sm"
-          href={work.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <GitHubIcon className="size-5" />
-          <span>Source</span>
-          <LuExternalLink className="text-slate-400" />
-        </a>
-      )}
-    </div>
+      <Badge variant="outline" color="muted" className={styles.category}>
+        {category}
+      </Badge>
+
+      <Text as="p" variant="muted" size="sm" className={styles.description}>
+        {work.description}
+      </Text>
+
+      <div className={styles.footer}>
+        {hasLinks && (
+          <span className={styles.links}>
+            {work.url && (
+              <Anchor
+                href={work.url}
+                target="_blank"
+                rel="noreferrer"
+                className={styles.link}
+              >
+                live
+                <ArrowUpRight size={12} aria-hidden="true" />
+              </Anchor>
+            )}
+            {work.githubUrl && (
+              <Anchor
+                href={work.githubUrl}
+                target="_blank"
+                rel="noreferrer"
+                className={styles.link}
+              >
+                source
+                <ArrowUpRight size={12} aria-hidden="true" />
+              </Anchor>
+            )}
+          </span>
+        )}
+      </div>
+    </Card>
   );
 }

@@ -1,6 +1,3 @@
-import type { FunctionComponent, SVGProps } from "react";
-import type { IconType } from "react-icons";
-
 export type Config = {
   profile: Profile;
   socials: Social[];
@@ -11,6 +8,7 @@ export type Config = {
 
 export type Profile = {
   name: string;
+  role: string;
   bio: string;
 };
 
@@ -18,19 +16,18 @@ export type Social = {
   name: string;
   url: string;
   handle: string;
-  icon: FunctionComponent<SVGProps<SVGSVGElement>>;
 };
 
 export type Skill = {
   name: string;
   url: string;
-  icon: FunctionComponent<SVGProps<SVGSVGElement>>;
 };
 
 export type Certification = {
   name: string;
   url: string;
-  imageUrl: string;
+  issuer: string;
+  year: number;
 };
 
 export type Work = {
@@ -53,7 +50,6 @@ export type Work = {
 
 export type WorkCategory = {
   name: string;
-  icon: IconType;
   works: Work[];
 };
 
@@ -67,4 +63,25 @@ export type Note = {
 export type NoteTopic = {
   name: string;
   imageUrl: string;
+};
+
+// GitHub build-time data (data/github.json)
+
+export type GitHubData = {
+  contributions: Contributions;
+  repos: Record<string, RepoStats>;
+};
+
+export type Contributions = {
+  total: number;
+  days: ContributionDay[];
+};
+
+export type ContributionDay = {
+  date: string; // YYYY-MM-DD
+  count: number;
+};
+
+export type RepoStats = {
+  stars: number;
 };

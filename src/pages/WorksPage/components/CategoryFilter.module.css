@@ -1,0 +1,11 @@
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ps1ui-space-sm);
+  margin-bottom: var(--ps1ui-space-xl);
+}
+
+.count {
+  font-size: var(--ps1ui-font-size-xs);
+  opacity: 0.65;
+}

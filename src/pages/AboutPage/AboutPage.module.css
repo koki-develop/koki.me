@@ -1,0 +1,13 @@
+.name {
+  margin: 14px 0 2px;
+}
+
+.role {
+  display: block;
+}
+
+.bio {
+  margin-top: 28px;
+  max-width: 64ch;
+  line-height: 1.8;
+}

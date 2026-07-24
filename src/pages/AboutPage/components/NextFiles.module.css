@@ -1,0 +1,30 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 14px;
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--ps1ui-color-border) 50%, transparent);
+}
+
+.file {
+  flex-shrink: 0;
+  color: var(--ps1ui-color-primary);
+  font-size: var(--ps1ui-font-size-sm);
+}
+
+.title {
+  flex: 1;
+  font-size: var(--ps1ui-font-size-md);
+}
+
+.arrow {
+  flex-shrink: 0;
+  color: var(--ps1ui-color-fg-subtle);
+}

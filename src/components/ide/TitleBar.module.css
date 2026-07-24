@@ -1,0 +1,53 @@
+.bar {
+  display: flex;
+  align-items: center;
+  gap: var(--ps1ui-space-sm);
+  padding: 11px var(--ps1ui-space-lg);
+  border-bottom: 1px solid var(--ps1ui-color-border);
+  background: var(--ps1ui-color-surface);
+  flex-shrink: 0;
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+
+.dotDanger {
+  background: var(--ps1ui-color-danger);
+}
+
+.dotAccent {
+  background: var(--ps1ui-color-accent);
+}
+
+.dotPrimary {
+  background: var(--ps1ui-color-primary);
+}
+
+.title {
+  margin-left: var(--ps1ui-space-sm);
+  font-size: var(--ps1ui-font-size-sm);
+  font-weight: 700;
+  color: var(--ps1ui-color-fg);
+}
+
+.branch {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  font-size: var(--ps1ui-font-size-xs);
+  color: var(--ps1ui-color-fg-subtle);
+}
+
+.branchIcon {
+  vertical-align: middle;
+}

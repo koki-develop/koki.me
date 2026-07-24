@@ -1,0 +1,42 @@
+.row {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  padding: 18px 0;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--ps1ui-color-border) 50%, transparent);
+}
+
+.date {
+  min-width: 76px;
+  color: var(--ps1ui-color-fg-subtle);
+  font-size: var(--ps1ui-font-size-sm);
+}
+
+.body {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: var(--ps1ui-font-size-md);
+  line-height: 1.5;
+}
+
+.topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.badge {
+  display: inline-block;
+}
+
+.arrow {
+  flex-shrink: 0;
+  color: var(--ps1ui-color-fg-subtle);
+}

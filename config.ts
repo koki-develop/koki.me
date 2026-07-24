@@ -1,27 +1,10 @@
-import AWSCLFBadge from "@/assets/certification/aws-clf.png";
-import AWSDOPBadge from "@/assets/certification/aws-dop.png";
-import AWSDVABadge from "@/assets/certification/aws-dva.png";
-import AWSSAABadge from "@/assets/certification/aws-saa.png";
-import AWSSAPBadge from "@/assets/certification/aws-sap.png";
-import AWSSOABadge from "@/assets/certification/aws-soa.png";
-import AWSIcon from "@/assets/skill/aws.svg?react";
-import GoIcon from "@/assets/skill/go.svg?react";
-import JavaScriptIcon from "@/assets/skill/javascript.svg?react";
-import NextJSIcon from "@/assets/skill/nextjs.svg?react";
-import ReactIcon from "@/assets/skill/react.svg?react";
-import TerraformIcon from "@/assets/skill/terraform.svg?react";
-import TypeScriptIcon from "@/assets/skill/typescript.svg?react";
-import BlueskyIcon from "@/assets/social/bluesky.svg?react";
-import GitHubIcon from "@/assets/social/github.svg?react";
-import XIcon from "@/assets/social/x.svg?react";
-import ZennIcon from "@/assets/social/zenn.svg?react";
-import { LuChrome, LuGlobe, LuKeyboard, LuTerminal } from "react-icons/lu";
 import type { Config } from "./src/types";
 
 const config: Config = {
   profile: {
     name: "Koki Sato",
-    bio: "埼玉県在住の 28 歳。のんびり生きています。",
+    role: "Web Engineer",
+    bio: "Web engineer building developer tools, CLIs, and web apps.",
   },
 
   socials: [
@@ -29,25 +12,21 @@ const config: Config = {
       name: "GitHub",
       url: "https://github.com/koki-develop",
       handle: "koki-develop",
-      icon: GitHubIcon,
     },
     {
       name: "X",
       url: "https://x.com/koki_develop",
       handle: "koki_develop",
-      icon: XIcon,
     },
     {
       name: "Bluesky",
       url: "https://bsky.app/profile/koki.me",
       handle: "koki.me",
-      icon: BlueskyIcon,
     },
     {
       name: "Zenn",
       url: "https://zenn.dev/kou_pg_0131",
       handle: "kou_pg_0131",
-      icon: ZennIcon,
     },
   ],
 
@@ -55,37 +34,30 @@ const config: Config = {
     {
       name: "Go",
       url: "https://golang.org",
-      icon: GoIcon,
     },
     {
       name: "TypeScript",
       url: "https://www.typescriptlang.org",
-      icon: TypeScriptIcon,
     },
     {
       name: "JavaScript",
       url: "https://developer.mozilla.org/docs/Web/JavaScript",
-      icon: JavaScriptIcon,
     },
     {
       name: "React",
       url: "https://reactjs.org",
-      icon: ReactIcon,
     },
     {
       name: "Next.js",
       url: "https://nextjs.org",
-      icon: NextJSIcon,
     },
     {
       name: "Terraform",
       url: "https://www.terraform.io",
-      icon: TerraformIcon,
     },
     {
       name: "AWS",
       url: "https://aws.amazon.com",
-      icon: AWSIcon,
     },
   ],
 
@@ -93,72 +65,77 @@ const config: Config = {
     {
       name: "AWS Certified DevOps Engineer - Professional",
       url: "https://www.credly.com/badges/acb69e55-f79c-428c-a706-ba1e741980b4/public_url",
-      imageUrl: AWSDOPBadge,
+      issuer: "Amazon Web Services",
+      year: 2025,
     },
     {
       name: "AWS Certified Solutions Architect - Professional",
-      imageUrl: AWSSAPBadge,
       url: "https://www.credly.com/badges/77ea1b7d-d676-4b47-a099-a1152e7b0cd7/public_url",
+      issuer: "Amazon Web Services",
+      year: 2025,
     },
     {
       name: "AWS Certified Solutions Architect - Associate",
       url: "https://www.credly.com/badges/a6b750f7-2601-4582-8131-3974e08eee5f/public_url",
-      imageUrl: AWSSAABadge,
+      issuer: "Amazon Web Services",
+      year: 2022,
     },
     {
       name: "AWS Certified SysOps Administrator - Associate",
       url: "https://www.credly.com/badges/385e90d5-3f8e-470a-bf87-51353ce88677/public_url",
-      imageUrl: AWSSOABadge,
+      issuer: "Amazon Web Services",
+      year: 2023,
     },
     {
       name: "AWS Certified Developer - Associate",
       url: "https://www.credly.com/badges/f88839f5-1909-4869-8cc5-432a2b987871/public_url",
-      imageUrl: AWSDVABadge,
+      issuer: "Amazon Web Services",
+      year: 2024,
     },
     {
       name: "AWS Certified Cloud Practitioner",
       url: "https://www.credly.com/badges/fbf0ac8b-fa6b-4cf2-af2c-c69aa888d3b4/public_url",
-      imageUrl: AWSCLFBadge,
+      issuer: "Amazon Web Services",
+      year: 2025,
     },
   ],
 
   workCategories: [
     {
-      name: "Web Application",
-      icon: LuGlobe,
+      name: "Web",
       works: [
         {
           name: "Koki Sato",
-          description: "ポートフォリオサイト。",
+          description: "This portfolio site.",
           url: "https://koki.me",
           githubUrl: "https://github.com/koki-develop/koki.me",
         },
         {
           name: "Codize",
-          description: "初学者向けのプログラミング学習サービス。",
+          description: "A programming learning service for beginners.",
           url: "https://codize.dev",
         },
         {
           name: "Thredot",
-          description: "スレッド形式のメモサービス。",
+          description: "A thread-style memo service.",
           url: "https://thredot.org",
         },
         {
           name: "SAMARI",
-          description: "技術ニュースの要約サービス。",
+          description: "A tech news summary service.",
           url: "https://samari.news",
           githubUrl: "https://github.com/koki-develop/samari",
         },
         {
           name: "Badge Generator",
-          description: "バッジ生成サービス。",
+          description: "A badge generation service.",
           url: "https://badgen.org",
           githubUrl: "https://github.com/koki-develop/badge-generator",
         },
         {
           name: "Gallery",
           description:
-            "バックエンド・フロントエンド・インフラを Terraform でつくったサンプルアプリ。",
+            "A sample app whose backend, frontend, and infrastructure are all built with Terraform.",
           url: "https://tftftf.gallery",
           githubUrl: "https://github.com/koki-develop/gallery",
         },
@@ -166,49 +143,48 @@ const config: Config = {
     },
     {
       name: "Tool",
-      icon: LuTerminal,
       works: [
         {
           name: "cLive",
-          description: "ターミナル操作を自動化するコマンドラインツール。",
+          description: "A CLI tool that automates terminal operations.",
           githubUrl: "https://github.com/koki-develop/clive",
         },
         {
           name: "gat",
-          description: "Go 製の cat コマンド。",
+          description: "A cat command written in Go.",
           githubUrl: "https://github.com/koki-develop/gat",
         },
         {
           name: "Cork",
-          description: "マークダウンファイルベースのカンバンアプリ",
+          description: "A markdown-file-based kanban app.",
           githubUrl: "https://github.com/koki-develop/Cork",
         },
         {
           name: "Codize Sandbox",
-          description: "サンドボックス化されたコード実行エンジン。",
+          description: "A sandboxed code execution engine.",
           githubUrl: "https://github.com/codize-dev/sandbox",
         },
         {
           name: "ghasec",
-          description: "GitHub Actions ワークフロー定義の静的検査ツール。",
+          description:
+            "A static analysis tool for GitHub Actions workflow definitions.",
           githubUrl: "https://github.com/koki-develop/ghasec",
         },
         {
           name: "ghats",
           description:
-            "TypeScript で GitHub Actions Workflow 定義を記述するツール。",
+            "A tool for writing GitHub Actions workflow definitions in TypeScript.",
           githubUrl: "https://github.com/koki-develop/ghats",
         },
       ],
     },
     {
-      name: "Chrome Extension",
-      icon: LuChrome,
+      name: "Extension",
       works: [
         {
           name: "AWS Masking",
           description:
-            "AWS マネジメントコンソール上の秘匿情報を自動で隠す Chrome 拡張。",
+            "A Chrome extension that automatically masks sensitive information on the AWS Management Console.",
           url: "https://chromewebstore.google.com/detail/aws-masking/nblpfncgdloilgeicnnlihegobmhjifb",
           githubUrl: "https://github.com/koki-develop/aws-masking",
         },
@@ -216,16 +192,15 @@ const config: Config = {
     },
     {
       name: "IME",
-      icon: LuKeyboard,
       works: [
         {
           name: "Koto",
-          description: "Mac 用の IME 。",
+          description: "An IME for macOS.",
           githubUrl: "https://github.com/koki-develop/Koto",
         },
         {
           name: "NyaIME",
-          description: "猫用の IME 。",
+          description: "An IME for cats.",
           githubUrl: "https://github.com/koki-develop/NyaIME",
         },
       ],
