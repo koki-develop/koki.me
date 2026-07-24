@@ -10,7 +10,7 @@ export function WorksPageHeader({ count }: WorksPageHeaderProps) {
       <Heading level={1} size="2xl">
         Works
       </Heading>
-      <Text variant="muted">{count} projects</Text>
+      <Text variant="muted">{count} of the projects I&apos;ve built.</Text>
     </Stack>
   );
 }
