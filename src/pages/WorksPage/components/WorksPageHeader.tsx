@@ -1,5 +1,4 @@
-import { Heading, Text } from "@ps1ui/core";
-import styles from "./WorksPageHeader.module.css";
+import { Heading, Stack, Text } from "@ps1ui/core";
 
 type WorksPageHeaderProps = {
   count: number;
@@ -7,13 +6,11 @@ type WorksPageHeaderProps = {
 
 export function WorksPageHeader({ count }: WorksPageHeaderProps) {
   return (
-    <>
-      <Heading level={2} className={styles.heading}>
+    <Stack gap="xs">
+      <Heading level={1} size="2xl">
         Works
       </Heading>
-      <Text variant="muted" className={styles.subtitle}>
-        {count} projects
-      </Text>
-    </>
+      <Text variant="muted">{count} projects</Text>
+    </Stack>
   );
 }

@@ -1,17 +1,20 @@
 import { SourceComment } from "@/components/SourceComment";
-import { Text } from "@ps1ui/core";
-import { BackToHomeLink } from "./components/BackToHomeLink";
-import { NotFoundHeading } from "./components/NotFoundHeading";
+import { Button, Heading, Stack, Text } from "@ps1ui/core";
+import { ArrowLeft } from "lucide-react";
+import { Link } from "react-router";
 
 export function NotFoundPage() {
   return (
-    <div>
+    <Stack gap="lg" align="start">
       <SourceComment>404</SourceComment>
-      <NotFoundHeading />
+      <Heading level={1}>File not found</Heading>
       <Text variant="muted">
         The file you&apos;re looking for doesn&apos;t exist.
       </Text>
-      <BackToHomeLink />
-    </div>
+      <Button as={Link} to="/" variant="secondary">
+        <ArrowLeft size={14} aria-hidden="true" />
+        back to about.md
+      </Button>
+    </Stack>
   );
 }

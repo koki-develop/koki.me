@@ -1,3 +1,4 @@
+import { Text } from "@ps1ui/core";
 import type { ReactNode } from "react";
 import styles from "./ExplorerLabel.module.css";
 
@@ -6,5 +7,9 @@ type ExplorerLabelProps = {
 };
 
 export function ExplorerLabel({ children }: ExplorerLabelProps) {
-  return <div className={styles.label}>{children}</div>;
+  return (
+    <Text as="div" variant="subtle" size="xs" className={styles.label}>
+      {children}
+    </Text>
+  );
 }

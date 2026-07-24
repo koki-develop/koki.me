@@ -1,6 +1,5 @@
 import type { Contributions } from "@/types";
-import { Card, ContributionGraph, Text } from "@ps1ui/core";
-import styles from "./GithubActivityCard.module.css";
+import { Card, ContributionGraph, Stack, Text } from "@ps1ui/core";
 
 type GithubActivityCardProps = {
   contributions: Contributions;
@@ -8,19 +7,19 @@ type GithubActivityCardProps = {
 
 export function GithubActivityCard({ contributions }: GithubActivityCardProps) {
   return (
-    <Card className={styles.card}>
-      <div className={styles.header}>
-        <Text as="span" variant="body" size="sm" weight="bold">
-          GitHub activity
-        </Text>
-        <Text as="span" variant="subtle" size="xs">
-          {contributions.total.toLocaleString("en-US")} contributions in the
-          last year
-        </Text>
-      </div>
-      <div className={styles.graph}>
+    <Card>
+      <Stack gap="lg">
+        <Stack direction="row" align="baseline" wrap gap="md">
+          <Text as="span" size="sm" weight="bold">
+            GitHub activity
+          </Text>
+          <Text as="span" variant="subtle" size="xs">
+            {contributions.total.toLocaleString("en-US")} contributions in the
+            last year
+          </Text>
+        </Stack>
         <ContributionGraph data={contributions.days} />
-      </div>
+      </Stack>
     </Card>
   );
 }

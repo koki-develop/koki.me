@@ -1,3 +1,4 @@
+import { Stack } from "@ps1ui/core";
 import { useEffect, useRef, useState } from "react";
 import { Outlet, useLocation } from "react-router";
 import { Explorer } from "./Explorer";
@@ -44,23 +45,28 @@ export function IdeShell() {
   }, []);
 
   return (
-    <div className={styles.window}>
+    <Stack gap="none" className={styles.window}>
       <TitleBar />
-      <div className={styles.middle}>
+      <Stack direction="row" gap="none" className={styles.middle}>
         <Explorer />
-        <div className={styles.editor}>
+        <Stack gap="none" className={styles.editor}>
           <TabBar />
-          <div className={styles.scroll} ref={scrollRef}>
+          <Stack
+            direction="row"
+            gap="none"
+            className={styles.scroll}
+            ref={scrollRef}
+          >
             <Gutter height={contentHeight} />
             <main className={styles.main} ref={mainRef}>
               <div ref={contentRef}>
                 <Outlet />
               </div>
             </main>
-          </div>
+          </Stack>
           <StatusBar activeFile={activeFile} />
-        </div>
-      </div>
-    </div>
+        </Stack>
+      </Stack>
+    </Stack>
   );
 }

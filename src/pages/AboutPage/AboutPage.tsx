@@ -1,32 +1,44 @@
 import { SourceComment } from "@/components/SourceComment";
 import config from "@/config";
-import { Bio } from "./components/Bio";
+import { Heading, Stack, Text } from "@ps1ui/core";
 import { CertificationList } from "./components/CertificationList";
 import { ContactLinks } from "./components/ContactLinks";
 import { NextFiles } from "./components/NextFiles";
 import { ProfileHeader } from "./components/ProfileHeader";
-import { SectionLabel } from "./components/SectionLabel";
 import { SkillList } from "./components/SkillList";
 
 export function AboutPage() {
   return (
-    <div>
-      <SourceComment>about.md</SourceComment>
-
-      <ProfileHeader name={config.profile.name} role={config.profile.role} />
+    <Stack gap="xl">
+      <Stack gap="md">
+        <SourceComment>about.md</SourceComment>
+        <ProfileHeader name={config.profile.name} role={config.profile.role} />
+      </Stack>
 
       <ContactLinks socials={config.socials} />
 
-      <Bio>{config.profile.bio}</Bio>
+      <Text size="md">{config.profile.bio}</Text>
 
-      <SectionLabel>## Skills</SectionLabel>
-      <SkillList skills={config.skills} />
+      <Stack gap="md">
+        <Heading level={2} size="sm">
+          <span aria-hidden="true">## </span>Skills
+        </Heading>
+        <SkillList skills={config.skills} />
+      </Stack>
 
-      <SectionLabel>## Certifications</SectionLabel>
-      <CertificationList certifications={config.certifications} />
+      <Stack gap="md">
+        <Heading level={2} size="sm">
+          <span aria-hidden="true">## </span>Certifications
+        </Heading>
+        <CertificationList certifications={config.certifications} />
+      </Stack>
 
-      <SectionLabel>## Next</SectionLabel>
-      <NextFiles />
-    </div>
+      <Stack gap="md">
+        <Heading level={2} size="sm">
+          <span aria-hidden="true">## </span>Next
+        </Heading>
+        <NextFiles />
+      </Stack>
+    </Stack>
   );
 }

@@ -1,4 +1,5 @@
 import config from "@/config";
+import { Stack } from "@ps1ui/core";
 import { useState } from "react";
 import styles from "./Explorer.module.css";
 import { ExplorerFile } from "./ExplorerFile";
@@ -17,7 +18,7 @@ export function Explorer() {
         koki-sato/
       </ExplorerFolder>
       {open && (
-        <div className={styles.tree}>
+        <Stack gap="none">
           {IDE_FILES.map((file) => (
             <ExplorerFile
               key={file.path}
@@ -27,16 +28,16 @@ export function Explorer() {
               {file.name}
             </ExplorerFile>
           ))}
-        </div>
+        </Stack>
       )}
-      <div className={styles.links}>
+      <Stack gap="none" className={styles.links}>
         <ExplorerLabel>Links</ExplorerLabel>
         {Object.values(config.socials).map((social) => (
           <ExplorerLink key={social.name} href={social.url}>
             {social.name.toLowerCase()}
           </ExplorerLink>
         ))}
-      </div>
+      </Stack>
     </nav>
   );
 }

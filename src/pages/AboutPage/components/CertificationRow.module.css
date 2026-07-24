@@ -1,25 +1,15 @@
 .row {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-  padding: 11px 0;
+  padding: var(--ps1ui-space-md) 0;
   border-bottom: 1px solid
     color-mix(in srgb, var(--ps1ui-color-border) 50%, transparent);
 }
 
-.link {
+.name {
   flex: 1;
-  font-size: var(--ps1ui-font-size-sm);
-}
-
-.issuer {
-  color: var(--ps1ui-color-fg-muted);
-  font-size: var(--ps1ui-font-size-xs);
 }
 
 .year {
+  flex-shrink: 0;
   min-width: 44px;
-  color: var(--ps1ui-color-fg-subtle);
-  font-size: var(--ps1ui-font-size-xs);
   text-align: right;
 }

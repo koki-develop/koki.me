@@ -1,42 +1,24 @@
 .row {
-  display: flex;
-  align-items: baseline;
-  gap: 20px;
-  padding: 18px 0;
+  padding: var(--ps1ui-space-lg) 0;
   border-bottom: 1px solid
     color-mix(in srgb, var(--ps1ui-color-border) 50%, transparent);
 }
 
 .date {
+  flex-shrink: 0;
   min-width: 76px;
-  color: var(--ps1ui-color-fg-subtle);
-  font-size: var(--ps1ui-font-size-sm);
 }
 
+/* `align-self` is required because @ps1ui/core's components.css sets
+   `align-self: stretch` on every `.ps1ui-stack` (its containment-collapse
+   defense), which outranks the parent row's `align-items: baseline`. Without
+   it this nested Stack stretches and drops out of baseline alignment, leaving
+   the date sitting ~2px above the title. */
 .body {
   flex: 1;
-  min-width: 0;
+  align-self: baseline;
 }
 
 .title {
-  display: block;
   overflow-wrap: anywhere;
-  font-size: var(--ps1ui-font-size-md);
-  line-height: 1.5;
-}
-
-.topics {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 8px;
-}
-
-.badge {
-  display: inline-block;
-}
-
-.arrow {
-  flex-shrink: 0;
-  color: var(--ps1ui-color-fg-subtle);
 }

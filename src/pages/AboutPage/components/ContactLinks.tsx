@@ -1,7 +1,6 @@
-import { LinkChip } from "@/components/LinkChip";
 import { SocialIcon } from "@/components/SocialIcon";
 import type { Socials } from "@/types";
-import styles from "./ContactLinks.module.css";
+import { Button, Stack } from "@ps1ui/core";
 
 type ContactLinksProps = {
   socials: Socials;
@@ -9,17 +8,21 @@ type ContactLinksProps = {
 
 export function ContactLinks({ socials }: ContactLinksProps) {
   return (
-    <div className={styles.contacts}>
+    <Stack direction="row" wrap gap="sm">
       {Object.values(socials).map((social) => (
-        <LinkChip
+        <Button
           key={social.name}
+          as="a"
+          variant="secondary"
           href={social.url}
           title={social.name}
-          icon={<SocialIcon name={social.name} width={18} height={18} />}
+          target="_blank"
+          rel="noreferrer"
         >
-          @{social.handle}
-        </LinkChip>
+          <SocialIcon name={social.name} width={16} height={16} />@
+          {social.handle}
+        </Button>
       ))}
-    </div>
+    </Stack>
   );
 }

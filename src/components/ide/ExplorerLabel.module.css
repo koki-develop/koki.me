@@ -1,7 +1,5 @@
 .label {
   padding: 2px 18px 10px;
-  font-size: var(--ps1ui-font-size-xs);
-  color: var(--ps1ui-color-fg-subtle);
   text-transform: uppercase;
   letter-spacing: 0.14em;
 }

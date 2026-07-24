@@ -1,5 +1,5 @@
 import type { Certification } from "@/types";
-import styles from "./CertificationList.module.css";
+import { Stack } from "@ps1ui/core";
 import { CertificationRow } from "./CertificationRow";
 
 type CertificationListProps = {
@@ -8,13 +8,13 @@ type CertificationListProps = {
 
 export function CertificationList({ certifications }: CertificationListProps) {
   return (
-    <div className={styles.list}>
+    <Stack gap="none">
       {certifications.map((certification) => (
         <CertificationRow
           key={certification.name}
           certification={certification}
         />
       ))}
-    </div>
+    </Stack>
   );
 }

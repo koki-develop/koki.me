@@ -1,25 +1,37 @@
 import { SourceComment } from "@/components/SourceComment";
 import config from "@/config";
 import notes from "@/data/notes.json";
-import { NoteList } from "./components/NoteList";
+import { Button, Stack } from "@ps1ui/core";
+import { ArrowUpRight } from "lucide-react";
 import { NoteRow } from "./components/NoteRow";
 import { NotesPageHeader } from "./components/NotesPageHeader";
-import { ZennLinkButton } from "./components/ZennLinkButton";
 
 export function NotesPage() {
   return (
-    <div>
-      <SourceComment>notes.md</SourceComment>
+    <Stack gap="xl">
+      <Stack gap="md">
+        <SourceComment>notes.md</SourceComment>
+        <NotesPageHeader />
+      </Stack>
 
-      <NotesPageHeader />
-
-      <NoteList>
+      <Stack gap="none">
         {notes.map((note) => (
           <NoteRow key={note.url} note={note} />
         ))}
-      </NoteList>
+      </Stack>
 
-      <ZennLinkButton href={config.socials.Zenn.url} />
-    </div>
+      <Stack align="start">
+        <Button
+          as="a"
+          variant="secondary"
+          href={config.socials.Zenn.url}
+          target="_blank"
+          rel="noreferrer"
+        >
+          View all posts on Zenn
+          <ArrowUpRight size={14} aria-hidden="true" />
+        </Button>
+      </Stack>
+    </Stack>
   );
 }

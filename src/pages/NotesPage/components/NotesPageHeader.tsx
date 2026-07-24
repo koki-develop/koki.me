@@ -1,15 +1,12 @@
-import { Heading, Text } from "@ps1ui/core";
-import styles from "./NotesPageHeader.module.css";
+import { Heading, Stack, Text } from "@ps1ui/core";
 
 export function NotesPageHeader() {
   return (
-    <>
-      <Heading level={2} className={styles.heading}>
+    <Stack gap="xs">
+      <Heading level={1} size="2xl">
         Notes
       </Heading>
-      <Text variant="muted" className={styles.subtitle}>
-        Tech articles published on Zenn.
-      </Text>
-    </>
+      <Text variant="muted">Tech articles published on Zenn.</Text>
+    </Stack>
   );
 }

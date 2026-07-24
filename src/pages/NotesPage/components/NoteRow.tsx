@@ -1,6 +1,5 @@
 import type { Note } from "@/types";
-import { Anchor, Badge } from "@ps1ui/core";
-import { ArrowRight } from "lucide-react";
+import { Anchor, Badge, Stack, Text } from "@ps1ui/core";
 import { formatNoteDate } from "../lib";
 import styles from "./NoteRow.module.css";
 
@@ -10,34 +9,31 @@ type NoteRowProps = {
 
 export function NoteRow({ note }: NoteRowProps) {
   return (
-    <div className={styles.row}>
-      <span className={styles.date}>{formatNoteDate(note.publishedAt)}</span>
-      <div className={styles.body}>
-        <Anchor
-          variant="subtle"
-          href={note.url}
-          target="_blank"
-          rel="noreferrer"
-          className={styles.title}
-        >
-          {note.title}
-        </Anchor>
+    <Stack direction="row" align="baseline" gap="lg" className={styles.row}>
+      <Text as="span" variant="subtle" size="sm" className={styles.date}>
+        {formatNoteDate(note.publishedAt)}
+      </Text>
+      <Stack gap="sm" className={styles.body}>
+        <Text size="md" className={styles.title}>
+          <Anchor
+            variant="subtle"
+            href={note.url}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {note.title}
+          </Anchor>
+        </Text>
         {note.topics.length > 0 && (
-          <div className={styles.topics}>
+          <Stack direction="row" wrap gap="xs">
             {note.topics.map((topic) => (
-              <Badge
-                key={topic.name}
-                variant="outline"
-                color="muted"
-                className={styles.badge}
-              >
+              <Badge key={topic.name} variant="outline" color="muted">
                 #{topic.name}
               </Badge>
             ))}
-          </div>
+          </Stack>
         )}
-      </div>
-      <ArrowRight size={16} aria-hidden="true" className={styles.arrow} />
-    </div>
+      </Stack>
+    </Stack>
   );
 }

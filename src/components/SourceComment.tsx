@@ -1,9 +1,9 @@
-import styles from "./SourceComment.module.css";
+import { Text } from "@ps1ui/core";
 
 type SourceCommentProps = {
   children: string;
 };
 
 export function SourceComment({ children }: SourceCommentProps) {
-  return <div className={styles.comment}>{`// ${children}`}</div>;
+  return <Text variant="subtle">{`// ${children}`}</Text>;
 }

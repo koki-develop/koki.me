@@ -2,7 +2,7 @@ import { SourceComment } from "@/components/SourceComment";
 import config from "@/config";
 import githubData from "@/data/github.json";
 import type { GitHubData } from "@/types";
-import { Grid } from "@ps1ui/core";
+import { Grid, Stack } from "@ps1ui/core";
 import { useMemo, useState } from "react";
 import { CategoryFilter } from "./components/CategoryFilter";
 import { GithubActivityCard } from "./components/GithubActivityCard";
@@ -23,10 +23,11 @@ export function WorksPage() {
   );
 
   return (
-    <div>
-      <SourceComment>works.tsx</SourceComment>
-
-      <WorksPageHeader count={items.length} />
+    <Stack gap="xl">
+      <Stack gap="md">
+        <SourceComment>works.tsx</SourceComment>
+        <WorksPageHeader count={items.length} />
+      </Stack>
 
       <GithubActivityCard contributions={github.contributions} />
 
@@ -36,7 +37,10 @@ export function WorksPage() {
         onChange={setCategory}
       />
 
-      <Grid columns={{ base: 1, md: 2 }} gap="lg">
+      {/* Breakpoints resolve against the nearest container, which is this
+          page's own Stack — i.e. the editor content column, not the window.
+          `sm` (40rem) keeps every card at 312px or wider. */}
+      <Grid columns={{ base: 1, sm: 2 }} gap="lg">
         {filtered.map(({ work, category: workCategory }) => (
           <WorkCard
             key={work.name}
@@ -46,6 +50,6 @@ export function WorksPage() {
           />
         ))}
       </Grid>
-    </div>
+    </Stack>
   );
 }

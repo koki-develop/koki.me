@@ -1,26 +1,18 @@
 .window {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
   height: 100dvh;
   background: var(--ps1ui-color-bg);
 }
 
 .middle {
-  display: flex;
   flex: 1;
   min-height: 0;
 }
 
 .editor {
-  display: flex;
-  flex-direction: column;
   flex: 1;
-  min-width: 0;
 }
 
 .scroll {
-  display: flex;
   flex: 1;
   min-height: 0;
   overflow-y: auto;

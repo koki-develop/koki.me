@@ -1,22 +1,21 @@
-import { NextFileRow } from "./NextFileRow";
-import styles from "./NextFiles.module.css";
+import { Button, Stack } from "@ps1ui/core";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router";
 
 const NEXT_FILES = [
-  { to: "/works", file: "works.tsx", title: "Works" },
-  { to: "/notes", file: "notes.md", title: "Notes" },
+  { to: "/works", file: "works.tsx" },
+  { to: "/notes", file: "notes.md" },
 ] as const;
 
 export function NextFiles() {
   return (
-    <div className={styles.list}>
+    <Stack direction="row" wrap gap="sm">
       {NEXT_FILES.map((next) => (
-        <NextFileRow
-          key={next.to}
-          to={next.to}
-          title={next.title}
-          file={next.file}
-        />
+        <Button key={next.to} as={Link} to={next.to} variant="secondary">
+          {next.file}
+          <ArrowRight size={14} aria-hidden="true" />
+        </Button>
       ))}
-    </div>
+    </Stack>
   );
 }

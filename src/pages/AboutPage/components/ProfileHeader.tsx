@@ -1,5 +1,4 @@
-import { Heading, Text } from "@ps1ui/core";
-import styles from "./ProfileHeader.module.css";
+import { Heading, Stack, Text } from "@ps1ui/core";
 
 type ProfileHeaderProps = {
   name: string;
@@ -8,13 +7,11 @@ type ProfileHeaderProps = {
 
 export function ProfileHeader({ name, role }: ProfileHeaderProps) {
   return (
-    <>
-      <Heading level={1} className={styles.name}>
-        {name}
-      </Heading>
-      <Text as="span" variant="primary" size="md" className={styles.role}>
+    <Stack gap="xs">
+      <Heading level={1}>{name}</Heading>
+      <Text variant="primary" size="md">
         {role}
       </Text>
-    </>
+    </Stack>
   );
 }

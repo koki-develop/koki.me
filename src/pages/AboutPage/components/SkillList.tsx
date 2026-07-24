@@ -1,6 +1,5 @@
-import { LinkChip } from "@/components/LinkChip";
 import type { Skill } from "@/types";
-import styles from "./SkillList.module.css";
+import { Button, Stack } from "@ps1ui/core";
 
 type SkillListProps = {
   skills: Skill[];
@@ -8,12 +7,19 @@ type SkillListProps = {
 
 export function SkillList({ skills }: SkillListProps) {
   return (
-    <div className={styles.skills}>
+    <Stack direction="row" wrap gap="sm">
       {skills.map((skill) => (
-        <LinkChip key={skill.name} href={skill.url}>
+        <Button
+          key={skill.name}
+          as="a"
+          variant="secondary"
+          href={skill.url}
+          target="_blank"
+          rel="noreferrer"
+        >
           {skill.name}
-        </LinkChip>
+        </Button>
       ))}
-    </div>
+    </Stack>
   );
 }

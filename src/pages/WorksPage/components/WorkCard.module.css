@@ -1,60 +1,31 @@
-.card {
-  display: flex;
-  flex-direction: column;
+/* Fills the Card's content box so `.description`'s `flex: 1` can push the
+   link row to the bottom, keeping every card in a Grid row aligned. */
+.content {
   height: 100%;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  gap: var(--ps1ui-space-sm);
-}
-
-.title {
-  font-size: var(--ps1ui-font-size-md);
-  font-weight: 700;
+/* Stack's default cross-axis alignment stretches items; without this the
+   badge would span the card's full width. */
+.category {
+  align-self: flex-start;
 }
 
 .stars {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 4px;
-  margin-left: auto;
-  white-space: nowrap;
-}
-
-.starIcon {
   flex-shrink: 0;
-}
-
-.category {
-  margin-top: var(--ps1ui-space-sm);
-  align-self: flex-start;
+  gap: var(--ps1ui-space-xs);
+  white-space: nowrap;
 }
 
 .description {
   flex: 1;
-  line-height: 1.65;
-  margin: 13px 0 18px;
-}
-
-.footer {
-  display: flex;
-  align-items: center;
-  gap: var(--ps1ui-space-sm);
-}
-
-.links {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 14px;
 }
 
 .link {
   display: inline-flex;
   align-items: center;
-  gap: 3px;
+  gap: var(--ps1ui-space-xs);
   font-size: var(--ps1ui-font-size-xs);
   white-space: nowrap;
 }

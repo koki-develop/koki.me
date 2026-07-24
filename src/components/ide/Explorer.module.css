@@ -19,11 +19,6 @@
   }
 }
 
-.tree {
-  display: flex;
-  flex-direction: column;
-}
-
 .links {
   margin-top: auto;
 }
