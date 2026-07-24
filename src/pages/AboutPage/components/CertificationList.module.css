@@ -1,29 +1,3 @@
-.certifications {
+.list {
   margin-top: 14px;
-}
-
-.certification {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-  padding: 11px 0;
-  border-bottom: 1px solid
-    color-mix(in srgb, var(--ps1ui-color-border) 50%, transparent);
-}
-
-.certificationLink {
-  flex: 1;
-  font-size: var(--ps1ui-font-size-sm);
-}
-
-.certificationIssuer {
-  color: var(--ps1ui-color-fg-muted);
-  font-size: var(--ps1ui-font-size-xs);
-}
-
-.certificationYear {
-  min-width: 44px;
-  color: var(--ps1ui-color-fg-subtle);
-  font-size: var(--ps1ui-font-size-xs);
-  text-align: right;
 }

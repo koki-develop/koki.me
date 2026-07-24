@@ -1,8 +1,4 @@
-.heading {
-  margin: 14px 0 8px;
-}
-
-.back {
+.link {
   display: inline-flex;
   align-items: center;
   gap: 6px;

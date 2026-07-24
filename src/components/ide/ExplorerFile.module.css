@@ -1,0 +1,21 @@
+.file {
+  display: flex;
+  align-items: center;
+  padding: 6px 18px 6px 32px;
+  font-size: var(--ps1ui-font-size-sm);
+  color: var(--ps1ui-color-fg-muted);
+  border-left: 2px solid transparent;
+  transition:
+    color var(--ps1ui-transition-fast),
+    background-color var(--ps1ui-transition-fast);
+}
+
+.file:hover {
+  background: var(--ps1ui-color-surface);
+}
+
+.file.active {
+  color: var(--ps1ui-color-fg);
+  background: var(--ps1ui-color-surface);
+  border-left-color: var(--ps1ui-color-primary);
+}

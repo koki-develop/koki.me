@@ -7,28 +7,28 @@ const config: Config = {
     bio: "Web engineer building developer tools, CLIs, and web apps.",
   },
 
-  socials: [
-    {
+  socials: {
+    GitHub: {
       name: "GitHub",
       url: "https://github.com/koki-develop",
       handle: "koki-develop",
     },
-    {
+    X: {
       name: "X",
       url: "https://x.com/koki_develop",
       handle: "koki_develop",
     },
-    {
+    Bluesky: {
       name: "Bluesky",
       url: "https://bsky.app/profile/koki.me",
       handle: "koki.me",
     },
-    {
+    Zenn: {
       name: "Zenn",
       url: "https://zenn.dev/kou_pg_0131",
       handle: "kou_pg_0131",
     },
-  ],
+  },
 
   skills: [
     {

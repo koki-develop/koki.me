@@ -1,16 +1,16 @@
 import { LinkChip } from "@/components/LinkChip";
 import { SocialIcon } from "@/components/SocialIcon";
-import type { Social } from "@/types";
+import type { Socials } from "@/types";
 import styles from "./ContactLinks.module.css";
 
 type ContactLinksProps = {
-  socials: Social[];
+  socials: Socials;
 };
 
 export function ContactLinks({ socials }: ContactLinksProps) {
   return (
     <div className={styles.contacts}>
-      {socials.map((social) => (
+      {Object.values(socials).map((social) => (
         <LinkChip
           key={social.name}
           href={social.url}

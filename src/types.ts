@@ -1,6 +1,6 @@
 export type Config = {
   profile: Profile;
-  socials: Social[];
+  socials: Socials;
   skills: Skill[];
   certifications: Certification[];
   workCategories: WorkCategory[];
@@ -12,11 +12,15 @@ export type Profile = {
   bio: string;
 };
 
+export type SocialName = "GitHub" | "X" | "Bluesky" | "Zenn";
+
 export type Social = {
-  name: string;
+  name: SocialName;
   url: string;
   handle: string;
 };
+
+export type Socials = Record<SocialName, Social>;
 
 export type Skill = {
   name: string;

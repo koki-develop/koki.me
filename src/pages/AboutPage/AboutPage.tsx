@@ -1,10 +1,10 @@
 import { SourceComment } from "@/components/SourceComment";
 import config from "@/config";
-import { Heading, Text } from "@ps1ui/core";
-import styles from "./AboutPage.module.css";
+import { Bio } from "./components/Bio";
 import { CertificationList } from "./components/CertificationList";
 import { ContactLinks } from "./components/ContactLinks";
 import { NextFiles } from "./components/NextFiles";
+import { ProfileHeader } from "./components/ProfileHeader";
 import { SectionLabel } from "./components/SectionLabel";
 import { SkillList } from "./components/SkillList";
 
@@ -13,18 +13,11 @@ export function AboutPage() {
     <div>
       <SourceComment>about.md</SourceComment>
 
-      <Heading level={1} className={styles.name}>
-        {config.profile.name}
-      </Heading>
-      <Text as="span" variant="primary" size="md" className={styles.role}>
-        {config.profile.role}
-      </Text>
+      <ProfileHeader name={config.profile.name} role={config.profile.role} />
 
       <ContactLinks socials={config.socials} />
 
-      <Text size="md" className={styles.bio}>
-        {config.profile.bio}
-      </Text>
+      <Bio>{config.profile.bio}</Bio>
 
       <SectionLabel>## Skills</SectionLabel>
       <SkillList skills={config.skills} />

@@ -1,0 +1,22 @@
+.folder {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 5px 18px;
+  font: inherit;
+  font-size: var(--ps1ui-font-size-sm);
+  text-align: left;
+  color: var(--ps1ui-color-fg-muted);
+  background: transparent;
+  transition: color var(--ps1ui-transition-fast);
+}
+
+.folder:hover {
+  color: var(--ps1ui-color-fg);
+}
+
+.icon {
+  flex-shrink: 0;
+  color: var(--ps1ui-color-fg-subtle);
+}

@@ -2,13 +2,13 @@ import { SourceComment } from "@/components/SourceComment";
 import config from "@/config";
 import githubData from "@/data/github.json";
 import type { GitHubData } from "@/types";
-import { Grid, Heading, Text } from "@ps1ui/core";
+import { Grid } from "@ps1ui/core";
 import { useMemo, useState } from "react";
 import { CategoryFilter } from "./components/CategoryFilter";
 import { GithubActivityCard } from "./components/GithubActivityCard";
 import { WorkCard } from "./components/WorkCard";
+import { WorksPageHeader } from "./components/WorksPageHeader";
 import { categoryCounts, filterWorks, flattenWorks } from "./lib";
-import styles from "./WorksPage.module.css";
 
 const github = githubData as GitHubData;
 
@@ -26,12 +26,7 @@ export function WorksPage() {
     <div>
       <SourceComment>works.tsx</SourceComment>
 
-      <Heading level={2} className={styles.heading}>
-        Works
-      </Heading>
-      <Text variant="muted" className={styles.subtitle}>
-        {items.length} projects
-      </Text>
+      <WorksPageHeader count={items.length} />
 
       <GithubActivityCard contributions={github.contributions} />
 
