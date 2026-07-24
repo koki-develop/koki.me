@@ -54,6 +54,7 @@ export function IdeShell() {
           <Stack
             direction="row"
             gap="none"
+            align="start"
             className={styles.scroll}
             ref={scrollRef}
           >
