@@ -3,7 +3,6 @@ import type { Config } from "./src/types";
 const config: Config = {
   profile: {
     name: "Koki Sato",
-    role: "Web Engineer",
     bio: "Web engineer building developer tools, CLIs, and web apps.",
   },
 
