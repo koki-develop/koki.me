@@ -121,12 +121,6 @@ const config: Config = {
           url: "https://thredot.org",
         },
         {
-          name: "SAMARI",
-          description: "A tech news summary service.",
-          url: "https://samari.news",
-          githubUrl: "https://github.com/koki-develop/samari",
-        },
-        {
           name: "Badge Generator",
           description: "A badge generation service.",
           url: "https://badgen.org",
