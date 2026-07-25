@@ -1,5 +1,5 @@
 import type { Certification } from "@/types";
-import { Anchor, Stack, Text } from "@ps1ui/core";
+import { Anchor, ListItem, Text } from "@ps1ui/core";
 import styles from "./CertificationRow.module.css";
 
 type CertificationRowProps = {
@@ -8,7 +8,7 @@ type CertificationRowProps = {
 
 export function CertificationRow({ certification }: CertificationRowProps) {
   return (
-    <Stack direction="row" align="baseline" gap="md" className={styles.row}>
+    <ListItem className={styles.row}>
       <Text as="span" size="sm" className={styles.name}>
         <Anchor
           variant="subtle"
@@ -19,12 +19,12 @@ export function CertificationRow({ certification }: CertificationRowProps) {
           {certification.name}
         </Anchor>
       </Text>
-      <Text as="span" variant="muted" size="xs">
+      <Text as="span" variant="muted" size="xs" className={styles.issuer}>
         {certification.issuer}
       </Text>
       <Text as="span" variant="subtle" size="xs" className={styles.year}>
         {certification.year}
       </Text>
-    </Stack>
+    </ListItem>
   );
 }

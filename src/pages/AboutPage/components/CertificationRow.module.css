@@ -1,11 +1,27 @@
+/* `display: flex` on the <li> itself rather than on a Stack nested inside it:
+   List draws its `-` marker as an inline-block ::before on the <li>, and a flex
+   child would push itself onto the line below that marker. Flexing the <li>
+   makes the marker the row's own first item, so the hanging indent keeps
+   working while issuer and year can still be pushed to the right edge.
+
+   `padding-block`, not the `padding` shorthand — List sets the `padding-left`
+   that reserves the marker column, and the shorthand would zero it out. */
 .row {
-  padding: var(--ps1ui-space-md) 0;
-  border-bottom: 1px solid
-    color-mix(in srgb, var(--ps1ui-color-border) 50%, transparent);
+  display: flex;
+  align-items: baseline;
+  padding-block: var(--ps1ui-space-xs);
 }
 
 .name {
   flex: 1;
+}
+
+/* Spacing sits on the items instead of a flex `gap`, which would also land
+   between the ::before marker and the name and open a gutter there wider than
+   the marker column is drawn for. */
+.issuer,
+.year {
+  margin-left: var(--ps1ui-space-md);
 }
 
 .year {

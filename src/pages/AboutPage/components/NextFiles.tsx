@@ -1,21 +1,35 @@
-import { Button, Stack } from "@ps1ui/core";
-import { ArrowRight } from "lucide-react";
-import { Link } from "react-router";
-
-const NEXT_FILES = [
-  { to: "/works", file: "works.tsx" },
-  { to: "/notes", file: "notes.md" },
-] as const;
+import { IDE_FILES } from "@/components/ide";
+import { Anchor, List, ListItem, Text } from "@ps1ui/core";
+import { Link, useLocation } from "react-router";
+import styles from "./NextFiles.module.css";
 
 export function NextFiles() {
+  const { pathname } = useLocation();
+  // Derived from IDE_FILES rather than listed again: the section points at the
+  // files other than the one being read, so a new page shows up here as soon as
+  // it joins the Explorer.
+  const files = IDE_FILES.filter((file) => file.path !== pathname);
+
   return (
-    <Stack direction="row" wrap gap="sm">
-      {NEXT_FILES.map((next) => (
-        <Button key={next.to} as={Link} to={next.to} variant="secondary">
-          {next.file}
-          <ArrowRight size={14} aria-hidden="true" />
-        </Button>
+    <List>
+      {files.map((file) => (
+        // The name and description are laid out inline rather than in a Stack:
+        // List draws its `-` marker as an inline-block ::before, and a flex
+        // child would push itself onto the line below it.
+        <ListItem key={file.path}>
+          <Anchor
+            as={Link}
+            to={file.path}
+            variant="subtle"
+            className={styles.name}
+          >
+            {file.name}
+          </Anchor>
+          <Text as="span" variant="muted" size="xs">
+            {file.description}
+          </Text>
+        </ListItem>
       ))}
-    </Stack>
+    </List>
   );
 }
