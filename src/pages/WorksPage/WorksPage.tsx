@@ -2,7 +2,7 @@ import { SourceComment } from "@/components/SourceComment";
 import config from "@/config";
 import githubData from "@/data/github.json";
 import type { GitHubData } from "@/types";
-import { Grid, Stack } from "@ps1ui/core";
+import { Grid, GridItem, Stack } from "@ps1ui/core";
 import { useMemo, useState } from "react";
 import { CategoryFilter } from "./components/CategoryFilter";
 import { GithubActivityCard } from "./components/GithubActivityCard";
@@ -14,6 +14,7 @@ import {
   categoryCounts,
   filterWorks,
 } from "./lib";
+import styles from "./WorksPage.module.css";
 
 const github = githubData as GitHubData;
 
@@ -30,7 +31,12 @@ export function WorksPage() {
   );
 
   return (
-    <Stack gap="xl">
+    // `queryContainer` makes this Stack the query context the Grid below
+    // resolves its `columns` breakpoints against. Without it they fall through
+    // to PS1Root — i.e. the window — which counts the Explorer and the gutter
+    // as usable width and flips to two columns while the content column is
+    // still narrow (194px cards at a 800px window).
+    <Stack gap="xl" queryContainer>
       <Stack gap="md">
         <SourceComment>works.tsx</SourceComment>
         <WorksPageHeader count={config.works.length} />
@@ -44,12 +50,14 @@ export function WorksPage() {
         onChange={setCategory}
       />
 
-      {/* Breakpoints resolve against the nearest container, which is this
-          page's own Stack — i.e. the editor content column, not the window.
-          `sm` (40rem) keeps every card at 312px or wider. */}
-      <Grid columns={{ base: 1, sm: 2 }} gap="lg">
+      {/* A <ul>, so the cards announce as "list, N items". Breakpoints resolve
+          against the page Stack above, i.e. the editor content column: `sm`
+          (40rem) is the width at which two cards still measure 312px each. */}
+      <Grid as="ul" columns={{ base: 1, sm: 2 }} gap="lg">
         {filtered.map((work) => (
-          <WorkCard key={work.name} work={work} repos={github.repos} />
+          <GridItem as="li" key={work.name} className={styles.item}>
+            <WorkCard work={work} repos={github.repos} />
+          </GridItem>
         ))}
       </Grid>
     </Stack>

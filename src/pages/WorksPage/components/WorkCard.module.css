@@ -1,5 +1,6 @@
-/* Fills the Card's content box so `.description`'s `flex: 1` can push the
-   link row to the bottom, keeping every card in a Grid row aligned. */
+/* Fills the Card's content box so `.description`'s `flex: 1` can push the link
+   row to the bottom. A no-op when the card is only as tall as its content;
+   it earns its keep wherever the card is stretched taller than that. */
 .content {
   height: 100%;
 }
@@ -10,22 +11,12 @@
   align-self: flex-start;
 }
 
+/* The adorned Text already lays the icon and count out on one line; this only
+   stops the count from being squeezed by a long work name sharing the row. */
 .stars {
-  display: inline-flex;
-  align-items: center;
   flex-shrink: 0;
-  gap: var(--ps1ui-space-xs);
-  white-space: nowrap;
 }
 
 .description {
   flex: 1;
-}
-
-.link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--ps1ui-space-xs);
-  font-size: var(--ps1ui-font-size-xs);
-  white-space: nowrap;
 }

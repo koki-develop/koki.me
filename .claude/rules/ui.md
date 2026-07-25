@@ -16,14 +16,18 @@ and an exception needs a reason recorded next to it.
   recalling an older one. Docs: https://koki-develop.github.io/ps1ui/ — source:
   https://github.com/koki-develop/ps1ui
 - A plain `<div>` doing flexbox is a `Stack`. Don't add a wrapper `<div>` just to get
-  one.
+  one. Layout primitives are polymorphic, so a `<nav>` / `<ul>` / `<main>` that also does
+  flex or grid is `Stack as="nav"` / `Grid as="ul"`, not hand-rolled CSS.
 - All text goes through `Text` / `Heading`. Colors, font sizes, and weights are props on
   those components, not declarations in a CSS Module. The only exception is text that
-  must inherit its parent's color.
-- Some things the library genuinely cannot express — a semantic element it has no `as`
-  prop for, an active/selected state it has no variant for. Keep those as hand-written
-  CSS and say in a comment which primitive fell short, so the workaround can be found
-  and removed when the library catches up.
+  must inherit its parent's color — no variant expresses that.
+- An icon sitting on one line with a label is `leading` / `trailing` on `Text` or
+  `Anchor`, not a hand-written `inline-flex` row.
+- Some things the library genuinely cannot express — an active/selected state it has no
+  variant for, a color the variant set doesn't offer. Keep those as hand-written CSS and
+  say in a comment which primitive fell short, so the workaround can be found and removed
+  when the library catches up. A variant that fits but would need most of its own
+  declarations overridden is not a fit; record that too.
 
 ## CSS Modules
 
@@ -44,10 +48,19 @@ Breakpoints are **container queries**, not viewport media queries:
 `@container ps1ui-root (min-width: …)`.
 
 PS1UI's own responsive props (`Grid columns={{ base, sm }}`, `Stack direction={{ … }}`)
-also resolve against the _nearest_ container, which is usually the surrounding layout
-primitive rather than the window. When a breakpoint choice depends on which container it
-resolves against, say so in a comment — the intent is invisible otherwise, and moving
-the component changes its behavior.
+resolve against the _nearest ancestor container_. Layout primitives are not containers
+by default — only `PS1Root` is — so a responsive prop falls through to `PS1Root`, i.e.
+the window, unless some ancestor opts in with `queryContainer`.
+
+That opt-in is the knob. Chrome that should track the window (Explorer, Gutter, editor
+padding) needs nothing; content that should track the column it's laid out in needs a
+`queryContainer` above it. The two behave very differently once the Explorer and the
+gutter start eating width, so when a breakpoint depends on which box it measures, say so
+in a comment and put the `queryContainer` where the comment can point at it.
+
+Don't add `queryContainer` to a primitive that has no responsive descendants: it costs
+the element its intrinsic width (it collapses to 0 in a row-flex or auto-track parent)
+and makes it a stacking context and a containing block for fixed/absolute children.
 
 ## Accessibility
 

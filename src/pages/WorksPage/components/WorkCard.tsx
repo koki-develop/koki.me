@@ -17,6 +17,9 @@ export function WorkCard({ work, repos }: WorkCardProps) {
     <Card>
       <Stack gap="sm" className={styles.content}>
         <Stack direction="row" align="center" justify="between" gap="sm">
+          {/* Still wrapped in a Text: Anchor carries `size` but no `weight`,
+              and the card title is the one link on the page that needs to be
+              bold. */}
           <Text as="span" size="md" weight="bold">
             <Anchor
               variant="subtle"
@@ -28,8 +31,13 @@ export function WorkCard({ work, repos }: WorkCardProps) {
             </Anchor>
           </Text>
           {typeof stars === "number" && stars > 0 && (
-            <Text as="span" variant="muted" size="xs" className={styles.stars}>
-              <Star size={12} aria-hidden="true" />
+            <Text
+              as="span"
+              variant="muted"
+              size="xs"
+              leading={<Star size={12} aria-hidden="true" />}
+              className={styles.stars}
+            >
               {stars}
             </Text>
           )}
@@ -47,24 +55,24 @@ export function WorkCard({ work, repos }: WorkCardProps) {
           <Stack direction="row" align="center" justify="end" gap="md">
             {work.url && (
               <Anchor
+                size="xs"
+                trailing={<ArrowUpRight size={12} aria-hidden="true" />}
                 href={work.url}
                 target="_blank"
                 rel="noreferrer"
-                className={styles.link}
               >
                 live
-                <ArrowUpRight size={12} aria-hidden="true" />
               </Anchor>
             )}
             {work.githubUrl && (
               <Anchor
+                size="xs"
+                trailing={<ArrowUpRight size={12} aria-hidden="true" />}
                 href={work.githubUrl}
                 target="_blank"
                 rel="noreferrer"
-                className={styles.link}
               >
                 source
-                <ArrowUpRight size={12} aria-hidden="true" />
               </Anchor>
             )}
           </Stack>

@@ -8,12 +8,10 @@ type GithubActivityCardProps = {
 export function GithubActivityCard({ contributions }: GithubActivityCardProps) {
   return (
     <Stack gap="lg">
-      <Stack direction="row" align="baseline" wrap gap="md">
-        <Text as="span" variant="subtle" size="xs">
-          {contributions.total.toLocaleString("en-US")} contributions in the
-          last year
-        </Text>
-      </Stack>
+      <Text variant="subtle" size="xs">
+        {contributions.total.toLocaleString("en-US")} contributions in the last
+        year
+      </Text>
       <ContributionGraph data={contributions.days} />
     </Stack>
   );

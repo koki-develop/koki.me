@@ -1,0 +1,8 @@
+/* The <li> is the grid cell and the outer Grid stretches it to its row's
+   height, but its child would keep its own automatic height and leave the
+   cards in a row mismatched. Making the cell a grid container stretches that
+   single child to fill it — so the card learns its height from the row without
+   having to know it sits in one. */
+.item {
+  display: grid;
+}

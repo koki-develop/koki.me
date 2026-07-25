@@ -24,12 +24,8 @@
   background: var(--ps1ui-color-primary);
 }
 
+/* Doubles the group's own gap so the title reads as separate from the traffic
+   lights rather than as a fourth item in the cluster. */
 .title {
   margin-left: var(--ps1ui-space-sm);
-}
-
-.branchIcon {
-  flex-shrink: 0;
-  margin-left: auto;
-  color: var(--ps1ui-color-fg-subtle);
 }

@@ -8,14 +8,8 @@
   padding-block: var(--ps1ui-space-sm);
 }
 
-/* `align-self` is required because @ps1ui/core's components.css sets
-   `align-self: stretch` on every `.ps1ui-stack` (its containment-collapse
-   defense), which outranks the parent row's `align-items: baseline`. Without
-   it this nested Stack stretches and drops out of baseline alignment, leaving
-   the date sitting ~2px above the title. */
 .body {
   flex: 1;
-  align-self: baseline;
 }
 
 /* `overflow-wrap: anywhere` only breaks inside a word when that word alone

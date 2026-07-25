@@ -12,7 +12,12 @@ export function Explorer() {
   const [open, setOpen] = useState(true);
 
   return (
-    <nav className={styles.explorer} aria-label="Explorer">
+    <Stack
+      as="nav"
+      gap="none"
+      className={styles.explorer}
+      aria-label="Explorer"
+    >
       <ExplorerLabel>Explorer</ExplorerLabel>
       <ExplorerFolder open={open} onToggle={() => setOpen((prev) => !prev)}>
         koki-sato/
@@ -38,6 +43,6 @@ export function Explorer() {
           </ExplorerLink>
         ))}
       </Stack>
-    </nav>
+    </Stack>
   );
 }

@@ -11,12 +11,13 @@ export function ExplorerLink({ href, children }: ExplorerLinkProps) {
   return (
     <Anchor
       variant="subtle"
+      size="sm"
+      leading={<ArrowUpRight size={13} aria-hidden="true" />}
       className={styles.link}
       href={href}
       target="_blank"
       rel="noreferrer"
     >
-      <ArrowUpRight size={13} aria-hidden="true" className={styles.icon} />
       {children}
     </Anchor>
   );

@@ -1,5 +1,4 @@
 .bar {
-  display: flex;
   overflow-x: auto;
   background: color-mix(
     in srgb,

@@ -9,16 +9,16 @@ type CertificationRowProps = {
 export function CertificationRow({ certification }: CertificationRowProps) {
   return (
     <ListItem className={styles.row}>
-      <Text as="span" size="sm" className={styles.name}>
-        <Anchor
-          variant="subtle"
-          href={certification.url}
-          target="_blank"
-          rel="noreferrer"
-        >
-          {certification.name}
-        </Anchor>
-      </Text>
+      <Anchor
+        variant="subtle"
+        size="sm"
+        href={certification.url}
+        target="_blank"
+        rel="noreferrer"
+        className={styles.name}
+      >
+        {certification.name}
+      </Anchor>
       <Text as="span" variant="muted" size="xs" className={styles.issuer}>
         {certification.issuer}
       </Text>

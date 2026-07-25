@@ -1,11 +1,15 @@
-.explorer {
+/* The class is doubled to settle a tie: the <nav> is a Stack, so
+   `.ps1ui-stack { display: flex }` matches it at the same (0,1,0) weight a
+   single `.explorer` would, and which of the two wins would come down to
+   stylesheet order. (0,2,0) takes the toggle out of that race in both
+   directions. */
+.explorer.explorer {
   display: none;
 }
 
 @container ps1ui-root (min-width: 48rem) {
-  .explorer {
+  .explorer.explorer {
     display: flex;
-    flex-direction: column;
     width: 248px;
     flex-shrink: 0;
     border-right: 1px solid var(--ps1ui-color-border);

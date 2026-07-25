@@ -5,6 +5,9 @@
   flex-shrink: 0;
 }
 
+/* Pins the group to the trailing edge. `margin-left: auto` rather than
+   `justify="between"` on the bar, because the leading filename is absent on a
+   route with no IDE file and the group would then sit at the leading edge. */
 .trailing {
   margin-left: auto;
 }

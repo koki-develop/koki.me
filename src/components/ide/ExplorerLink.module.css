@@ -1,12 +1,13 @@
-.link {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 18px;
-  font-size: var(--ps1ui-font-size-sm);
-  color: var(--ps1ui-color-fg-muted);
-}
+/* An adorned Anchor is `inline-flex`, but this one is a flex item of the
+   Explorer's column Stack, which blockifies it — so the row still spans the
+   full sidebar width and the padding paints edge to edge like the file rows
+   above it.
 
-.icon {
-  flex-shrink: 0;
+   `color` is here because AnchorVariant offers only `primary` and `subtle`,
+   and neither is the muted tone the surrounding Explorer rows use — `subtle`
+   is `color: inherit`, which would pick up the canvas foreground. Drop this
+   when the variant set grows a muted option. */
+.link {
+  padding: 5px 18px;
+  color: var(--ps1ui-color-fg-muted);
 }

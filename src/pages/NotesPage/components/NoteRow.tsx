@@ -11,16 +11,16 @@ export function NoteRow({ note }: NoteRowProps) {
   return (
     <ListItem className={styles.row}>
       <Stack gap="xs" className={styles.body}>
-        <Text size="md" className={styles.title}>
-          <Anchor
-            variant="subtle"
-            href={note.url}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {note.title}
-          </Anchor>
-        </Text>
+        <Anchor
+          variant="subtle"
+          size="md"
+          href={note.url}
+          target="_blank"
+          rel="noreferrer"
+          className={styles.title}
+        >
+          {note.title}
+        </Anchor>
         {note.topics.length > 0 && (
           <Stack direction="row" wrap className={styles.topics}>
             {note.topics.map((topic) => (
