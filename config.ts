@@ -170,6 +170,12 @@ const config: Config = {
             "A tool for writing GitHub Actions workflow definitions in TypeScript.",
           githubUrl: "https://github.com/koki-develop/ghats",
         },
+        {
+          name: "PS1 UI",
+          description: "A monospace React component library.",
+          url: "https://koki-develop.github.io/ps1ui/",
+          githubUrl: "https://github.com/koki-develop/ps1ui",
+        },
       ],
     },
     {
