@@ -1,11 +1,11 @@
 /* Holds the descriptions in one column instead of letting them start wherever
    each filename happens to end, and supplies the gap between the two — JSX
    drops the whitespace between the elements, so there is none to inherit.
-   `inline-block` is what makes `min-width` apply at all: Anchor renders an
-   inline <a>. `ch` rather than `px` because the whole site is monospace, so
-   the column is countable in characters and stays correct if the type scale
+   `inline-block` is what makes `min-width` apply at all: the wrapper is a
+   <span>. `ch` rather than `px` because the whole site is monospace, so the
+   column is countable in characters and stays correct if the type scale
    moves. */
-.name {
+.nameColumn {
   display: inline-block;
   min-width: 12ch;
   padding-right: var(--ps1ui-space-sm);

@@ -1,13 +1,22 @@
 /* An adorned Anchor is `inline-flex`, but this one is a flex item of the
-   Explorer's column Stack, which blockifies it — so the row still spans the
-   full sidebar width and the padding paints edge to edge like the file rows
-   above it.
+   Explorer's column Stack, which blockifies it — left stretched, the row spans
+   the whole sidebar and the hover color and the click target run ~180px past
+   the end of the underlined label. `align-self` opts out of that stretch so the
+   box ends where the label and its icon do.
+
+   Which is why the 18px gutter is a margin and not padding: it only has to line
+   the row up with the file rows above, and inside the box it would be more
+   target sitting where nothing is drawn. The vertical padding stays inside —
+   that one is the row's rhythm, and it is what gives the link a height worth
+   aiming at.
 
    `color` is here because AnchorVariant offers only `primary` and `subtle`,
    and neither is the muted tone the surrounding Explorer rows use — `subtle`
    is `color: inherit`, which would pick up the canvas foreground. Drop this
    when the variant set grows a muted option. */
 .link {
-  padding: 5px 18px;
+  align-self: flex-start;
+  margin-left: 18px;
+  padding-block: 5px;
   color: var(--ps1ui-color-fg-muted);
 }

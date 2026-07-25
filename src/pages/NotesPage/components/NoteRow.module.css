@@ -21,12 +21,16 @@
   word-break: break-all;
 }
 
-/* The two axes need different gaps, and Stack's `gap` prop sets both at once.
+/* Replaces the `gap` the body Stack used to supply, now that the body is a
+   block box — see NoteRow.tsx for why it has to be one.
+
+   The two axes need different gaps, and Stack's `gap` prop sets both at once.
    Horizontally the topics are bare text, and their own names carry spaces
    ("GitHub Actions"), so the gap between two topics has to read wider than the
    space inside one. Vertically that same width would leave a wrapped topic line
    floating away from the one above it. */
 .topics {
+  margin-top: var(--ps1ui-space-xs);
   column-gap: var(--ps1ui-space-md);
   row-gap: var(--ps1ui-space-xs);
 }

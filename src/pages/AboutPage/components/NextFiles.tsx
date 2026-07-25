@@ -17,14 +17,16 @@ export function NextFiles() {
         // List draws its `-` marker as an inline-block ::before, and a flex
         // child would push itself onto the line below it.
         <ListItem key={file.path}>
-          <Anchor
-            as={Link}
-            to={file.path}
-            variant="subtle"
-            className={styles.name}
-          >
-            {file.name}
-          </Anchor>
+          {/* The column that lines the descriptions up is this span and not the
+              Anchor: sizing the link itself would stretch its box — the hover
+              color and the click target with it — past the end of the filename
+              it underlines. A bare <span> because the box holds no text of its
+              own; it exists only to reserve the width. */}
+          <span className={styles.nameColumn}>
+            <Anchor as={Link} to={file.path} variant="subtle">
+              {file.name}
+            </Anchor>
+          </span>
           <Text as="span" variant="muted" size="xs">
             {file.description}
           </Text>

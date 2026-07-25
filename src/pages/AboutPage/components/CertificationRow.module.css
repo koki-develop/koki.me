@@ -12,6 +12,9 @@
   padding-block: var(--ps1ui-space-xs);
 }
 
+/* Takes the space issuer and year don't need, which is what holds them against
+   the right edge. It sits on the wrapper rather than the link — see
+   CertificationRow.tsx. */
 .name {
   flex: 1;
 }
