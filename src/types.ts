@@ -44,7 +44,13 @@ export type Certification = {
 // A closed union rather than a bare string: a work naming a category that
 // doesn't exist would render under "All" and under no filter at all, which is
 // invisible until someone clicks the right button.
-export type WorkCategory = "Web" | "Tool" | "Extension" | "IME";
+export type WorkCategory =
+  | "Web"
+  | "CLI"
+  | "Library"
+  | "App"
+  | "Extension"
+  | "IME";
 
 export type Work = {
   name: string;

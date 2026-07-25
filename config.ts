@@ -100,7 +100,7 @@ const config: Config = {
     },
   ],
 
-  workCategories: ["Web", "Tool", "Extension", "IME"],
+  workCategories: ["Web", "CLI", "Library", "App", "Extension", "IME"],
 
   // Ordered freely: a work sits wherever it is listed here, not wherever its
   // category sits in `workCategories`.
@@ -120,25 +120,25 @@ const config: Config = {
     },
     {
       name: "Codize Sandbox",
-      category: "Tool",
+      category: "Web",
       description: "A sandboxed code execution engine.",
       githubUrl: "https://github.com/codize-dev/sandbox",
     },
     {
       name: "cLive",
-      category: "Tool",
+      category: "CLI",
       description: "A CLI tool that automates terminal operations.",
       githubUrl: "https://github.com/koki-develop/clive",
     },
     {
       name: "gat",
-      category: "Tool",
+      category: "CLI",
       description: "A cat command written in Go.",
       githubUrl: "https://github.com/koki-develop/gat",
     },
     {
       name: "ghasec",
-      category: "Tool",
+      category: "CLI",
       description:
         "A static analysis tool for GitHub Actions workflow definitions.",
       githubUrl: "https://github.com/koki-develop/ghasec",
@@ -151,7 +151,7 @@ const config: Config = {
     },
     {
       name: "PS1 UI",
-      category: "Tool",
+      category: "Library",
       description: "A monospace React component library.",
       url: "https://koki-develop.github.io/ps1ui/",
       githubUrl: "https://github.com/koki-develop/ps1ui",
@@ -173,13 +173,13 @@ const config: Config = {
     },
     {
       name: "Cork",
-      category: "Tool",
+      category: "App",
       description: "A markdown-file-based kanban app.",
       githubUrl: "https://github.com/koki-develop/Cork",
     },
     {
       name: "ghats",
-      category: "Tool",
+      category: "Library",
       description:
         "A tool for writing GitHub Actions workflow definitions in TypeScript.",
       githubUrl: "https://github.com/koki-develop/ghats",

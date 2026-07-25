@@ -2,9 +2,9 @@ import type { RepoStats, Work, WorkCategory } from "@/types";
 import { describe, expect, test } from "vitest";
 import { categoryCounts, filterWorks, resolveStars } from "./lib";
 
-const categories: WorkCategory[] = ["Web", "Tool"];
+const categories: WorkCategory[] = ["Web", "CLI"];
 
-// Deliberately interleaved: the two Web works sit either side of the Tool one,
+// Deliberately interleaved: the two Web works sit either side of the CLI one,
 // which is the ordering the flat list exists to allow.
 const works: Work[] = [
   {
@@ -16,7 +16,7 @@ const works: Work[] = [
   },
   {
     name: "cLive",
-    category: "Tool",
+    category: "CLI",
     description: "A CLI tool that automates terminal operations.",
     githubUrl: "https://github.com/koki-develop/clive",
   },
@@ -39,7 +39,7 @@ describe("filterWorks", () => {
   });
 
   test("returns only works matching the given category", () => {
-    expect(filterWorks(works, "Tool")).toEqual([works[1]]);
+    expect(filterWorks(works, "CLI")).toEqual([works[1]]);
   });
 
   test("keeps the declared order within a category", () => {
@@ -56,14 +56,14 @@ describe("categoryCounts", () => {
     expect(categoryCounts(categories, works)).toEqual([
       { name: "All", count: 3 },
       { name: "Web", count: 2 },
-      { name: "Tool", count: 1 },
+      { name: "CLI", count: 1 },
     ]);
   });
 
   test("follows the given category order, not the order works appear in", () => {
-    expect(categoryCounts(["Tool", "Web"], works).map((c) => c.name)).toEqual([
+    expect(categoryCounts(["CLI", "Web"], works).map((c) => c.name)).toEqual([
       "All",
-      "Tool",
+      "CLI",
       "Web",
     ]);
   });
@@ -98,7 +98,7 @@ describe("resolveStars", () => {
   test("returns undefined when the repo slug is unknown", () => {
     const work: Work = {
       name: "Unknown repo",
-      category: "Tool",
+      category: "CLI",
       description: "",
       githubUrl: "https://github.com/koki-develop/does-not-exist",
     };
