@@ -1,12 +1,11 @@
+/* Same shape as CertificationRow: `display: flex` on the <li> itself, because
+   List draws its `-` marker as an inline-block ::before and a nested flex child
+   would drop to the line below it. `padding-block` rather than the `padding`
+   shorthand so List's `padding-left` — the marker column — survives. */
 .row {
-  padding: var(--ps1ui-space-lg) 0;
-  border-bottom: 1px solid
-    color-mix(in srgb, var(--ps1ui-color-border) 50%, transparent);
-}
-
-.date {
-  flex-shrink: 0;
-  min-width: 76px;
+  display: flex;
+  align-items: baseline;
+  padding-block: var(--ps1ui-space-sm);
 }
 
 /* `align-self` is required because @ps1ui/core's components.css sets
@@ -21,4 +20,23 @@
 
 .title {
   overflow-wrap: anywhere;
+}
+
+/* The two axes need different gaps, and Stack's `gap` prop sets both at once.
+   Horizontally the topics are bare text, and their own names carry spaces
+   ("GitHub Actions"), so the gap between two topics has to read wider than the
+   space inside one. Vertically that same width would leave a wrapped topic line
+   floating away from the one above it. */
+.topics {
+  column-gap: var(--ps1ui-space-md);
+  row-gap: var(--ps1ui-space-xs);
+}
+
+.date {
+  flex-shrink: 0;
+  min-width: 76px;
+  /* Spacing sits here rather than on a flex `gap`, which would also land
+     between the ::before marker and the title. */
+  margin-left: var(--ps1ui-space-md);
+  text-align: right;
 }

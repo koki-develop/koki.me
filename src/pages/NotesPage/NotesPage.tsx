@@ -1,7 +1,7 @@
 import { SourceComment } from "@/components/SourceComment";
 import config from "@/config";
 import notes from "@/data/notes.json";
-import { Button, Stack } from "@ps1ui/core";
+import { Button, List, Stack } from "@ps1ui/core";
 import { ArrowUpRight } from "lucide-react";
 import { NoteRow } from "./components/NoteRow";
 import { NotesPageHeader } from "./components/NotesPageHeader";
@@ -14,11 +14,11 @@ export function NotesPage() {
         <NotesPageHeader />
       </Stack>
 
-      <Stack gap="none">
+      <List>
         {notes.map((note) => (
           <NoteRow key={note.url} note={note} />
         ))}
-      </Stack>
+      </List>
 
       <Stack align="start">
         <Button
