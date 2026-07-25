@@ -1,110 +1,79 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Personal portfolio site for Koki Sato. A React + TypeScript + Vite SPA, deployed to
+https://koki.me on Vercel.
 
-## Project Overview
+The UI is an **IDE / code-editor metaphor** — window chrome, Explorer sidebar, file
+tabs, line-number gutter, status bar — and each route is presented as a "file" the
+visitor is viewing. It is built on [`@ps1ui/core`](https://koki-develop.github.io/ps1ui/),
+a monospace React component library. See `.claude/rules/ui.md` before touching anything
+under `src/`.
 
-個人のポートフォリオサイト。React + TypeScript + Vite で構築されたシングルページアプリケーション (SPA) です。
+## Commands
 
-## Development Commands
+| Command                                        | Notes                                               |
+| ---------------------------------------------- | --------------------------------------------------- |
+| `bun run dev`                                  | Vite dev server; opens a browser                    |
+| `bun run build`                                | Runs `prebuild` first — **this hits the network**   |
+| `bun run test`                                 | Vitest; a single run, not watch mode, outside a TTY |
+| `bun run lint`                                 | ESLint; warnings are errors                         |
+| `bun run fmt` / `bun run fmt:check`            | Prettier                                            |
+| `bun run fetch:notes` / `bun run fetch:github` | Regenerate `data/` on their own                     |
 
-```bash
-# 開発サーバーの起動 (自動的にブラウザが開く)
-bun run dev
+`prebuild` calls the Zenn and GitHub APIs. To compile without network access, run
+`bunx tsc -b && bunx vite build` directly against whatever is already in `data/`.
 
-# ビルド
-bun run build
+Toolchain versions (bun, node, gitleaks) are pinned in `mise.toml`; `mise run bootstrap`
+installs dependencies.
 
-# プレビュー (ビルド後の動作確認)
-bun run preview
+## Content vs. code
 
-# テスト実行
-bun run test
+- **`config.ts` is the single source of truth for everything the site says.** Profile,
+  socials, skills, certifications, works. A content change belongs there — never
+  hardcoded into a component.
+- **`data/*.json` is generated, gitignored build output.** Produced by `scripts/`, never
+  hand-edited, never committed.
+- Types for both live in `src/types.ts`.
 
-# リント実行 (警告もエラーとして扱う)
-bun run lint
+The deploy workflow runs on a daily schedule as well as on push, so the generated data
+refreshes without a commit. Keep the fetch scripts able to run unattended.
 
-# フォーマット
-bun run fmt
+## Layout
 
-# フォーマットチェック
-bun run fmt:check
+- A page is a directory under `src/pages/` exporting through `index.ts`: the page
+  component, page-only `components/`, pure helpers in `lib.ts`, tests in `lib.spec.ts`.
+- Components used by more than one page go in `src/components/`; the IDE chrome is
+  `src/components/ide/`.
+- Non-React helpers shared between the app and `scripts/` go in `src/lib/`.
+- **A page is declared twice, by design**: once as a route, and once in the IDE file list
+  (`src/components/ide/files.ts`) that feeds the Explorer, the tabs, and the status bar.
+  Register it in only one and it is reachable by URL but invisible in the chrome.
+- Import through the `@/…` aliases. They are declared in **both** `vite.config.ts` and
+  `tsconfig.app.json` — a new alias has to be added to both, and neither applies to
+  `scripts/`, which uses relative paths.
 
-# Zenn から記事データを取得
-bun run fetch:notes
-```
+## Testing
 
-## Build Process
+Vitest runs in the default Node environment; there is no jsdom or browser setup. Tests
+cover pure functions only — `lib.ts` files and `src/lib/`. Components are verified by
+building and looking at the result, not by rendering in a test. Don't add a component
+test without first adding a test environment.
 
-ビルド時には `prebuild` スクリプトが自動実行され、Zenn から最新の記事データを取得して `data/notes.json` に保存します。
+## Git
 
-## Architecture
+- Conventional Commits. English, imperative mood, lowercase after the colon, no trailing
+  period. Types in use: `feat`, `fix`, `refactor`, `style`, `chore`, `docs`, `ci`.
+- Dependencies are pinned to exact versions (`bunfig.toml` sets `install.exact`) and
+  updated by Renovate. Don't widen a pin into a range.
+- Two pre-commit hook managers are installed and both run: Husky → lint-staged
+  (Prettier, then ESLint), and Lefthook → gitleaks. Adding a hook means picking the
+  right one.
 
-### Routing
+## Comments vs. documentation
 
-`src/main.tsx` でルーティングを定義。react-router を使用し、以下の 3 つのページで構成:
-
-- `/` - AboutPage (プロフィール、スキル、資格)
-- `/works` - WorksPage (制作物)
-- `/notes` - NotesPage (Zenn の記事一覧)
-
-### Configuration
-
-`config.ts` が唯一のデータソースとして機能し、すべてのページで使用されるデータ (プロフィール、SNS、スキル、資格、制作物) を定義しています。
-
-- 型定義は `src/types.ts` にあります
-- `@/config` エイリアスでアクセス可能
-
-### Path Aliases
-
-`vite.config.ts` で以下のパスエイリアスを定義:
-
-- `@/config` → `config.ts`
-- `@/types` → `src/types.ts`
-- `@/assets` → `src/assets`
-- `@/data` → `data`
-- `@/components` → `src/components`
-- `@/lib` → `src/lib`
-
-### Page Structure
-
-各ページは `src/pages/` 配下に独自のディレクトリを持ち、以下の構造:
-
-```
-src/pages/
-├── AboutPage/
-├── WorksPage/
-├── NotesPage/
-└── NotFoundPage/
-```
-
-各ページディレクトリには:
-
-- メインコンポーネント (`*Page.tsx`)
-- サブコンポーネント (`components/`)
-- ユーティリティ関数 (`lib.ts`)
-- テストファイル (`lib.spec.ts`)
-- エクスポート用インデックス (`index.ts`)
-
-### SVG Icons
-
-SVG ファイルは `vite-plugin-svgr` により React コンポーネントとしてインポート可能:
-
-```typescript
-import Icon from "@/assets/icon.svg?react";
-```
-
-### Testing
-
-Vitest を使用。テストファイルは `*.spec.ts` の命名規則に従います。
-
-## Pre-commit Hooks
-
-Husky + lint-staged により、コミット前に以下が自動実行:
-
-- Prettier によるフォーマット
-- ESLint によるリント (警告もエラーとして扱う)
-
-## External Data
-
-`scripts/fetch-notes.ts` が Zenn API から記事データを取得し、`data/notes.json` に保存します。このスクリプトはビルド前に自動実行されます。
+This codebase carries a lot of "why" in its comments, deliberately. Anything tied to a
+specific line — which library default a declaration works around, what breaks without
+it, why a value was chosen — goes in a code comment next to that line, where it dies
+with the code. Documentation files carry only what stays true across refactors:
+conventions, boundaries, and decisions. Don't restate here what a comment already says
+at the source.
