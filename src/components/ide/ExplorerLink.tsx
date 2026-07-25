@@ -12,7 +12,7 @@ export function ExplorerLink({ href, children }: ExplorerLinkProps) {
     <Anchor
       variant="subtle"
       size="sm"
-      leading={<ArrowUpRight size={13} aria-hidden="true" />}
+      trailing={<ArrowUpRight size={13} aria-hidden="true" />}
       className={styles.link}
       href={href}
       target="_blank"
