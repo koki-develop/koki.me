@@ -119,10 +119,42 @@ const config: Config = {
       url: "https://codize.dev",
     },
     {
+      name: "Codize Sandbox",
+      category: "Tool",
+      description: "A sandboxed code execution engine.",
+      githubUrl: "https://github.com/codize-dev/sandbox",
+    },
+    {
+      name: "cLive",
+      category: "Tool",
+      description: "A CLI tool that automates terminal operations.",
+      githubUrl: "https://github.com/koki-develop/clive",
+    },
+    {
+      name: "gat",
+      category: "Tool",
+      description: "A cat command written in Go.",
+      githubUrl: "https://github.com/koki-develop/gat",
+    },
+    {
+      name: "ghasec",
+      category: "Tool",
+      description:
+        "A static analysis tool for GitHub Actions workflow definitions.",
+      githubUrl: "https://github.com/koki-develop/ghasec",
+    },
+    {
       name: "Thredot",
       category: "Web",
       description: "A thread-style memo service.",
       url: "https://thredot.org",
+    },
+    {
+      name: "PS1 UI",
+      category: "Tool",
+      description: "A monospace React component library.",
+      url: "https://koki-develop.github.io/ps1ui/",
+      githubUrl: "https://github.com/koki-develop/ps1ui",
     },
     {
       name: "Badge Generator",
@@ -140,35 +172,10 @@ const config: Config = {
       githubUrl: "https://github.com/koki-develop/gallery",
     },
     {
-      name: "cLive",
-      category: "Tool",
-      description: "A CLI tool that automates terminal operations.",
-      githubUrl: "https://github.com/koki-develop/clive",
-    },
-    {
-      name: "gat",
-      category: "Tool",
-      description: "A cat command written in Go.",
-      githubUrl: "https://github.com/koki-develop/gat",
-    },
-    {
       name: "Cork",
       category: "Tool",
       description: "A markdown-file-based kanban app.",
       githubUrl: "https://github.com/koki-develop/Cork",
-    },
-    {
-      name: "Codize Sandbox",
-      category: "Tool",
-      description: "A sandboxed code execution engine.",
-      githubUrl: "https://github.com/codize-dev/sandbox",
-    },
-    {
-      name: "ghasec",
-      category: "Tool",
-      description:
-        "A static analysis tool for GitHub Actions workflow definitions.",
-      githubUrl: "https://github.com/koki-develop/ghasec",
     },
     {
       name: "ghats",
@@ -176,13 +183,6 @@ const config: Config = {
       description:
         "A tool for writing GitHub Actions workflow definitions in TypeScript.",
       githubUrl: "https://github.com/koki-develop/ghats",
-    },
-    {
-      name: "PS1 UI",
-      category: "Tool",
-      description: "A monospace React component library.",
-      url: "https://koki-develop.github.io/ps1ui/",
-      githubUrl: "https://github.com/koki-develop/ps1ui",
     },
     {
       name: "AWS Masking",
