@@ -1,3 +1,4 @@
+import config from "@/config";
 import { Stack } from "@ps1ui/core";
 import { useEffect, useRef, useState } from "react";
 import { Outlet, useLocation } from "react-router";
@@ -46,7 +47,7 @@ export function IdeShell() {
 
   return (
     <Stack gap="none" className={styles.window}>
-      <TitleBar />
+      <TitleBar>{config.profile.name}</TitleBar>
       <Stack direction="row" gap="none" className={styles.middle}>
         <Explorer />
         <Stack gap="none" className={styles.editor}>

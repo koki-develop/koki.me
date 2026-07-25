@@ -8,6 +8,9 @@ export type Config = {
 
 export type Profile = {
   name: string;
+  // Job title, used where `bio` would be too long to read — currently the OG
+  // image, which gives it a single line under the name.
+  role: string;
   bio: string;
 };
 

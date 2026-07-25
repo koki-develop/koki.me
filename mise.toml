@@ -4,4 +4,6 @@ gitleaks = "8.30.1"
 node = "24.11.1"
 
 [tasks.bootstrap]
-run = ["bun install"]
+# The browser binary is what `bun run generate:og` drives; bun install only
+# brings in Playwright's Node bindings.
+run = ["bun install", "bunx playwright install chromium"]

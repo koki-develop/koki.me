@@ -1,0 +1,20 @@
+.window {
+  /* Half the 1200x630 OG frame. scripts/generate-og.ts captures at
+     deviceScaleFactor 2, so PS1UI's absolute font sizes land at the same
+     optical scale as the live site instead of shrinking inside the frame. */
+  width: 600px;
+  height: 315px;
+  background: var(--ps1ui-color-bg);
+  /* Both bars are flex-shrink: 0, so a bio long enough to overflow would push
+     past the fixed height and bleed out of the screenshot instead of being
+     clipped. */
+  overflow: hidden;
+}
+
+.content {
+  flex: 1;
+  /* Without this the flex item refuses to shrink below its content height,
+     defeating the clip above. */
+  min-height: 0;
+  padding: 0 var(--ps1ui-space-2xl);
+}
