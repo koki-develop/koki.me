@@ -3,7 +3,12 @@ export type Config = {
   socials: Socials;
   skills: Skill[];
   certifications: Certification[];
+  // Only decides the order of the category filter's buttons. Work order is
+  // independent of it — see `works`.
   workCategories: WorkCategory[];
+  // A single flat list, in display order, so a work can be placed anywhere
+  // regardless of its category.
+  works: Work[];
 };
 
 export type Profile = {
@@ -36,9 +41,15 @@ export type Certification = {
   year: number;
 };
 
+// A closed union rather than a bare string: a work naming a category that
+// doesn't exist would render under "All" and under no filter at all, which is
+// invisible until someone clicks the right button.
+export type WorkCategory = "Web" | "Tool" | "Extension" | "IME";
+
 export type Work = {
   name: string;
   description: string;
+  category: WorkCategory;
 } & (
   | {
       url: string;
@@ -53,11 +64,6 @@ export type Work = {
       githubUrl: string;
     }
 );
-
-export type WorkCategory = {
-  name: string;
-  works: Work[];
-};
 
 export type Note = {
   title: string;

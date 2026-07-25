@@ -6,11 +6,10 @@ import styles from "./WorkCard.module.css";
 
 type WorkCardProps = {
   work: Work;
-  category: string;
   repos: Record<string, RepoStats>;
 };
 
-export function WorkCard({ work, category, repos }: WorkCardProps) {
+export function WorkCard({ work, repos }: WorkCardProps) {
   const stars = resolveStars(work, repos);
   const hasLinks = Boolean(work.url || work.githubUrl);
 
@@ -37,7 +36,7 @@ export function WorkCard({ work, category, repos }: WorkCardProps) {
         </Stack>
 
         <Badge variant="outline" color="muted" className={styles.category}>
-          {category}
+          {work.category}
         </Badge>
 
         <Text variant="muted" size="sm" className={styles.description}>

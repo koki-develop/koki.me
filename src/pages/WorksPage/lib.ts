@@ -1,42 +1,34 @@
 import { parseRepoSlug } from "@/lib/github";
 import type { RepoStats, Work, WorkCategory } from "@/types";
 
-export type FlattenedWork = {
-  work: Work;
-  category: string;
-};
+export const ALL_CATEGORY = "All";
+
+// The filter has one more state than there are categories: the pseudo-category
+// that selects everything.
+export type CategoryFilterValue = WorkCategory | typeof ALL_CATEGORY;
 
 export type CategoryCount = {
-  name: string;
+  name: CategoryFilterValue;
   count: number;
 };
 
-const ALL_CATEGORY = "All";
-
-export function flattenWorks(categories: WorkCategory[]): FlattenedWork[] {
-  return categories.flatMap((category) =>
-    category.works.map((work) => ({ work, category: category.name })),
-  );
-}
-
 export function filterWorks(
-  items: FlattenedWork[],
-  category: string,
-): FlattenedWork[] {
-  if (category === ALL_CATEGORY) return items;
-  return items.filter((item) => item.category === category);
+  works: Work[],
+  category: CategoryFilterValue,
+): Work[] {
+  if (category === ALL_CATEGORY) return works;
+  return works.filter((work) => work.category === category);
 }
 
-export function categoryCounts(categories: WorkCategory[]): CategoryCount[] {
-  const total = categories.reduce(
-    (sum, category) => sum + category.works.length,
-    0,
-  );
+export function categoryCounts(
+  categories: WorkCategory[],
+  works: Work[],
+): CategoryCount[] {
   return [
-    { name: ALL_CATEGORY, count: total },
+    { name: ALL_CATEGORY, count: works.length },
     ...categories.map((category) => ({
-      name: category.name,
-      count: category.works.length,
+      name: category,
+      count: works.filter((work) => work.category === category).length,
     })),
   ];
 }

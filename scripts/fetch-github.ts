@@ -28,11 +28,9 @@ function _githubHeaders(): Record<string, string> {
 function _repoSlugs(): string[] {
   const slugs = new Set<string>();
 
-  for (const category of config.workCategories) {
-    for (const work of category.works) {
-      if (!work.githubUrl) continue;
-      slugs.add(parseRepoSlug(work.githubUrl));
-    }
+  for (const work of config.works) {
+    if (!work.githubUrl) continue;
+    slugs.add(parseRepoSlug(work.githubUrl));
   }
 
   return [...slugs];

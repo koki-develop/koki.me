@@ -1,11 +1,11 @@
 import { Button, Stack } from "@ps1ui/core";
-import type { CategoryCount } from "../lib";
+import type { CategoryCount, CategoryFilterValue } from "../lib";
 import styles from "./CategoryFilter.module.css";
 
 type CategoryFilterProps = {
   categories: CategoryCount[];
-  active: string;
-  onChange: (category: string) => void;
+  active: CategoryFilterValue;
+  onChange: (category: CategoryFilterValue) => void;
 };
 
 export function CategoryFilter({

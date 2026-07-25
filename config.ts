@@ -100,110 +100,109 @@ const config: Config = {
     },
   ],
 
-  workCategories: [
+  workCategories: ["Web", "Tool", "Extension", "IME"],
+
+  // Ordered freely: a work sits wherever it is listed here, not wherever its
+  // category sits in `workCategories`.
+  works: [
     {
-      name: "Web",
-      works: [
-        {
-          name: "Koki Sato",
-          description: "This portfolio site.",
-          url: "https://koki.me",
-          githubUrl: "https://github.com/koki-develop/koki.me",
-        },
-        {
-          name: "Codize",
-          description: "A programming learning service for beginners.",
-          url: "https://codize.dev",
-        },
-        {
-          name: "Thredot",
-          description: "A thread-style memo service.",
-          url: "https://thredot.org",
-        },
-        {
-          name: "Badge Generator",
-          description: "A badge generation service.",
-          url: "https://badgen.org",
-          githubUrl: "https://github.com/koki-develop/badge-generator",
-        },
-        {
-          name: "Gallery",
-          description:
-            "A sample app whose backend, frontend, and infrastructure are all built with Terraform.",
-          url: "https://tftftf.gallery",
-          githubUrl: "https://github.com/koki-develop/gallery",
-        },
-      ],
+      name: "Koki Sato",
+      category: "Web",
+      description: "This portfolio site.",
+      url: "https://koki.me",
+      githubUrl: "https://github.com/koki-develop/koki.me",
     },
     {
-      name: "Tool",
-      works: [
-        {
-          name: "cLive",
-          description: "A CLI tool that automates terminal operations.",
-          githubUrl: "https://github.com/koki-develop/clive",
-        },
-        {
-          name: "gat",
-          description: "A cat command written in Go.",
-          githubUrl: "https://github.com/koki-develop/gat",
-        },
-        {
-          name: "Cork",
-          description: "A markdown-file-based kanban app.",
-          githubUrl: "https://github.com/koki-develop/Cork",
-        },
-        {
-          name: "Codize Sandbox",
-          description: "A sandboxed code execution engine.",
-          githubUrl: "https://github.com/codize-dev/sandbox",
-        },
-        {
-          name: "ghasec",
-          description:
-            "A static analysis tool for GitHub Actions workflow definitions.",
-          githubUrl: "https://github.com/koki-develop/ghasec",
-        },
-        {
-          name: "ghats",
-          description:
-            "A tool for writing GitHub Actions workflow definitions in TypeScript.",
-          githubUrl: "https://github.com/koki-develop/ghats",
-        },
-        {
-          name: "PS1 UI",
-          description: "A monospace React component library.",
-          url: "https://koki-develop.github.io/ps1ui/",
-          githubUrl: "https://github.com/koki-develop/ps1ui",
-        },
-      ],
+      name: "Codize",
+      category: "Web",
+      description: "A programming learning service for beginners.",
+      url: "https://codize.dev",
     },
     {
-      name: "Extension",
-      works: [
-        {
-          name: "AWS Masking",
-          description:
-            "A Chrome extension that automatically masks sensitive information on the AWS Management Console.",
-          url: "https://chromewebstore.google.com/detail/aws-masking/nblpfncgdloilgeicnnlihegobmhjifb",
-          githubUrl: "https://github.com/koki-develop/aws-masking",
-        },
-      ],
+      name: "Thredot",
+      category: "Web",
+      description: "A thread-style memo service.",
+      url: "https://thredot.org",
     },
     {
-      name: "IME",
-      works: [
-        {
-          name: "Koto",
-          description: "An IME for macOS.",
-          githubUrl: "https://github.com/koki-develop/Koto",
-        },
-        {
-          name: "NyaIME",
-          description: "An IME for cats.",
-          githubUrl: "https://github.com/koki-develop/NyaIME",
-        },
-      ],
+      name: "Badge Generator",
+      category: "Web",
+      description: "A badge generation service.",
+      url: "https://badgen.org",
+      githubUrl: "https://github.com/koki-develop/badge-generator",
+    },
+    {
+      name: "Gallery",
+      category: "Web",
+      description:
+        "A sample app whose backend, frontend, and infrastructure are all built with Terraform.",
+      url: "https://tftftf.gallery",
+      githubUrl: "https://github.com/koki-develop/gallery",
+    },
+    {
+      name: "cLive",
+      category: "Tool",
+      description: "A CLI tool that automates terminal operations.",
+      githubUrl: "https://github.com/koki-develop/clive",
+    },
+    {
+      name: "gat",
+      category: "Tool",
+      description: "A cat command written in Go.",
+      githubUrl: "https://github.com/koki-develop/gat",
+    },
+    {
+      name: "Cork",
+      category: "Tool",
+      description: "A markdown-file-based kanban app.",
+      githubUrl: "https://github.com/koki-develop/Cork",
+    },
+    {
+      name: "Codize Sandbox",
+      category: "Tool",
+      description: "A sandboxed code execution engine.",
+      githubUrl: "https://github.com/codize-dev/sandbox",
+    },
+    {
+      name: "ghasec",
+      category: "Tool",
+      description:
+        "A static analysis tool for GitHub Actions workflow definitions.",
+      githubUrl: "https://github.com/koki-develop/ghasec",
+    },
+    {
+      name: "ghats",
+      category: "Tool",
+      description:
+        "A tool for writing GitHub Actions workflow definitions in TypeScript.",
+      githubUrl: "https://github.com/koki-develop/ghats",
+    },
+    {
+      name: "PS1 UI",
+      category: "Tool",
+      description: "A monospace React component library.",
+      url: "https://koki-develop.github.io/ps1ui/",
+      githubUrl: "https://github.com/koki-develop/ps1ui",
+    },
+    {
+      name: "AWS Masking",
+      category: "Extension",
+      description:
+        "A Chrome extension that automatically masks sensitive information on the AWS Management Console.",
+      url: "https://chromewebstore.google.com/detail/aws-masking/nblpfncgdloilgeicnnlihegobmhjifb",
+      githubUrl: "https://github.com/koki-develop/aws-masking",
+    },
+    {
+      name: "Koto",
+      category: "IME",
+      description: "An IME for macOS.",
+      githubUrl: "https://github.com/koki-develop/Koto",
+    },
+    {
+      name: "NyaIME",
+      category: "IME",
+      description: "An IME for cats.",
+      githubUrl: "https://github.com/koki-develop/NyaIME",
     },
   ],
 };

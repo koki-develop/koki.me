@@ -8,25 +8,32 @@ import { CategoryFilter } from "./components/CategoryFilter";
 import { GithubActivityCard } from "./components/GithubActivityCard";
 import { WorkCard } from "./components/WorkCard";
 import { WorksPageHeader } from "./components/WorksPageHeader";
-import { categoryCounts, filterWorks, flattenWorks } from "./lib";
+import {
+  ALL_CATEGORY,
+  type CategoryFilterValue,
+  categoryCounts,
+  filterWorks,
+} from "./lib";
 
 const github = githubData as GitHubData;
 
 export function WorksPage() {
-  const [category, setCategory] = useState("All");
+  const [category, setCategory] = useState<CategoryFilterValue>(ALL_CATEGORY);
 
-  const items = useMemo(() => flattenWorks(config.workCategories), []);
-  const counts = useMemo(() => categoryCounts(config.workCategories), []);
+  const counts = useMemo(
+    () => categoryCounts(config.workCategories, config.works),
+    [],
+  );
   const filtered = useMemo(
-    () => filterWorks(items, category),
-    [items, category],
+    () => filterWorks(config.works, category),
+    [category],
   );
 
   return (
     <Stack gap="xl">
       <Stack gap="md">
         <SourceComment>works.tsx</SourceComment>
-        <WorksPageHeader count={items.length} />
+        <WorksPageHeader count={config.works.length} />
       </Stack>
 
       <GithubActivityCard contributions={github.contributions} />
@@ -41,13 +48,8 @@ export function WorksPage() {
           page's own Stack — i.e. the editor content column, not the window.
           `sm` (40rem) keeps every card at 312px or wider. */}
       <Grid columns={{ base: 1, sm: 2 }} gap="lg">
-        {filtered.map(({ work, category: workCategory }) => (
-          <WorkCard
-            key={work.name}
-            work={work}
-            category={workCategory}
-            repos={github.repos}
-          />
+        {filtered.map((work) => (
+          <WorkCard key={work.name} work={work} repos={github.repos} />
         ))}
       </Grid>
     </Stack>
