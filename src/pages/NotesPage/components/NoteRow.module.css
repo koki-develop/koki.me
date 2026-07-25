@@ -18,8 +18,13 @@
   align-self: baseline;
 }
 
+/* `overflow-wrap: anywhere` only breaks inside a word when that word alone
+   doesn't fit a line, so it still wraps at spaces first — the ragged edge
+   lands wherever the last word before overflow happens to end, and that
+   point differs title to title. `break-all` breaks at the exact character
+   where the line would overflow, so every title's right edge lines up. */
 .title {
-  overflow-wrap: anywhere;
+  word-break: break-all;
 }
 
 /* The two axes need different gaps, and Stack's `gap` prop sets both at once.
