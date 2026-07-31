@@ -18,7 +18,7 @@
     "generate:og": "bun run ./scripts/generate-og.ts"
   },
   "dependencies": {
-    "@ps1ui/core": "0.6.0",
+    "@ps1ui/core": "0.7.0",
     "@vitejs/plugin-react": "5.1.1",
     "babel-plugin-react-compiler": "1.0.0",
     "clsx": "2.1.1",

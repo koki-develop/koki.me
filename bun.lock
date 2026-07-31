@@ -5,7 +5,7 @@
     "": {
       "name": "koki.me",
       "dependencies": {
-        "@ps1ui/core": "0.6.0",
+        "@ps1ui/core": "0.7.0",
         "@vitejs/plugin-react": "5.1.1",
         "babel-plugin-react-compiler": "1.0.0",
         "clsx": "2.1.1",
@@ -213,7 +213,7 @@
 
     "@oxc-project/types": ["@oxc-project/types@0.82.3", "", {}, "sha512-6nCUxBnGX0c6qfZW5MaF6/fmu5dHJDMiMPaioKHKs5mi5+8/FHQ7WGjgQIz1zxpmceMYfdIXkOaLYE+ejbuOtA=="],
 
-    "@ps1ui/core": ["@ps1ui/core@0.6.0", "", { "dependencies": { "@fontsource-variable/jetbrains-mono": "5.2.8", "hast-util-to-jsx-runtime": "2.3.6", "refractor": "5.0.0" }, "peerDependencies": { "react": "^19.0.0", "react-dom": "^19.0.0" } }, "sha512-v0CHOAzRWeLUrtAlG2e1sxhOSPkDeE9SWduOdAG6fFSrxQgb8UZa3jIcCgjKEJsBznGq8ZR7P5eMM0ejb4Vp2g=="],
+    "@ps1ui/core": ["@ps1ui/core@0.7.0", "", { "dependencies": { "@fontsource-variable/jetbrains-mono": "5.2.8", "hast-util-to-jsx-runtime": "2.3.6", "refractor": "5.0.0" }, "peerDependencies": { "react": "^19.0.0", "react-dom": "^19.0.0" } }, "sha512-IVMahsDp7Z6FXlWkfDiruSFwx3O+L01ZIPON95nTPDpDcwwt2PhVgkEhsTEpEuzv62WBu1M6UkG58BJAeHJMCQ=="],
 
     "@rolldown/binding-android-arm64": ["@rolldown/binding-android-arm64@1.0.0-beta.35", "", { "os": "android", "cpu": "arm64" }, "sha512-zVTg0544Ib1ldJSWwjy8URWYHlLFJ98rLnj+2FIj5fRs4KqGKP4VgH/pVUbXNGxeLFjItie6NSK1Un7nJixneQ=="],
 
