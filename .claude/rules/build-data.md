@@ -33,6 +33,16 @@ the same commit.
   after the top-level code that drives them. The script reads top-down: what it does
   first, how it does it second.
 - Anything the app also needs belongs in `src/lib/`, imported by relative path. The
-  `@/…` aliases are Vite/tsconfig-app only and do not resolve here.
-- These files are type-checked under `tsconfig.node.json` (Node types, no DOM), not the
-  app config.
+  `@/…` aliases come from the root `tsconfig.json`, which excludes `scripts/` — they do
+  not resolve here.
+- These files are type-checked under `tsconfig.node.json` (Node types, no DOM), together
+  with `astro.config.ts` and `vitest.config.ts` — everything Node runs rather than ships.
+  `bun run typecheck` runs it alongside `astro check`. Never reach for
+  `/// <reference lib="dom" />` to quiet a browser API: the directive applies to the
+  whole project, not the file it sits in, and would take the guard down for every file
+  here. Declare the handful of members you touch instead, the way `generate-og.ts` does.
+
+`scripts/generate-og.ts` is the odd one out: it is not part of `prebuild`, it writes an
+image rather than JSON, and its output — `public/og.png` — is committed. It drives
+Astro's programmatic dev server so it can screenshot `/og`, a route that only exists
+while developing.

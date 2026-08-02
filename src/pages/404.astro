@@ -1,0 +1,17 @@
+---
+import IdeShell from "@/layouts/IdeShell.astro";
+import { NotFoundPage } from "@/views/NotFoundPage";
+
+// `noindex` because this document is what Vercel serves for *every* unmatched
+// URL, not just `/404`. Left indexable it would hand a crawler following a dead
+// inbound link a canonical of `https://koki.me/404`, turning the error page
+// into the canonical target for the whole tail of stale links.
+---
+
+<IdeShell
+  title="Not Found"
+  description="The file you're looking for doesn't exist."
+  noindex
+>
+  <NotFoundPage />
+</IdeShell>

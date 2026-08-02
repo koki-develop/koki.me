@@ -9,3 +9,24 @@
   font-size: var(--ps1ui-font-size-sm);
   flex-shrink: 0;
 }
+
+/* One tab. `IdeFileLink` renders the element; only these declarations separate
+   it from the same link in the Explorer. */
+.tab {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 10px 20px;
+  border-right: 1px solid var(--ps1ui-color-border);
+  border-top: 2px solid transparent;
+  color: var(--ps1ui-color-fg-muted);
+  transition:
+    color var(--ps1ui-transition-fast),
+    background-color var(--ps1ui-transition-fast);
+}
+
+.tab.active {
+  color: var(--ps1ui-color-fg);
+  background: var(--ps1ui-color-bg);
+  border-top-color: var(--ps1ui-color-primary);
+}

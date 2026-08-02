@@ -22,5 +22,9 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["vite.config.ts", "scripts"]
+  /* The build tooling belongs here and not in the app project: both files are
+     loaded by Node, and `lib: ["ES2023"]` above is what makes an accidental
+     `document` in one of them a type error instead of a `ReferenceError` on
+     Vercel. */
+  "include": ["scripts", "astro.config.ts", "vitest.config.ts"]
 }

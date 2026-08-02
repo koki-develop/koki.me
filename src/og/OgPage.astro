@@ -1,0 +1,48 @@
+---
+// Not a page a visitor navigates to: this renders the social preview image, and
+// it lives outside `src/pages/` so Astro's router leaves it alone.
+// `astro.config.ts` injects it at `/og` for the dev server only, and
+// `scripts/generate-og.ts` screenshots it there.
+//
+// `src/styles/global.css` is skipped on purpose: it only styles scrollbars, and
+// nothing in a fixed-size 600x315 frame scrolls.
+import "@ps1ui/core/styles.css";
+
+import { findIdeFile } from "@/components/ide/files";
+import { StatusBar } from "@/components/ide/StatusBar";
+import { TitleBar } from "@/components/ide/TitleBar";
+import config from "@/config";
+import { Heading, PS1Root, Stack, Text } from "@ps1ui/core";
+import styles from "./OgPage.module.css";
+
+// The chrome is the site's own TitleBar / StatusBar, so the preview image keeps
+// tracking the real UI. Explorer, TabBar and Gutter are left out — at the size a
+// social timeline renders this they read as noise, and the gutter has nothing to
+// measure in a frame that never scrolls.
+//
+// The StatusBar's file is looked up rather than hardcoded so reordering the IDE
+// file list can't bake a stale filename into the image.
+const activeFile = findIdeFile("/");
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>OG Image</title>
+  </head>
+  <body>
+    <PS1Root>
+      <Stack gap="none" className={styles.window}>
+        {/* Untitled on purpose — the heading below already says the name. */}
+        <TitleBar />
+        <Stack gap="xs" justify="center" className={styles.content}>
+          <Heading level={1}>{config.profile.name}</Heading>
+          {/* `role`, not `bio` — the bio wraps to two lines at this width. */}
+          <Text size="md" variant="muted">{config.profile.role}</Text>
+        </Stack>
+        <StatusBar activeFile={activeFile} />
+      </Stack>
+    </PS1Root>
+  </body>
+</html>

@@ -1,14 +1,12 @@
-import { IDE_FILES } from "@/components/ide";
+import { IDE_FILES } from "@/components/ide/files";
 import { Anchor, List, ListItem, Text } from "@ps1ui/core";
-import { Link, useLocation } from "react-router";
 import styles from "./NextFiles.module.css";
 
 export function NextFiles() {
-  const { pathname } = useLocation();
-  // Derived from IDE_FILES rather than listed again: the section points at the
-  // files other than the one being read, so a new page shows up here as soon as
-  // it joins the Explorer.
-  const files = IDE_FILES.filter((file) => file.path !== pathname);
+  // Derived from IDE_FILES rather than listed again: the section points at every
+  // file other than the About page it sits on, so a new page shows up here as
+  // soon as it joins the Explorer.
+  const files = IDE_FILES.filter((file) => file.path !== "/");
 
   return (
     <List>
@@ -23,7 +21,7 @@ export function NextFiles() {
               it underlines. A bare <span> because the box holds no text of its
               own; it exists only to reserve the width. */}
           <span className={styles.nameColumn}>
-            <Anchor as={Link} to={file.path} variant="subtle">
+            <Anchor href={file.path} variant="subtle">
               {file.name}
             </Anchor>
           </span>

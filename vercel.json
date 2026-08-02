@@ -3,10 +3,5 @@
   "buildCommand": "bun run build",
   "installCommand": "bun install --frozen",
   "outputDirectory": "dist",
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
+  "cleanUrls": true
 }

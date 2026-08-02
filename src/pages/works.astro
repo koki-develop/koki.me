@@ -1,0 +1,17 @@
+---
+import IdeShell from "@/layouts/IdeShell.astro";
+import { WorksPage } from "@/views/WorksPage";
+
+// The one page that hydrates, and the island is the whole page rather than a
+// piece of it: almost everything here is interactive — the category filter owns
+// the list below it, and the contribution graph has a tooltip and its own
+// keyboard navigation. Astro still renders the island to HTML at build time, so
+// every card is in the document before a byte of JavaScript runs.
+---
+
+<IdeShell
+  title="Works"
+  description="Developer tools, CLIs, web apps and other projects I've built."
+>
+  <WorksPage client:load />
+</IdeShell>

@@ -26,3 +26,87 @@
 .links {
   margin-top: auto;
 }
+
+/* One file row. `IdeFileLink` renders the element; only these declarations
+   separate it from the same link in the tab strip. */
+.file {
+  display: flex;
+  align-items: center;
+  padding: 6px 18px 6px 46px;
+  font-size: var(--ps1ui-font-size-sm);
+  color: var(--ps1ui-color-fg-muted);
+  border-left: 2px solid transparent;
+  transition:
+    color var(--ps1ui-transition-fast),
+    background-color var(--ps1ui-transition-fast);
+}
+
+.file:hover {
+  background: var(--ps1ui-color-surface);
+}
+
+.file.active {
+  color: var(--ps1ui-color-fg);
+  background: var(--ps1ui-color-surface);
+  border-left-color: var(--ps1ui-color-primary);
+}
+
+/* --- Folder disclosure -----------------------------------------------------
+   A bare <details>/<summary> rather than ps1ui's `Details`: that component is a
+   bordered card with its own surface, radius and ▸/▾ glyph, and the sidebar row
+   wants none of it — every declaration it brings would have to be undone to
+   keep the row matching the `.file` links directly beneath it. Revisit if ps1ui
+   ever grows a flat disclosure variant.
+
+   Native <details> is what keeps the toggle itself free of JavaScript, and it
+   hands the expanded/collapsed state to assistive tech without an
+   `aria-expanded` of our own. The <details> element itself
+   needs no box of its own — `.folder` exists only as the `[open]` hook the icon
+   rule at the bottom keys off.
+
+   `font-size` and `color` live here for the same reason the row isn't a
+   `<Text>`: TextVariant pins a color token, so the muted → fg hover below would
+   have nothing to shift. Revisit if the variant set ever grows an `inherit`
+   option.
+
+   `font` and `background` are left to ps1ui's reset, which already gives every
+   element `font: inherit` and no background. No `cursor: pointer`, matching the
+   arrow cursor the row had as a <button>. */
+.summary {
+  display: flex;
+  align-items: center;
+  /* Matches the gap an adorned Anchor gives the Links rows below. */
+  gap: var(--ps1ui-space-xs);
+  padding: 5px 18px;
+  font-size: var(--ps1ui-font-size-sm);
+  text-align: left;
+  color: var(--ps1ui-color-fg-muted);
+  transition: color var(--ps1ui-transition-fast);
+  /* ps1ui's reset restores `summary { display: list-item }`; `display: flex`
+     above already drops the marker box, and this covers the browsers that key
+     the triangle off `list-style` instead. */
+  list-style: none;
+}
+
+/* Safari < 17 draws the triangle through a private pseudo that `list-style`
+   does not reach. */
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+.summary:hover {
+  color: var(--ps1ui-color-fg);
+}
+
+/* One ChevronRight rotated into a ChevronDown, rather than swapping the two
+   lucide components: the paths are the same glyph at a different angle, and a
+   rotation is a thing CSS can key off `[open]` — a component swap would need
+   JavaScript back. */
+.icon {
+  flex-shrink: 0;
+  color: var(--ps1ui-color-fg-subtle);
+}
+
+.folder[open] .icon {
+  transform: rotate(90deg);
+}

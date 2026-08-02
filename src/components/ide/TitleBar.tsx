@@ -4,14 +4,18 @@ import { GitBranch } from "lucide-react";
 import styles from "./TitleBar.module.css";
 
 type TitleBarProps = {
+  // A prop rather than children: the bar is only ever rendered from an `.astro`
+  // file, and anything slotted in from there arrives as an HTML string wrapped
+  // in an <astro-static-slot>. A plain string has no reason to take that detour.
+  //
   // Optional so the bar can render as bare window chrome — the OG image sets
   // its title with a heading in the content area, and repeating it here would
   // just be the same string twice. The bar splits into two groups either way,
   // so the branch stays pinned to the trailing edge with or without a title.
-  children?: string;
+  title?: string;
 };
 
-export function TitleBar({ children }: TitleBarProps) {
+export function TitleBar({ title }: TitleBarProps) {
   return (
     <Stack
       direction="row"
@@ -33,9 +37,9 @@ export function TitleBar({ children }: TitleBarProps) {
           className={clsx(styles.dot, styles.dotPrimary)}
           aria-hidden="true"
         />
-        {children && (
+        {title && (
           <Text as="span" size="sm" weight="bold" className={styles.title}>
-            {children}
+            {title}
           </Text>
         )}
       </Stack>

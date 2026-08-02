@@ -1,0 +1,105 @@
+---
+import "@ps1ui/core/styles.css";
+import "@/styles/global.css";
+
+import Explorer from "@/components/ide/Explorer.astro";
+import { findIdeFile } from "@/components/ide/files";
+import Gutter from "@/components/ide/Gutter.astro";
+import { StatusBar } from "@/components/ide/StatusBar";
+import { TabBar } from "@/components/ide/TabBar";
+import { TitleBar } from "@/components/ide/TitleBar";
+import config from "@/config";
+import { PS1Root, Stack } from "@ps1ui/core";
+import { ClientRouter } from "astro:transitions";
+import styles from "./IdeShell.module.css";
+
+type Props = {
+  /**
+   * Names the page inside the site — the site name is appended here, so this is
+   * "Works", not "Works | Koki Sato". Omit it on the page that _is_ the site.
+   */
+  title?: string;
+  description: string;
+  /**
+   * Set on a document that is served at more than one URL. It suppresses the
+   * canonical and og:url tags, which would otherwise name a single address for
+   * a page that has none, and asks crawlers to skip it.
+   */
+  noindex?: boolean;
+};
+
+const { title, description, noindex = false } = Astro.props;
+
+const fullTitle = title
+  ? `${title} | ${config.profile.name}`
+  : config.profile.name;
+
+// The route, not `Astro.url.pathname`: `build.format: "file"` makes the latter
+// the emitted file (`/works.html`) at build time, which matches no entry in the
+// IDE file list and is not the URL the page is served at either. `routePattern`
+// is `/`, `/works`, `/notes` — the paths this site actually navigates between.
+const pathname = Astro.routePattern;
+const activeFile = findIdeFile(pathname);
+
+// `Astro.site` is set in astro.config.ts, so this is never relative.
+const canonical = noindex ? null : new URL(pathname, Astro.site).href;
+const ogImage = new URL("/og.png", Astro.site).href;
+
+// The three `data-editor-*` boxes in the markup below are what
+// `src/components/ide/Gutter.astro` measures to work out how many line numbers
+// to draw.
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
+    {canonical && <link rel="canonical" href={canonical} />}
+
+    <!-- ogp -->
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content={config.profile.name} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <title>{fullTitle}</title>
+
+    <ClientRouter />
+  </head>
+  <body>
+    <PS1Root>
+      <Stack gap="none" className={styles.window}>
+        <TitleBar title={config.profile.name} />
+        <Stack direction="row" gap="none" className={styles.middle}>
+          <Explorer currentPath={pathname} />
+          <Stack gap="none" className={styles.editor}>
+            <TabBar currentPath={pathname} />
+            <Stack
+              direction="row"
+              gap="none"
+              align="start"
+              className={styles.scroll}
+              data-editor-scroll
+            >
+              <Gutter />
+              <main class={styles.main} data-editor-main>
+                <div data-editor-content><slot /></div>
+              </main>
+            </Stack>
+            <StatusBar activeFile={activeFile} />
+          </Stack>
+        </Stack>
+      </Stack>
+    </PS1Root>
+  </body>
+</html>

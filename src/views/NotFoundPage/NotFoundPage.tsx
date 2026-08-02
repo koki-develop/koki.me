@@ -1,7 +1,6 @@
 import { SourceComment } from "@/components/SourceComment";
 import { Button, Heading, Stack, Text } from "@ps1ui/core";
 import { ArrowLeft } from "lucide-react";
-import { Link } from "react-router";
 
 export function NotFoundPage() {
   return (
@@ -11,7 +10,7 @@ export function NotFoundPage() {
       <Text variant="muted">
         The file you&apos;re looking for doesn&apos;t exist.
       </Text>
-      <Button as={Link} to="/" variant="secondary">
+      <Button as="a" href="/" variant="secondary">
         <ArrowLeft size={14} aria-hidden="true" />
         back to about.md
       </Button>

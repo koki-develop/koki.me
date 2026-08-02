@@ -4,10 +4,10 @@ import styles from "./ExplorerLink.module.css";
 
 type ExplorerLinkProps = {
   href: string;
-  children: string;
+  label: string;
 };
 
-export function ExplorerLink({ href, children }: ExplorerLinkProps) {
+export function ExplorerLink({ href, label }: ExplorerLinkProps) {
   return (
     <Anchor
       variant="subtle"
@@ -18,7 +18,7 @@ export function ExplorerLink({ href, children }: ExplorerLinkProps) {
       target="_blank"
       rel="noreferrer"
     >
-      {children}
+      {label}
     </Anchor>
   );
 }

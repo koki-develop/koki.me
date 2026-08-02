@@ -1,0 +1,42 @@
+/* Navigation swaps the document without animating it.
+
+   `<ClientRouter />` runs the swap through the View Transitions API, whose UA
+   default cross-fades the whole page. On a window whose chrome is identical
+   between routes, that reads as the entire app blinking rather than as a file
+   being opened — the pane should just change, the way it does in an editor.
+
+   `mix-blend-mode` is reset alongside the animation because the UA pairs its
+   fade with `plus-lighter`; leaving it would blend the two stacked snapshots
+   additively for the frame before the transition finishes. This is the same set
+   of declarations Astro emits for `transition:animate="none"`, applied to every
+   transition group instead of one element. */
+::view-transition-group(*),
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--ps1ui-color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--ps1ui-color-border);
+  border: 2px solid var(--ps1ui-color-bg);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--ps1ui-color-border-strong);
+}
+
+* {
+  scrollbar-color: var(--ps1ui-color-border) var(--ps1ui-color-bg);
+  scrollbar-width: thin;
+}

@@ -18,6 +18,9 @@
   }
 }
 
-.line {
+/* Matched on the element rather than a class: the rows are created by the
+   measuring script below the markup, and a bare `div` keeps that script from
+   having to import this file just to learn a hashed class name. */
+.gutter > div {
   padding-right: 14px;
 }

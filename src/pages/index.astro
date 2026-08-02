@@ -1,0 +1,10 @@
+---
+import config from "@/config";
+import IdeShell from "@/layouts/IdeShell.astro";
+import { AboutPage } from "@/views/AboutPage";
+---
+
+{/* No `title`: this page is the site, so its name is the whole title. */}
+<IdeShell description={config.profile.bio}>
+  <AboutPage />
+</IdeShell>

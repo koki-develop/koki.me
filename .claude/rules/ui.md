@@ -1,6 +1,7 @@
 ---
 paths:
   - "src/**/*.tsx"
+  - "src/**/*.astro"
   - "src/**/*.css"
 ---
 
@@ -8,6 +9,34 @@ paths:
 
 The site is composed from `@ps1ui/core`. Hand-written markup and CSS are the exception,
 and an exception needs a reason recorded next to it.
+
+## `.astro` or `.tsx`
+
+Both render to static HTML at build time, so the split is about what a file needs, not
+about cost:
+
+- **`.astro`** for anything that needs Astro itself — the current route, a `<slot />`, a
+  `<script>`, a `transition:*` directive. That is the layout, the chrome components that
+  are URL-aware, and the pages.
+- **`.tsx`** for everything else, which is most of it. A `.tsx` file can import other
+  `.tsx` files but never an `.astro` one, so a component that might end up inside a React
+  tree has to be React.
+
+Two things follow from the boundary:
+
+- **Give a React component props, not children, when it is rendered from `.astro`.**
+  Astro renders slotted content to an HTML string and hands it back wrapped in an
+  `<astro-static-slot>` — which it strips again for a component that isn't hydrated, so
+  this costs nothing but a detour for what is usually one string. `label` / `title`
+  beats `children` at that boundary.
+- **Astro can't build a React element**, so a ps1ui prop that takes a `ReactNode`
+  (`leading`, `trailing`, `summary`) is unreachable from a template. A component using
+  one has to stay `.tsx` and be handed plain props.
+
+Only the Works page hydrates. Everything else is server-rendered and ships no React at
+all, so an interaction elsewhere has to be reachable from CSS, a native element, or a
+few lines of DOM code in an Astro `<script>` — reach for `client:load` only when the
+thing genuinely needs a component runtime.
 
 ## Compose from PS1UI primitives
 
@@ -31,7 +60,8 @@ and an exception needs a reason recorded next to it.
 
 ## CSS Modules
 
-Colocate `Foo.module.css` next to `Foo.tsx`, and keep it to **layout-only** declarations:
+Colocate `Foo.module.css` next to `Foo.tsx` or `Foo.astro`, and keep it to
+**layout-only** declarations:
 `flex`, `min-width`, `padding`, `border`, `align-self`, `margin: auto`, `overflow`.
 
 Use `--ps1ui-*` tokens for every value that has one — spacing, colors, font sizes,
@@ -64,8 +94,9 @@ and makes it a stacking context and a containing block for fixed/absolute childr
 
 ## Accessibility
 
-ESLint runs `jsx-a11y` with warnings as errors, so a violation fails `bun run lint` and
-the CI Lint job. Two habits this codebase already has, worth keeping:
+ESLint runs `jsx-a11y` with warnings as errors over both `.tsx` and `.astro`, so a
+violation fails `bun run lint` and the CI Lint job. Two habits this codebase already has,
+worth keeping:
 
 - Decorative icons get `aria-hidden="true"`.
 - Characters that exist only to sell the code-editor metaphor — the `## ` prefix on

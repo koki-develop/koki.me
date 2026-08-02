@@ -1,0 +1,83 @@
+---
+// The column ships empty: how many rows fit is a function of the rendered height
+// of the editor pane, which nothing before layout can know. The script below
+// fills it on the first frame after the document is parsed — the column is
+// decorative and aria-hidden, so the moment it is short is a cosmetic one.
+import styles from "./Gutter.module.css";
+---
+
+<div class={styles.gutter} aria-hidden="true" data-editor-gutter></div>
+
+<script>
+  // The row count is derived from the editor pane the shell renders around this
+  // column — `src/layouts/IdeShell.astro` marks the three boxes it measures.
+  const MIN_LINES = 1;
+
+  let observer: ResizeObserver | undefined;
+
+  function fill(gutter: HTMLElement, lines: number): void {
+    while (gutter.childElementCount > lines) {
+      gutter.lastElementChild?.remove();
+    }
+    while (gutter.childElementCount < lines) {
+      const line = document.createElement("div");
+      line.textContent = String(gutter.childElementCount + 1);
+      gutter.append(line);
+    }
+  }
+
+  function setup(): void {
+    observer?.disconnect();
+
+    const gutter = document.querySelector<HTMLElement>("[data-editor-gutter]");
+    const scrollEl = document.querySelector<HTMLElement>(
+      "[data-editor-scroll]",
+    );
+    const mainEl = document.querySelector<HTMLElement>("[data-editor-main]");
+    const contentEl = document.querySelector<HTMLElement>(
+      "[data-editor-content]",
+    );
+    if (!gutter || !scrollEl || !mainEl || !contentEl) return;
+
+    const sync = () => {
+      const gutterStyle = getComputedStyle(gutter);
+      // Below the container query that reveals the gutter there is nothing to
+      // number, and every row built here would be a node inside a box that can
+      // never be painted. Keyed off `display` rather than off an unresolvable
+      // `line-height`: the column inherits a usable px line-height from the root
+      // even while hidden, so measuring it tells you nothing about visibility.
+      if (gutterStyle.display === "none") return;
+
+      const lineHeight = parseFloat(gutterStyle.lineHeight);
+      if (!lineHeight) return;
+
+      const mainStyle = getComputedStyle(mainEl);
+      const mainPaddingBlock =
+        parseFloat(mainStyle.paddingTop) + parseFloat(mainStyle.paddingBottom);
+      // Runs to the bottom of the viewport on a page too short to scroll, which
+      // is what an editor's gutter does.
+      const height = Math.max(
+        contentEl.offsetHeight + mainPaddingBlock,
+        scrollEl.clientHeight,
+      );
+
+      const paddingY =
+        parseFloat(gutterStyle.paddingTop) +
+        parseFloat(gutterStyle.paddingBottom);
+      fill(
+        gutter,
+        Math.max(MIN_LINES, Math.ceil((height - paddingY) / lineHeight)),
+      );
+    };
+
+    observer = new ResizeObserver(sync);
+    observer.observe(contentEl);
+    observer.observe(scrollEl);
+    sync();
+  }
+
+  setup();
+  // The router swaps in a new pane on every navigation, so the observed nodes
+  // are gone and the whole thing has to be re-bound against the new ones.
+  document.addEventListener("astro:after-swap", setup);
+</script>

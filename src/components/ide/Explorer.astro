@@ -1,0 +1,78 @@
+---
+import config from "@/config";
+import { Stack } from "@ps1ui/core";
+import { ChevronRight } from "lucide-react";
+import styles from "./Explorer.module.css";
+import { ExplorerLabel } from "./ExplorerLabel";
+import { ExplorerLink } from "./ExplorerLink";
+import { IdeFileLink } from "./IdeFileLink";
+import { IDE_FILES } from "./files";
+
+type Props = {
+  currentPath: string;
+};
+
+const { currentPath } = Astro.props;
+
+// The folder's open/closed state is carried across navigations by the script
+// below the markup, and that script is `is:inline` — a classic script the parser
+// runs on the spot — rather than a bundled module, which would be deferred: a
+// visitor who closed the folder must never see it painted open first.
+// `data-astro-rerun` re-runs it after every client-side navigation, which is
+// also when its listener needs re-attaching, because the router swaps in a
+// freshly rendered <details>. Handing the old element over with
+// `transition:persist` instead would bring the previous page's highlight with
+// it.
+---
+
+<Stack as="nav" gap="none" className={styles.explorer} aria-label="Explorer">
+  <ExplorerLabel label="Explorer" />
+  <details class={styles.folder} open data-explorer-folder>
+    <summary class={styles.summary}>
+      <ChevronRight size={14} aria-hidden="true" className={styles.icon} />
+      koki-sato/
+    </summary>
+    <Stack gap="none">
+      {
+        IDE_FILES.map((file) => (
+          <IdeFileLink
+            href={file.path}
+            label={file.name}
+            active={file.path === currentPath}
+            className={styles.file}
+            activeClassName={styles.active}
+          />
+        ))
+      }
+    </Stack>
+  </details>
+  {/* Placed after the element it reaches for — see the frontmatter. */}
+  <script is:inline data-astro-rerun>
+    (() => {
+      const KEY = "explorer:folder-open";
+      const folder = document.querySelector("[data-explorer-folder]");
+      if (!folder) return;
+
+      // Blocked cookies turn any sessionStorage access into a SecurityError.
+      // The folder still opens and closes without it; it just forgets.
+      try {
+        // Open unless it was explicitly closed, matching the markup's default.
+        if (sessionStorage.getItem(KEY) === "false") folder.open = false;
+      } catch {}
+
+      folder.addEventListener("toggle", () => {
+        try {
+          sessionStorage.setItem(KEY, String(folder.open));
+        } catch {}
+      });
+    })();
+  </script>
+  <Stack gap="none" className={styles.links}>
+    <ExplorerLabel label="Links" />
+    {
+      Object.values(config.socials).map((social) => (
+        <ExplorerLink href={social.url} label={social.name.toLowerCase()} />
+      ))
+    }
+  </Stack>
+</Stack>
