@@ -1,4 +1,4 @@
 pre-commit:
   commands:
-    gitleaks:
-      run: gitleaks git --pre-commit --staged
+    betterleaks:
+      run: betterleaks git --pre-commit --staged

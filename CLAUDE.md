@@ -33,7 +33,7 @@ library. See `.claude/rules/ui.md` before touching anything under `src/`.
 `astro.config.ts` injects for `dev` only so the preview frame never ships. Unlike
 `data/`, `public/og.png` **is** committed — nothing in the build regenerates it.
 
-Toolchain versions (bun, node, gitleaks) are pinned in `mise.toml`; `mise run bootstrap`
+Toolchain versions (bun, node, betterleaks) are pinned in `mise.toml`; `mise run bootstrap`
 installs dependencies.
 
 ## Content vs. code
@@ -101,7 +101,7 @@ exactly the way it does in a build.
   only exist in the major Astro is on. Keep the two majors together — a `vite` bump that
   runs ahead of Astro's breaks `astro build` at the SVG imports.
 - Two pre-commit hook managers are installed and both run: Husky → lint-staged
-  (Prettier, then ESLint), and Lefthook → gitleaks. Adding a hook means picking the
+  (Prettier, then ESLint), and Lefthook → betterleaks. Adding a hook means picking the
   right one.
 
 ## Comments vs. documentation
