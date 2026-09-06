@@ -2,16 +2,12 @@
 import "@ps1ui/core/styles.css";
 import "@/styles/global.css";
 
-import Explorer from "@/components/ide/Explorer.astro";
-import { findIdeFile } from "@/components/ide/files";
-import Gutter from "@/components/ide/Gutter.astro";
-import { StatusBar } from "@/components/ide/StatusBar";
-import { TabBar } from "@/components/ide/TabBar";
-import { TitleBar } from "@/components/ide/TitleBar";
+import { SiteFooter } from "@/components/site/SiteFooter";
+import { SiteHeader } from "@/components/site/SiteHeader";
 import config from "@/config";
-import { PS1Root, Stack } from "@ps1ui/core";
+import { Container, PS1Root, Stack } from "@ps1ui/core";
 import { ClientRouter } from "astro:transitions";
-import styles from "./IdeShell.module.css";
+import styles from "./BaseLayout.module.css";
 
 type Props = {
   /**
@@ -36,18 +32,14 @@ const fullTitle = title
 
 // The route, not `Astro.url.pathname`: `build.format: "file"` makes the latter
 // the emitted file (`/works.html`) at build time, which matches no entry in the
-// IDE file list and is not the URL the page is served at either. `routePattern`
-// is `/`, `/works`, `/notes` — the paths this site actually navigates between.
+// site's page list and is not the URL the page is served at either.
+// `routePattern` is `/`, `/works`, `/notes` — the paths this site actually
+// navigates between.
 const pathname = Astro.routePattern;
-const activeFile = findIdeFile(pathname);
 
 // `Astro.site` is set in astro.config.ts, so this is never relative.
 const canonical = noindex ? null : new URL(pathname, Astro.site).href;
 const ogImage = new URL("/og.png", Astro.site).href;
-
-// The three `data-editor-*` boxes in the markup below are what
-// `src/components/ide/Gutter.astro` measures to work out how many line numbers
-// to draw.
 ---
 
 <!doctype html>
@@ -78,27 +70,25 @@ const ogImage = new URL("/og.png", Astro.site).href;
   </head>
   <body>
     <PS1Root>
-      <Stack gap="none" className={styles.window}>
-        <TitleBar title={config.profile.name} />
-        <Stack direction="row" gap="none" className={styles.middle}>
-          <Explorer currentPath={pathname} />
-          <Stack gap="none" className={styles.editor}>
-            <TabBar currentPath={pathname} />
-            <Stack
-              direction="row"
-              gap="none"
-              align="start"
-              className={styles.scroll}
-              data-editor-scroll
-            >
-              <Gutter />
-              <main class={styles.main} data-editor-main>
-                <div data-editor-content><slot /></div>
-              </main>
-            </Stack>
-            <StatusBar activeFile={activeFile} />
-          </Stack>
-        </Stack>
+      <Stack gap="none" className={styles.page}>
+        <SiteHeader siteName={config.profile.name} currentPath={pathname} />
+        {
+          /* `queryContainer` here and nowhere else: this box is the content
+            measure, so every responsive prop under it resolves against the
+            column the content is actually laid out in. Left off, they would
+            fall through to PS1Root — i.e. the window — and flip at widths the
+            content column never reaches. */
+        }
+        <Container
+          as="main"
+          size="lg"
+          px={{ base: "lg", sm: "xl" }}
+          queryContainer
+          className={styles.main}
+        >
+          <slot />
+        </Container>
+        <SiteFooter socials={config.socials} />
       </Stack>
     </PS1Root>
   </body>

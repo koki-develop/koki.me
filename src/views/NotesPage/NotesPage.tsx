@@ -1,4 +1,3 @@
-import { SourceComment } from "@/components/SourceComment";
 import config from "@/config";
 import notes from "@/data/notes.json";
 import { Button, List, Stack } from "@ps1ui/core";
@@ -9,10 +8,7 @@ import { NotesPageHeader } from "./components/NotesPageHeader";
 export function NotesPage() {
   return (
     <Stack gap="xl">
-      <Stack gap="md">
-        <SourceComment>notes.md</SourceComment>
-        <NotesPageHeader />
-      </Stack>
+      <NotesPageHeader />
 
       <List>
         {notes.map((note) => (

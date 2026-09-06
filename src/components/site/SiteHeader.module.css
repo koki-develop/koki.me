@@ -1,0 +1,44 @@
+/* Both underlines below are spelled out as longhands: base.css resets
+   `a { text-decoration: inherit }`, and the `text-decoration` shorthand would
+   reset the offset and thickness declared beside it. */
+
+.header {
+  border-bottom: 1px solid var(--ps1ui-color-border);
+  background: var(--ps1ui-color-surface);
+}
+
+/* The bar's vertical rhythm. It lives on the row rather than on the Container
+   because `px` only reaches the inline axis. */
+.row {
+  padding-block: var(--ps1ui-space-md);
+}
+
+/* The wordmark's only hover affordance, drawn on hover rather than always so it
+   stays distinct from the nav's persistent active rule below. */
+.name:hover {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+}
+
+/* One nav link. Not an `Anchor`: AnchorVariant offers `primary` and `subtle`
+   and neither expresses "this is the page you are on", and `subtle` is
+   `color: inherit`, which would leave the hover shift below nothing to move
+   from. Drop this when the variant set grows a selected state. */
+.link {
+  color: var(--ps1ui-color-fg-muted);
+  transition: color var(--ps1ui-transition-fast);
+}
+
+.link:hover {
+  color: var(--ps1ui-color-fg);
+}
+
+/* Colour alone would read as a permanent hover on the current page, so the
+   active row also takes the rule. */
+.link.active {
+  color: var(--ps1ui-color-fg);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+}

@@ -1,4 +1,3 @@
-import { SourceComment } from "@/components/SourceComment";
 import config from "@/config";
 import githubData from "@/data/github.json";
 import type { GitHubData } from "@/types";
@@ -31,16 +30,8 @@ export function WorksPage() {
   );
 
   return (
-    // `queryContainer` makes this Stack the query context the Grid below
-    // resolves its `columns` breakpoints against. Without it they fall through
-    // to PS1Root — i.e. the window — which counts the Explorer and the gutter
-    // as usable width and flips to two columns while the content column is
-    // still narrow (194px cards at a 800px window).
-    <Stack gap="xl" queryContainer>
-      <Stack gap="md">
-        <SourceComment>works.tsx</SourceComment>
-        <WorksPageHeader count={config.works.length} />
-      </Stack>
+    <Stack gap="xl">
+      <WorksPageHeader count={config.works.length} />
 
       <GithubActivityCard contributions={github.contributions} />
 
@@ -51,8 +42,9 @@ export function WorksPage() {
       />
 
       {/* A <ul>, so the cards announce as "list, N items". Breakpoints resolve
-          against the page Stack above, i.e. the editor content column: `sm`
-          (40rem) is the width at which two cards still measure 312px each. */}
+          against the content Container in `src/layouts/BaseLayout.astro`, which
+          is the query context for everything a page renders: `sm` (40rem) is
+          the width at which two cards still measure 312px each. */}
       <Grid as="ul" columns={{ base: 1, sm: 2 }} gap="lg">
         {filtered.map((work) => (
           <GridItem as="li" key={work.name} className={styles.item}>

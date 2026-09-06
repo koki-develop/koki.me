@@ -5,11 +5,10 @@ https://koki.me on Vercel. Every route is a real HTML document; `@astrojs/react`
 renders the components server-side at build time, and only the Works page ships any
 JavaScript for its content.
 
-The UI is an **IDE / code-editor metaphor** — window chrome, Explorer sidebar, file
-tabs, line-number gutter, status bar — and each route is presented as a "file" the
-visitor is viewing. It is built on [`@ps1ui/core`](https://koki-develop.github.io/ps1ui/),
-a monospace React component library. See `.claude/rules/ui.md` before touching anything
-under `src/`.
+The UI is a **plain document layout** — a header carrying the wordmark and the page
+nav, one centered content column, a footer of social links. It is built on
+[`@ps1ui/core`](https://koki-develop.github.io/ps1ui/), a monospace React component
+library. See `.claude/rules/ui.md` before touching anything under `src/`.
 
 ## Commands
 
@@ -53,18 +52,18 @@ refreshes without a commit. Keep the fetch scripts able to run unattended.
 
 - **`src/pages/` is Astro's router and holds nothing else.** Each `.astro` file there is
   a few lines: it sets the page's `title` and `description`, and renders one view inside
-  `src/layouts/IdeShell.astro`. Anything that is not a route — even a `.ts` file — turns
-  into one if it is put here.
+  `src/layouts/BaseLayout.astro`. Anything that is not a route — even a `.ts` file —
+  turns into one if it is put here.
 - A view is a directory under `src/views/` exporting through `index.ts`: the React
   component a route renders, view-only `components/`, pure helpers in `lib.ts`, tests in
   `lib.spec.ts`.
-- Components used by more than one view go in `src/components/`; the IDE chrome is
-  `src/components/ide/`.
+- Components used by more than one view go in `src/components/`; the header and footer
+  are `src/components/site/`.
 - Non-React helpers shared between the app and `scripts/` go in `src/lib/`.
 - **A page is declared twice, by design**: once as a file in `src/pages/`, and once in
-  the IDE file list (`src/components/ide/files.ts`) that feeds the Explorer, the tabs,
-  and the status bar. Register it in only one and it is reachable by URL but invisible in
-  the chrome.
+  the page list (`src/components/site/pages.ts`) that feeds the header nav and the About
+  page's Explore section. Register it in only one and it is reachable by URL but nothing
+  links to it.
 - Import through the `@/…` aliases, declared once in `tsconfig.json` — Astro turns on
   Vite's native tsconfig-path resolution, so there is no second list to keep in sync.
   They do not apply to `scripts/`, which uses relative paths.
@@ -78,9 +77,8 @@ refreshes without a commit. Keep the fetch scripts able to run unattended.
 - `<ClientRouter />` in the layout keeps navigation client-side, and turns hover-prefetch
   on by itself — a `prefetch` config key would only restate the default.
 - **A client-side navigation does not re-run a bundled `<script>`.** Anything set up
-  imperatively has to be re-bound: `Gutter.astro` listens for `astro:after-swap`,
-  `Explorer.astro` uses `is:inline` + `data-astro-rerun` because it also has to run
-  before the first paint. Those two are the shapes to copy.
+  imperatively has to re-bind itself on `astro:after-swap` — or use `is:inline` +
+  `data-astro-rerun` if it also has to run before the first paint.
 
 ## Testing
 

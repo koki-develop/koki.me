@@ -1,5 +1,5 @@
 ---
-import IdeShell from "@/layouts/IdeShell.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import { NotFoundPage } from "@/views/NotFoundPage";
 
 // `noindex` because this document is what Vercel serves for *every* unmatched
@@ -8,10 +8,10 @@ import { NotFoundPage } from "@/views/NotFoundPage";
 // into the canonical target for the whole tail of stale links.
 ---
 
-<IdeShell
+<BaseLayout
   title="Not Found"
-  description="The file you're looking for doesn't exist."
+  description="The page you're looking for doesn't exist."
   noindex
 >
   <NotFoundPage />
-</IdeShell>
+</BaseLayout>

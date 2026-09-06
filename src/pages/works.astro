@@ -1,5 +1,5 @@
 ---
-import IdeShell from "@/layouts/IdeShell.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import { WorksPage } from "@/views/WorksPage";
 
 // The one page that hydrates, and the island is the whole page rather than a
@@ -9,9 +9,9 @@ import { WorksPage } from "@/views/WorksPage";
 // every card is in the document before a byte of JavaScript runs.
 ---
 
-<IdeShell
+<BaseLayout
   title="Works"
   description="Developer tools, CLIs, web apps and other projects I've built."
 >
   <WorksPage client:load />
-</IdeShell>
+</BaseLayout>

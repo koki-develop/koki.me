@@ -1,9 +1,9 @@
 /* Navigation swaps the document without animating it.
 
    `<ClientRouter />` runs the swap through the View Transitions API, whose UA
-   default cross-fades the whole page. On a window whose chrome is identical
-   between routes, that reads as the entire app blinking rather than as a file
-   being opened — the pane should just change, the way it does in an editor.
+   default cross-fades the whole page. The header and the footer are identical
+   on every route, so fading them out and back in reads as the entire site
+   blinking to redraw two bars that never changed.
 
    `mix-blend-mode` is reset alongside the animation because the UA pairs its
    fade with `plus-lighter`; leaving it would blend the two stacked snapshots

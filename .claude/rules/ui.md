@@ -16,8 +16,7 @@ Both render to static HTML at build time, so the split is about what a file need
 about cost:
 
 - **`.astro`** for anything that needs Astro itself — the current route, a `<slot />`, a
-  `<script>`, a `transition:*` directive. That is the layout, the chrome components that
-  are URL-aware, and the pages.
+  `<script>`, a `transition:*` directive. That is the layout and the pages.
 - **`.tsx`** for everything else, which is most of it. A `.tsx` file can import other
   `.tsx` files but never an `.astro` one, so a component that might end up inside a React
   tree has to be React.
@@ -75,18 +74,19 @@ existing modules follow this closely — match them.
 ## Responsiveness
 
 Breakpoints are **container queries**, not viewport media queries:
-`@container ps1ui-root (min-width: …)`.
+`@container ps1ui-root (min-width: …)` for anything that has to track the window.
 
 PS1UI's own responsive props (`Grid columns={{ base, sm }}`, `Stack direction={{ … }}`)
 resolve against the _nearest ancestor container_. Layout primitives are not containers
 by default — only `PS1Root` is — so a responsive prop falls through to `PS1Root`, i.e.
 the window, unless some ancestor opts in with `queryContainer`.
 
-That opt-in is the knob. Chrome that should track the window (Explorer, Gutter, editor
-padding) needs nothing; content that should track the column it's laid out in needs a
-`queryContainer` above it. The two behave very differently once the Explorer and the
-gutter start eating width, so when a breakpoint depends on which box it measures, say so
-in a comment and put the `queryContainer` where the comment can point at it.
+**The content `Container` in `BaseLayout.astro` is the one opt-in**, so every responsive
+prop a view uses already measures the content column rather than the window. A second
+`queryContainer` inside a view narrows that measurement again — add one only when
+something genuinely has to track a box narrower than the column, and say so in a comment
+next to it. That Container's own props are the exception: an element cannot query
+itself, so its `px` still resolves against `PS1Root`.
 
 Don't add `queryContainer` to a primitive that has no responsive descendants: it costs
 the element its intrinsic width (it collapses to 0 in a row-flex or auto-track parent)
@@ -99,6 +99,5 @@ violation fails `bun run lint` and the CI Lint job. Two habits this codebase alr
 worth keeping:
 
 - Decorative icons get `aria-hidden="true"`.
-- Characters that exist only to sell the code-editor metaphor — the `## ` prefix on
-  section headings, for instance — are wrapped in an `aria-hidden` span so they stay out
-  of the element's accessible name.
+- The current page's nav link carries `aria-current="page"`. A colour and a rule are all
+  that mark it otherwise, so the attribute is what states it to anything that can't see.

@@ -1,10 +1,10 @@
 ---
 import config from "@/config";
-import IdeShell from "@/layouts/IdeShell.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import { AboutPage } from "@/views/AboutPage";
 ---
 
 {/* No `title`: this page is the site, so its name is the whole title. */}
-<IdeShell description={config.profile.bio}>
+<BaseLayout description={config.profile.bio}>
   <AboutPage />
-</IdeShell>
+</BaseLayout>
