@@ -1,6 +1,6 @@
 import config from "@/config";
 import notes from "@/data/notes.json";
-import { Button, List, Stack } from "@ps1ui/core";
+import { Anchor, List, Stack } from "@ps1ui/core";
 import { ArrowUpRight } from "lucide-react";
 import { NoteRow } from "./components/NoteRow";
 import { NotesPageHeader } from "./components/NotesPageHeader";
@@ -16,17 +16,20 @@ export function NotesPage() {
         ))}
       </List>
 
+      {/* `align="start"` keeps the link the size of its own text: a flex item is
+          blockified, and a blockified anchor takes the whole column with its
+          hover colour and click target. */}
       <Stack align="start">
-        <Button
-          as="a"
-          variant="secondary"
+        <Anchor
+          variant="subtle"
+          size="sm"
           href={config.socials.Zenn.url}
           target="_blank"
           rel="noreferrer"
+          trailing={<ArrowUpRight size={14} aria-hidden="true" />}
         >
           View all posts on Zenn
-          <ArrowUpRight size={14} aria-hidden="true" />
-        </Button>
+        </Anchor>
       </Stack>
     </Stack>
   );
