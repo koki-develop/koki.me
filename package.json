@@ -28,8 +28,7 @@
     "lucide-react": "1.26.0",
     "p-limit": "7.2.0",
     "react": "19.2.0",
-    "react-dom": "19.2.0",
-    "vite-plugin-svgr": "5.2.0"
+    "react-dom": "19.2.0"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
@@ -55,7 +54,6 @@
     "typescript": "5.9.3",
     "typescript-eslint": "8.48.0",
     "vercel": "48.12.1",
-    "vite": "8.2.0",
     "vitest": "4.0.14"
   }
 }

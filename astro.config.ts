@@ -1,7 +1,6 @@
 import react from "@astrojs/react";
 import type { AstroIntegration } from "astro";
 import { defineConfig } from "astro/config";
-import svgr from "vite-plugin-svgr";
 
 /**
  * Serves the OG image frame at `/og` while developing, and never emits it into
@@ -11,8 +10,7 @@ import svgr from "vite-plugin-svgr";
  * from a dev server — but a bare 600x315 preview frame is not a page a visitor
  * should be able to browse to. Keeping the component outside `src/pages/` stops
  * Astro from routing it automatically, and injecting it here only for `dev`
- * reproduces what the old setup got by leaving `og.html` out of Vite's build
- * inputs.
+ * keeps the frame out of the production build.
  */
 function ogPreviewRoute(): AstroIntegration {
   return {
@@ -45,12 +43,4 @@ export default defineConfig({
     }),
     ogPreviewRoute(),
   ],
-
-  vite: {
-    // The `@/…` aliases are declared once, in tsconfig.json: Vite resolves
-    // tsconfig `paths` natively and Astro turns that on. They do not reach
-    // `scripts/`, which is compiled by tsconfig.node.json and uses relative
-    // paths.
-    plugins: [svgr()],
-  },
 });
