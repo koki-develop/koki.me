@@ -5,8 +5,8 @@ https://koki.me on Vercel. Every route is a real HTML document; `@astrojs/react`
 renders the components server-side at build time, and only the Works page ships any
 JavaScript for its content.
 
-The UI is a **plain document layout** — a header carrying the wordmark and the page
-nav, one centered content column, a footer of social links. It is built on
+The UI is a **plain document layout** — a line of page nav above one centered
+content column, both on the same measure. It is built on
 [`@ps1ui/core`](https://koki-develop.github.io/ps1ui/), a monospace React component
 library. See `.claude/rules/ui.md` before touching anything under `src/`.
 
@@ -57,11 +57,11 @@ refreshes without a commit. Keep the fetch scripts able to run unattended.
 - A view is a directory under `src/views/` exporting through `index.ts`: the React
   component a route renders, view-only `components/`, pure helpers in `lib.ts`, tests in
   `lib.spec.ts`.
-- Components used by more than one view go in `src/components/`; the header and footer
-  are `src/components/site/`.
+- Components used by more than one view go in `src/components/`; the site nav is
+  `src/components/site/`.
 - Non-React helpers shared between the app and `scripts/` go in `src/lib/`.
 - **A page is declared twice, by design**: once as a file in `src/pages/`, and once in
-  the page list (`src/components/site/pages.ts`) that feeds the header nav and the About
+  the page list (`src/components/site/pages.ts`) that feeds the site nav and the About
   page's Explore section. Register it in only one and it is reachable by URL but nothing
   links to it.
 - Import through the `@/…` aliases, declared once in `tsconfig.json` — Astro turns on
@@ -96,10 +96,6 @@ exactly the way it does in a build.
   period. Types in use: `feat`, `fix`, `refactor`, `style`, `chore`, `docs`, `ci`.
 - Dependencies are pinned to exact versions (`bunfig.toml` sets `install.exact`) and
   updated by Renovate. Don't widen a pin into a range.
-- **`vite` is a direct devDependency even though nothing imports it.** Astro bundles its
-  own copy; `vite-plugin-svgr` resolves `vite` from the project root and calls APIs that
-  only exist in the major Astro is on. Keep the two majors together — a `vite` bump that
-  runs ahead of Astro's breaks `astro build` at the SVG imports.
 - Two pre-commit hook managers are installed and both run: Husky → lint-staged
   (Prettier, then ESLint), and Lefthook → betterleaks. Adding a hook means picking the
   right one.
