@@ -13,7 +13,7 @@ import { Heading, PS1Root, Stack, Text } from "@ps1ui/core";
 import styles from "./OgPage.module.css";
 
 // No header or footer: at the size a social timeline renders this, a nav row
-// and a link list read as noise around the two lines that carry the meaning.
+// and a link list read as noise around the text that carries the meaning.
 ---
 
 <!doctype html>
@@ -24,10 +24,11 @@ import styles from "./OgPage.module.css";
   </head>
   <body>
     <PS1Root>
-      <Stack gap="xs" align="center" justify="center" className={styles.frame}>
+      <Stack gap="md" align="start" justify="center" className={styles.frame}>
         <Heading level={1}>{config.profile.name}</Heading>
-        {/* `role`, not `bio` — the bio wraps to two lines at this width. */}
-        <Text size="md" variant="muted">{config.profile.role}</Text>
+        <Text size="md" variant="muted" className={styles.bio}>
+          {config.profile.bio}
+        </Text>
       </Stack>
     </PS1Root>
   </body>

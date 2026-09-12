@@ -5,8 +5,17 @@
   width: 600px;
   height: 315px;
   background: var(--ps1ui-color-bg);
-  padding: 0 var(--ps1ui-space-2xl);
-  /* A role long enough to overflow would bleed out of the screenshot rather
+  /* Past --ps1ui-space-2xl, the top of the spacing scale: 32px is the inset of
+     a content column, and this frame is a poster. */
+  padding: 0 56px;
+  /* A line long enough to overflow would bleed out of the screenshot rather
      than being clipped. */
   overflow: hidden;
+}
+
+/* The bio wraps at any width this frame allows; the measure only picks where.
+   34 columns breaks it at the comma after "dev tools," instead of stranding
+   "apps." alone on the second line. `ch` is exact in a monospace frame. */
+.bio {
+  max-width: 34ch;
 }
