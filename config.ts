@@ -3,7 +3,6 @@ import type { Config } from "./src/types";
 const config: Config = {
   profile: {
     name: "Koki Sato",
-    role: "Web Developer",
     bio: "Web developer building dev tools, CLIs, and web apps.",
   },
 
@@ -11,54 +10,29 @@ const config: Config = {
     GitHub: {
       name: "GitHub",
       url: "https://github.com/koki-develop",
-      handle: "koki-develop",
     },
     X: {
       name: "X",
       url: "https://x.com/koki_develop",
-      handle: "koki_develop",
     },
     Bluesky: {
       name: "Bluesky",
       url: "https://bsky.app/profile/koki.me",
-      handle: "koki.me",
     },
     Zenn: {
       name: "Zenn",
       url: "https://zenn.dev/kou_pg_0131",
-      handle: "kou_pg_0131",
     },
   },
 
   skills: [
-    {
-      name: "Go",
-      url: "https://golang.org",
-    },
-    {
-      name: "TypeScript",
-      url: "https://www.typescriptlang.org",
-    },
-    {
-      name: "JavaScript",
-      url: "https://developer.mozilla.org/docs/Web/JavaScript",
-    },
-    {
-      name: "React",
-      url: "https://reactjs.org",
-    },
-    {
-      name: "Next.js",
-      url: "https://nextjs.org",
-    },
-    {
-      name: "Terraform",
-      url: "https://www.terraform.io",
-    },
-    {
-      name: "AWS",
-      url: "https://aws.amazon.com",
-    },
+    { name: "Go" },
+    { name: "TypeScript" },
+    { name: "JavaScript" },
+    { name: "React" },
+    { name: "Next.js" },
+    { name: "Terraform" },
+    { name: "AWS" },
   ],
 
   certifications: [

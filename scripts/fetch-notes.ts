@@ -12,7 +12,7 @@ type ZennArticle = {
   slug: string;
   path: string;
   published_at: string;
-  topics: { display_name: string; image_url: string }[];
+  topics: { display_name: string }[];
 };
 
 async function _fetchZennArticles(): Promise<ZennArticle[]> {
@@ -55,9 +55,6 @@ async function _fetchNotes(): Promise<Note[]> {
     title,
     url: new URL(path, "https://zenn.dev/").toString(),
     publishedAt: published_at,
-    topics: topics.map(({ display_name, image_url }) => ({
-      name: display_name,
-      imageUrl: image_url,
-    })),
+    topics: topics.map(({ display_name }) => ({ name: display_name })),
   }));
 }

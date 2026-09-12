@@ -3,8 +3,8 @@ export type Config = {
   socials: Socials;
   skills: Skill[];
   certifications: Certification[];
-  // Only decides the order of the category filter's buttons. Work order is
-  // independent of it — see `works`.
+  // Only decides the order the Works page's category sections appear in. Work
+  // order is independent of it — see `works`.
   workCategories: WorkCategory[];
   // A single flat list, in display order, so a work can be placed anywhere
   // regardless of its category.
@@ -13,9 +13,6 @@ export type Config = {
 
 export type Profile = {
   name: string;
-  // Job title, used where `bio` would be too long to read — currently the OG
-  // image, which gives it a single line under the name.
-  role: string;
   bio: string;
 };
 
@@ -24,14 +21,12 @@ export type SocialName = "GitHub" | "X" | "Bluesky" | "Zenn";
 export type Social = {
   name: SocialName;
   url: string;
-  handle: string;
 };
 
 export type Socials = Record<SocialName, Social>;
 
 export type Skill = {
   name: string;
-  url: string;
 };
 
 export type Certification = {
@@ -41,9 +36,9 @@ export type Certification = {
   year: number;
 };
 
-// A closed union rather than a bare string: a work naming a category that
-// doesn't exist would render under "All" and under no filter at all, which is
-// invisible until someone clicks the right button.
+// A closed union rather than a bare string: the Works page builds its sections
+// by walking `workCategories`, so a work naming a category that isn't declared
+// there would be dropped from the page without a trace.
 export type WorkCategory =
   | "Web"
   | "CLI"
@@ -80,7 +75,6 @@ export type Note = {
 
 export type NoteTopic = {
   name: string;
-  imageUrl: string;
 };
 
 // GitHub build-time data (data/github.json)
