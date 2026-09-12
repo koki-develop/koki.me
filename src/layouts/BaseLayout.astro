@@ -2,8 +2,7 @@
 import "@ps1ui/core/styles.css";
 import "@/styles/global.css";
 
-import { SiteFooter } from "@/components/site/SiteFooter";
-import { SiteHeader } from "@/components/site/SiteHeader";
+import { SiteNav } from "@/components/site/SiteNav";
 import config from "@/config";
 import { Container, PS1Root, Stack } from "@ps1ui/core";
 import { ClientRouter } from "astro:transitions";
@@ -71,7 +70,7 @@ const ogImage = new URL("/og.png", Astro.site).href;
   <body>
     <PS1Root>
       <Stack gap="none" className={styles.page}>
-        <SiteHeader siteName={config.profile.name} currentPath={pathname} />
+        <SiteNav currentPath={pathname} />
         {
           /* `queryContainer` here and nowhere else: this box is the content
             measure, so every responsive prop under it resolves against the
@@ -88,7 +87,6 @@ const ogImage = new URL("/og.png", Astro.site).href;
         >
           <slot />
         </Container>
-        <SiteFooter socials={config.socials} />
       </Stack>
     </PS1Root>
   </body>

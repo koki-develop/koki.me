@@ -1,15 +1,11 @@
+/* `min-height`, not `height`: the canvas has to reach the bottom of the
+   viewport on a page shorter than it, and a long one grows past it instead of
+   overflowing. */
 .page {
-  /* `min-height`, not `height`: the footer sits at the bottom of the viewport
-     on a short page, and a long one grows past it instead of overflowing. */
   min-height: 100dvh;
   background: var(--ps1ui-color-bg);
 }
 
 .main {
-  /* Takes the slack on a page shorter than the viewport, which is what holds
-     the footer at the bottom instead of leaving it under the last line of
-     content. `0 auto` rather than `1 0%`: the basis has to stay the content's
-     own height so a long page grows past the viewport. */
-  flex: 1 0 auto;
   padding-block: var(--ps1ui-space-2xl);
 }

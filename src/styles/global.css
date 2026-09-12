@@ -1,9 +1,9 @@
 /* Navigation swaps the document without animating it.
 
    `<ClientRouter />` runs the swap through the View Transitions API, whose UA
-   default cross-fades the whole page. The header and the footer are identical
-   on every route, so fading them out and back in reads as the entire site
-   blinking to redraw two bars that never changed.
+   default cross-fades the whole page. The nav is identical on every route, so
+   fading it out and back in reads as the entire site blinking to redraw a line
+   that never changed.
 
    `mix-blend-mode` is reset alongside the animation because the UA pairs its
    fade with `plus-lighter`; leaving it would blend the two stacked snapshots

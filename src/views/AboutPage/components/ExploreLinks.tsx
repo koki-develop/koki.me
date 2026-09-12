@@ -5,7 +5,7 @@ import styles from "./ExploreLinks.module.css";
 export function ExploreLinks() {
   // Derived from SITE_PAGES rather than listed again: the section points at
   // every page other than the About page it sits on, so a new page shows up
-  // here as soon as it joins the header nav.
+  // here as soon as it joins the site nav.
   const pages = SITE_PAGES.filter((page) => page.path !== "/");
 
   return (

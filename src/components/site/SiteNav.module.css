@@ -1,0 +1,30 @@
+/* The row carries no rule and no surface of its own, so this padding is the
+   only thing holding it off the top of the viewport. It lives here rather than
+   on the Container because `px` only reaches the inline axis. */
+.nav {
+  padding-block-start: var(--ps1ui-space-xl);
+}
+
+/* Not an `Anchor`: AnchorVariant offers `primary` and `subtle`
+   and neither expresses "this is the page you are on", and `subtle` is
+   `color: inherit`, which would leave the hover shift below nothing to move
+   from. Drop this when the variant set grows a selected state. */
+.link {
+  color: var(--ps1ui-color-fg-muted);
+  transition: color var(--ps1ui-transition-fast);
+}
+
+.link:hover {
+  color: var(--ps1ui-color-fg);
+}
+
+/* Colour alone would read as a permanent hover on the current page, so the
+   active item also takes the rule. Spelled out as longhands because base.css
+   resets `a { text-decoration: inherit }`, and the `text-decoration` shorthand
+   would reset the offset and thickness declared beside it. */
+.link.active {
+  color: var(--ps1ui-color-fg);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+}
