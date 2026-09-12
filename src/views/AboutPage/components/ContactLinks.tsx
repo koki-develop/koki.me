@@ -1,6 +1,7 @@
-import { SocialIcon } from "@/components/SocialIcon";
 import type { Socials } from "@/types";
-import { Button, Stack } from "@ps1ui/core";
+import { Anchor, Stack, Text } from "@ps1ui/core";
+import { Fragment } from "react";
+import styles from "./ContactLinks.module.css";
 
 type ContactLinksProps = {
   socials: Socials;
@@ -8,20 +9,27 @@ type ContactLinksProps = {
 
 export function ContactLinks({ socials }: ContactLinksProps) {
   return (
-    <Stack direction="row" wrap gap="sm">
-      {Object.values(socials).map((social) => (
-        <Button
-          key={social.name}
-          as="a"
-          variant="secondary"
-          href={social.url}
-          title={social.name}
-          target="_blank"
-          rel="noreferrer"
-        >
-          <SocialIcon name={social.name} width={16} height={16} />@
-          {social.handle}
-        </Button>
+    <Stack direction="row" wrap className={styles.list}>
+      {Object.values(socials).map((social, index) => (
+        <Fragment key={social.name}>
+          {index > 0 && (
+            // Punctuation between two links rather than an item of its own, so
+            // it is hidden from assistive tech — a reader announcing "slash"
+            // down the row would be reading the layout aloud.
+            <Text as="span" variant="muted" size="sm" aria-hidden="true">
+              /
+            </Text>
+          )}
+          <Anchor
+            variant="subtle"
+            size="sm"
+            href={social.url}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {social.name}
+          </Anchor>
+        </Fragment>
       ))}
     </Stack>
   );

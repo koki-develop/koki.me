@@ -1,0 +1,10 @@
+/* The two axes need different gaps, and Stack's `gap` prop sets both at once —
+   the same split NoteRow makes for its topic row. Horizontally the separators
+   already tell two names apart, so this only holds them off the slash: one
+   character each side, what the row would measure typed as "Go / TypeScript".
+   Vertically that same width would leave a wrapped line floating away from the
+   one above it. */
+.list {
+  column-gap: var(--ps1ui-space-sm);
+  row-gap: var(--ps1ui-space-xs);
+}

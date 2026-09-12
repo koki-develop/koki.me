@@ -1,0 +1,6 @@
+/* The same row of slash-separated links SkillList lays out, gapped the same way
+   and for the same reasons — see SkillList.module.css. */
+.list {
+  column-gap: var(--ps1ui-space-sm);
+  row-gap: var(--ps1ui-space-xs);
+}
