@@ -1,0 +1,36 @@
+/* Unlike NoteRow and CertificationRow this row needs no flex of its own: it
+   holds nothing against the right edge, so the name and the star count stay
+   inline boxes and flow after List's `-` marker on their own. `padding-block`
+   rather than the `padding` shorthand so List's `padding-left` — the marker
+   column — survives. */
+.row {
+  padding-block: var(--ps1ui-space-sm);
+}
+
+/* AnchorVariant offers only `primary` and `subtle`, and neither is the muted
+   tone this count wants — `subtle` is `color: inherit`, which would light the
+   count up to the same brightness as the name beside it. Drop this when the
+   variant set grows a muted option. */
+.stars {
+  margin-left: var(--ps1ui-space-md);
+  color: var(--ps1ui-color-fg-muted);
+}
+
+/* Anchor always draws an underline — its variants pick the colour, never
+   whether it is painted — and here that rule would sit beside the name's own
+   underline and read as a second title. An adorned Anchor moves the underline
+   onto `__label` so the icon stays clean, which is why this has to reach a
+   ps1ui class rather than target `.stars`.
+
+   What still marks it as a link: `.ps1ui-anchor--subtle:hover` carries a
+   pseudo-class and so outweighs `.stars` above, leaving the count to shift
+   colour under the pointer, and `:focus-visible` still draws its outline. */
+.stars :global(.ps1ui-anchor__label) {
+  text-decoration-line: none;
+}
+
+/* The description is the row's second line; its own box supplies no space
+   above it. */
+.description {
+  margin-top: var(--ps1ui-space-xs);
+}

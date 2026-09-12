@@ -1,36 +1,25 @@
 import { parseRepoSlug } from "@/lib/github";
 import type { RepoStats, Work, WorkCategory } from "@/types";
 
-export const ALL_CATEGORY = "All";
-
-// The filter has one more state than there are categories: the pseudo-category
-// that selects everything.
-export type CategoryFilterValue = WorkCategory | typeof ALL_CATEGORY;
-
-export type CategoryCount = {
-  name: CategoryFilterValue;
-  count: number;
+export type CategoryGroup = {
+  category: WorkCategory;
+  works: Work[];
 };
 
-export function filterWorks(
-  works: Work[],
-  category: CategoryFilterValue,
-): Work[] {
-  if (category === ALL_CATEGORY) return works;
-  return works.filter((work) => work.category === category);
-}
-
-export function categoryCounts(
+export function groupByCategory(
   categories: WorkCategory[],
   works: Work[],
-): CategoryCount[] {
-  return [
-    { name: ALL_CATEGORY, count: works.length },
-    ...categories.map((category) => ({
-      name: category,
-      count: works.filter((work) => work.category === category).length,
-    })),
-  ];
+): CategoryGroup[] {
+  return (
+    categories
+      .map((category) => ({
+        category,
+        works: works.filter((work) => work.category === category),
+      }))
+      // A category nothing is listed under would render as a heading with no
+      // list beneath it, so it is dropped rather than shown empty.
+      .filter((group) => group.works.length > 0)
+  );
 }
 
 export function resolveStars(

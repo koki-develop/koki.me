@@ -1,11 +1,12 @@
 import type { RepoStats, Work, WorkCategory } from "@/types";
 import { describe, expect, test } from "vitest";
-import { categoryCounts, filterWorks, resolveStars } from "./lib";
+import { groupByCategory, resolveStars } from "./lib";
 
 const categories: WorkCategory[] = ["Web", "CLI"];
 
 // Deliberately interleaved: the two Web works sit either side of the CLI one,
-// which is the ordering the flat list exists to allow.
+// so grouping them has to gather works that are not adjacent in the source
+// list.
 const works: Work[] = [
   {
     name: "Koki Sato",
@@ -33,50 +34,35 @@ const repos: Record<string, RepoStats> = {
   "koki-develop/clive": { stars: 392 },
 };
 
-describe("filterWorks", () => {
-  test("returns every work for the All category", () => {
-    expect(filterWorks(works, "All")).toEqual(works);
-  });
-
-  test("returns only works matching the given category", () => {
-    expect(filterWorks(works, "CLI")).toEqual([works[1]]);
-  });
-
-  test("keeps the declared order within a category", () => {
-    expect(filterWorks(works, "Web")).toEqual([works[0], works[2]]);
-  });
-
-  test("returns an empty array for a category no work uses", () => {
-    expect(filterWorks(works, "IME")).toEqual([]);
-  });
-});
-
-describe("categoryCounts", () => {
-  test("includes an All entry counting every work", () => {
-    expect(categoryCounts(categories, works)).toEqual([
-      { name: "All", count: 3 },
-      { name: "Web", count: 2 },
-      { name: "CLI", count: 1 },
+describe("groupByCategory", () => {
+  test("gathers every work under its own category", () => {
+    expect(groupByCategory(categories, works)).toEqual([
+      { category: "Web", works: [works[0], works[2]] },
+      { category: "CLI", works: [works[1]] },
     ]);
   });
 
   test("follows the given category order, not the order works appear in", () => {
-    expect(categoryCounts(["CLI", "Web"], works).map((c) => c.name)).toEqual([
-      "All",
-      "CLI",
-      "Web",
+    expect(
+      groupByCategory(["CLI", "Web"], works).map((g) => g.category),
+    ).toEqual(["CLI", "Web"]);
+  });
+
+  test("keeps the declared order of works within a category", () => {
+    expect(groupByCategory(["Web"], works)[0].works).toEqual([
+      works[0],
+      works[2],
     ]);
   });
 
-  test("keeps a category with no works, at zero", () => {
-    expect(categoryCounts(["IME"], works)).toEqual([
-      { name: "All", count: 3 },
-      { name: "IME", count: 0 },
+  test("drops a category no work uses", () => {
+    expect(groupByCategory(["IME", "Web"], works)).toEqual([
+      { category: "Web", works: [works[0], works[2]] },
     ]);
   });
 
-  test("returns just All with a zero count for no works", () => {
-    expect(categoryCounts([], [])).toEqual([{ name: "All", count: 0 }]);
+  test("returns an empty array when there are no works", () => {
+    expect(groupByCategory(categories, [])).toEqual([]);
   });
 });
 
