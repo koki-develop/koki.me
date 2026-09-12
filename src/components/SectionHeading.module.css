@@ -1,0 +1,12 @@
+/* Generated content rather than text written into the heading: the `##` marks
+   the section's rank, it is not part of its name, and a screen reader that read
+   it out would announce "number sign number sign Socials" as the title. This is
+   the same treatment List gives its `-` marker.
+
+   The gap is a margin rather than a space inside `content`: a space is a whole
+   character in a monospace face, which sets the label further off its marker
+   than it wants. */
+.heading::before {
+  content: "##";
+  margin-right: 0.8ch;
+}

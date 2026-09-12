@@ -1,5 +1,6 @@
+import { SectionHeading } from "@/components/SectionHeading";
 import config from "@/config";
-import { Heading, Stack } from "@ps1ui/core";
+import { Stack } from "@ps1ui/core";
 import { CertificationList } from "./components/CertificationList";
 import { ContactLinks } from "./components/ContactLinks";
 import { ExploreLinks } from "./components/ExploreLinks";
@@ -12,30 +13,22 @@ export function AboutPage() {
       <ProfileHeader name={config.profile.name} bio={config.profile.bio} />
 
       <Stack gap="md">
-        <Heading level={2} size="sm" variant="subtle">
-          Socials
-        </Heading>
+        <SectionHeading>Socials</SectionHeading>
         <ContactLinks socials={config.socials} />
       </Stack>
 
       <Stack gap="md">
-        <Heading level={2} size="sm" variant="subtle">
-          Skills
-        </Heading>
+        <SectionHeading>Skills</SectionHeading>
         <SkillList skills={config.skills} />
       </Stack>
 
       <Stack gap="md">
-        <Heading level={2} size="sm" variant="subtle">
-          Certifications
-        </Heading>
+        <SectionHeading>Certifications</SectionHeading>
         <CertificationList certifications={config.certifications} />
       </Stack>
 
       <Stack gap="md">
-        <Heading level={2} size="sm" variant="subtle">
-          Explore
-        </Heading>
+        <SectionHeading>Explore</SectionHeading>
         <ExploreLinks />
       </Stack>
     </Stack>
