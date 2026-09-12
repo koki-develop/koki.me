@@ -21,7 +21,7 @@
   "dependencies": {
     "@astrojs/react": "6.0.2",
     "@ps1ui/core": "0.7.0",
-    "astro": "7.1.6",
+    "astro": "7.2.8",
     "babel-plugin-react-compiler": "1.0.0",
     "clsx": "2.1.1",
     "dayjs": "1.11.19",
