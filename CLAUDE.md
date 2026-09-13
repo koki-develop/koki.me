@@ -5,8 +5,9 @@ https://koki.me on Vercel. Every route is a real HTML document; `@astrojs/react`
 renders the components server-side at build time, and only the Works page ships any
 JavaScript for its content.
 
-The UI is a **plain document layout** — a line of page nav above one centered
-content column, both on the same measure. It is built on
+The UI is a **plain document layout** — one header line, page nav at its start and the
+theme control at its end, above a single centered content column on the same measure.
+It is built on
 [`@ps1ui/core`](https://koki-develop.github.io/ps1ui/), a monospace React component
 library. See `.claude/rules/ui.md` before touching anything under `src/`.
 
@@ -57,8 +58,8 @@ refreshes without a commit. Keep the fetch scripts able to run unattended.
 - A view is a directory under `src/views/` exporting through `index.ts`: the React
   component a route renders, view-only `components/`, pure helpers in `lib.ts`, tests in
   `lib.spec.ts`.
-- Components used by more than one view go in `src/components/`; the site nav is
-  `src/components/site/`.
+- Components used by more than one view go in `src/components/`; the site header — the
+  page nav and the theme control beside it — is `src/components/site/`.
 - Non-React helpers shared between the app and `scripts/` go in `src/lib/`.
 - **A page is declared twice, by design**: once as a file in `src/pages/`, and once in
   the page list (`src/components/site/pages.ts`) that feeds the site nav and the About
@@ -78,7 +79,13 @@ refreshes without a commit. Keep the fetch scripts able to run unattended.
   on by itself — a `prefetch` config key would only restate the default.
 - **A client-side navigation does not re-run a bundled `<script>`.** Anything set up
   imperatively has to re-bind itself on `astro:after-swap` — or use `is:inline` +
-  `data-astro-rerun` if it also has to run before the first paint.
+  `data-astro-rerun` if it also has to run before the first paint. A listener on
+  `document` is the exception: bound once, it outlives every swap.
+- **A swap replaces `<html>`'s attributes and the entire `<head>`** with the fetched
+  document's, which is build output and knows nothing of what a script has since put
+  there. Runtime state living above the body has to be written into
+  `event.newDocument` on `astro:before-swap` — the only point early enough to leave no
+  frame drawn with the old value.
 
 ## Testing
 

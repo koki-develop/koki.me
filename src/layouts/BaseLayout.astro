@@ -2,7 +2,12 @@
 import "@ps1ui/core/styles.css";
 import "@/styles/global.css";
 
-import { SiteNav } from "@/components/site/SiteNav";
+import SiteHeader from "@/components/site/SiteHeader.astro";
+import {
+  DEFAULT_THEME,
+  THEME_STORAGE_KEY,
+  THEMES,
+} from "@/components/site/theme";
 import config from "@/config";
 import { Container, PS1Root, Stack } from "@ps1ui/core";
 import { ClientRouter } from "astro:transitions";
@@ -42,9 +47,49 @@ const ogImage = new URL("/og.png", Astro.site).href;
 ---
 
 <!doctype html>
-<html lang="en">
+{
+  /* The theme lives on <html>, not on the PS1Root below it: ps1ui's base.css
+     paints the canvas on <html>, which sits outside any PS1Root, so a
+     PS1Root-scoped theme would leave the page's own background — and the area
+     an overscroll reveals — on the other one. Written out as a plain attribute
+     rather than applied from script, so it holds with JavaScript turned off. */
+}
+<html lang="en" data-ps1ui-theme={DEFAULT_THEME}>
   <head>
     <meta charset="UTF-8" />
+    {
+      /* Read by the UA to paint the canvas before a stylesheet has arrived.
+         A theme's name is also its `color-scheme` keyword, so there is nothing
+         to translate between this and the attribute above. */
+    }
+    <meta name="color-scheme" content={DEFAULT_THEME} />
+    {
+      /* Applies a stored theme choice before the first paint. A returning
+         visitor who chose "light" would otherwise get one frame of the default
+         above: the `[data-ps1ui-theme]` rules only arrive with tokens.css, and
+         a bundled script not until the document has parsed.
+
+         `is:inline` means no bundling and so no imports — the storage key and
+         the theme names arrive as literals through `define:vars` rather than
+         being spelled out a second time. */
+    }
+    <script
+      is:inline
+      define:vars={{ storageKey: THEME_STORAGE_KEY, themes: THEMES }}
+    >
+      try {
+        const stored = localStorage.getItem(storageKey);
+        if (themes.includes(stored)) {
+          document.documentElement.dataset.ps1uiTheme = stored;
+          document
+            .querySelector('meta[name="color-scheme"]')
+            ?.setAttribute("content", stored);
+        }
+      } catch {
+        // Reading storage throws where site data is blocked. The default
+        // written into <html> stands.
+      }
+    </script>
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
@@ -70,7 +115,7 @@ const ogImage = new URL("/og.png", Astro.site).href;
   <body>
     <PS1Root>
       <Stack gap="none" className={styles.page}>
-        <SiteNav currentPath={pathname} />
+        <SiteHeader currentPath={pathname} />
         {
           /* `queryContainer` here and nowhere else: this box is the content
             measure, so every responsive prop under it resolves against the

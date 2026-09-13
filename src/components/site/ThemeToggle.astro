@@ -1,0 +1,85 @@
+---
+import { Moon, Sun } from "lucide-react";
+import { DEFAULT_THEME, THEME_TOGGLE_LABEL, themeTogglePressed } from "./theme";
+import styles from "./ThemeToggle.module.css";
+---
+
+{
+  /* The pressed state comes from the same default the layout writes into
+     <html>, so the markup this build emits cannot disagree with the theme it
+     emits. */
+}
+<button
+  type="button"
+  data-theme-toggle
+  aria-label={THEME_TOGGLE_LABEL}
+  aria-pressed={themeTogglePressed(DEFAULT_THEME)}
+  class={styles.button}
+>
+  <Moon size={16} aria-hidden="true" className={styles.whenDark} />
+  <Sun size={16} aria-hidden="true" className={styles.whenLight} />
+</button>
+
+<script>
+  import type { Theme } from "./theme";
+  import {
+    DEFAULT_THEME,
+    isTheme,
+    nextTheme,
+    THEME_STORAGE_KEY,
+    themeTogglePressed,
+  } from "./theme";
+
+  const TOGGLE = "[data-theme-toggle]";
+
+  // Writes a theme into a document: the <html> attribute both tokens.css and
+  // this component's CSS key off, the meta the UA paints from, and the toggle's
+  // pressed state. The document is an argument because this runs against two —
+  // the live one on a press, and the incoming one a navigation is about to swap.
+  function applyTheme(doc: Document, theme: Theme) {
+    doc.documentElement.dataset.ps1uiTheme = theme;
+    doc
+      .querySelector('meta[name="color-scheme"]')
+      ?.setAttribute("content", theme);
+    doc
+      .querySelector(TOGGLE)
+      ?.setAttribute("aria-pressed", themeTogglePressed(theme));
+  }
+
+  function currentTheme(): Theme {
+    const applied = document.documentElement.dataset.ps1uiTheme;
+    return isTheme(applied) ? applied : DEFAULT_THEME;
+  }
+
+  // The inline head script in `src/layouts/BaseLayout.astro` has already put
+  // the stored choice on <html>, and the icons follow it in CSS. The pressed
+  // state is the one part that script could not reach — the body was not parsed
+  // yet.
+  applyTheme(document, currentTheme());
+
+  // Delegated to the document, which outlives a client-side navigation; the
+  // button does not, and a listener bound to it would go with the old body on
+  // the first route change. `closest`, not a match on the target, because the
+  // click lands on the <svg>.
+  document.addEventListener("click", (event) => {
+    if (!(event.target instanceof Element)) return;
+    if (!event.target.closest(TOGGLE)) return;
+
+    const theme = nextTheme(currentTheme());
+    applyTheme(document, theme);
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, theme);
+    } catch {
+      // Writing storage throws where site data is blocked. The theme still
+      // applies to this page view, it just will not outlive it.
+    }
+  });
+
+  // The document a swap brings in is build output, carrying the default theme
+  // rather than the visitor's. Writing the live one into it *before* the swap
+  // is what carries the choice across a route change, and leaves no frame drawn
+  // with the wrong one.
+  document.addEventListener("astro:before-swap", (event) => {
+    applyTheme(event.newDocument, currentTheme());
+  });
+</script>

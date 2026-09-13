@@ -1,0 +1,6 @@
+/* The row carries no rule and no surface of its own, so this padding is the
+   only thing holding it off the top of the viewport. It lives here rather than
+   on the Container because `px` only reaches the inline axis. */
+.header {
+  padding-block-start: var(--ps1ui-space-xl);
+}

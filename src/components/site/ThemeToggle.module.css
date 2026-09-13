@@ -1,0 +1,64 @@
+/* Not a `Button`: ButtonVariant's chrome-free option is `ghost`, whose hover
+   paints a 12%-primary background tint behind the label — one box appearing
+   under one glyph, on a line that draws none. Its padding is size-driven and
+   asymmetric (`4px 8px` at sm) besides, which neither squares the target below
+   nor leaves the glyph flush with the measure. Drop this when the variant set
+   grows a chrome-free option that shifts nothing but its own colour.
+
+   The reset leaves a <button> its UA padding and arrow cursor and strips
+   everything else, which is why only those two are restated. */
+.button {
+  /* A 16px icon is a 16px target, under the 24x24 minimum a pointer of any
+     precision is owed (WCAG 2.2 SC 2.5.8). The padding buys the missing 8px
+     and the negative margin gives it back to the layout, so the hit area grows
+     without the glyph drifting off the measure the column is aligned to. The
+     two move together — change one and the icon shifts. */
+  padding: var(--ps1ui-space-xs);
+  margin: calc(-1 * var(--ps1ui-space-xs));
+  cursor: pointer;
+
+  /* These three colours are `Anchor variant="subtle"`'s, which is what every
+     link in the page body uses, so acting on something looks the same up here
+     as it does in the content below.
+
+     The nav links sharing this line deliberately do not match: they rest muted
+     and hover to full because colour is how that row marks which page you are
+     on. Two idioms on one line, for two different jobs. */
+  color: inherit;
+  transition: color var(--ps1ui-transition-fast);
+}
+
+.button:hover {
+  color: var(--ps1ui-color-primary-text);
+}
+
+.button:active {
+  color: var(--ps1ui-color-primary-text-active);
+}
+
+/* The icon reports the theme in effect, not the one a press would move to: it
+   is a status indicator that happens to be pressable, on a line whose other
+   item — the nav link marked `aria-current` — also reports where you are.
+   `aria-pressed` carries the same thing to anything that can't see it.
+
+   Both icons are rendered and one is hidden here rather than swapped in script,
+   so the right one is up from the first paint and survives a navigation
+   untouched. */
+html[data-ps1ui-theme="light"] .whenDark,
+html[data-ps1ui-theme="dark"] .whenLight {
+  display: none;
+}
+
+/* Where `light-dark()` is missing, ps1ui pins the dark palette outright — its
+   own @supports block in tokens.css, whose condition this mirrors verbatim.
+   The `[data-ps1ui-theme]` rules sit outside that block and still apply, so a
+   press there would flip this icon and `aria-pressed` over a palette that
+   cannot move: a control reporting a change that did not happen. Hiding it also
+   drops it from the tab order, which is what makes that state unreachable
+   rather than merely ugly — no press, nothing stored, nothing carried into a
+   later visit. */
+@supports not (color: light-dark(#000, #fff)) {
+  .button {
+    display: none;
+  }
+}

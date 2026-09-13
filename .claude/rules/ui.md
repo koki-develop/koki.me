@@ -63,9 +63,10 @@ Colocate `Foo.module.css` next to `Foo.tsx` or `Foo.astro`, and keep it to
 **layout-only** declarations:
 `flex`, `min-width`, `padding`, `border`, `align-self`, `margin: auto`, `overflow`.
 
-Use `--ps1ui-*` tokens for every value that has one — spacing, colors, font sizes,
-radii. Raw pixel and color values are for things the token set doesn't cover, and those
-deserve a comment.
+Use `--ps1ui-*` tokens for every value that has one — spacing, font sizes, radii. Raw
+pixel values are for things the token set doesn't cover, and those deserve a comment.
+Colors have no such escape hatch: every `--ps1ui-color-*` is a `light-dark()` pair, and a
+literal can only be right in one theme.
 
 Every declaration whose purpose isn't obvious from reading it gets a comment explaining
 _why_: which inherited default it counteracts, what visually breaks without it. The

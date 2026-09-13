@@ -1,0 +1,30 @@
+---
+import { Container, Stack } from "@ps1ui/core";
+import { SiteNav } from "./SiteNav";
+import styles from "./SiteHeader.module.css";
+import ThemeToggle from "./ThemeToggle.astro";
+
+type Props = {
+  currentPath: string;
+};
+
+const { currentPath } = Astro.props;
+---
+
+{
+  /* `size` and `px` match the content Container in
+     `src/layouts/BaseLayout.astro`: this row is the page's first line, so it
+     has to sit on the same measure as the lines under it rather than in a band
+     of its own. */
+}
+<Container
+  as="header"
+  size="lg"
+  px={{ base: "lg", sm: "xl" }}
+  className={styles.header}
+>
+  <Stack direction="row" align="center" justify="between" gap="md" wrap>
+    <SiteNav currentPath={currentPath} />
+    <ThemeToggle />
+  </Stack>
+</Container>
