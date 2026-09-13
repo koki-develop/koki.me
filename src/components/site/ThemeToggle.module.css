@@ -19,11 +19,7 @@
 
   /* These three colours are `Anchor variant="subtle"`'s, which is what every
      link in the page body uses, so acting on something looks the same up here
-     as it does in the content below.
-
-     The nav links sharing this line deliberately do not match: they rest muted
-     and hover to full because colour is how that row marks which page you are
-     on. Two idioms on one line, for two different jobs. */
+     as it does in the content below. */
   color: inherit;
   transition: color var(--ps1ui-transition-fast);
 }

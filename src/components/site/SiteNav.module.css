@@ -1,14 +1,11 @@
-/* Not an `Anchor`: AnchorVariant offers `primary` and `subtle`
-   and neither expresses "this is the page you are on", and `subtle` is
-   `color: inherit`, which would leave the hover shift below nothing to move
-   from. Drop this when the variant set grows a selected state. */
+/* Not an `Anchor`: AnchorVariant offers `primary` and `subtle`, and neither
+   expresses "this is the page you are on". `subtle` rests at `color: inherit`
+   besides — full-strength fg, with no way to rest muted, which is what keeps
+   this row quiet until it is pointed at. Drop this when the variant set grows
+   a selected state. */
 .link {
   color: var(--ps1ui-color-fg-muted);
   transition: color var(--ps1ui-transition-fast);
-}
-
-.link:hover {
-  color: var(--ps1ui-color-fg);
 }
 
 /* Colour alone would read as a permanent hover on the current page, so the
@@ -20,4 +17,21 @@
   text-decoration-line: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 5px;
+}
+
+/* `Anchor variant="subtle"`'s hover colour, which is what every link in the
+   page body and the theme control beside this nav move to, so pointing at a
+   nav link looks like pointing at anything else on the site.
+
+   This rule and the press below weigh the same as `.link.active` and win only
+   from where they sit. Move either above it and the current page's link goes
+   dead under the pointer. */
+.link:hover {
+  color: var(--ps1ui-color-primary-text);
+}
+
+/* One step down the same trio, for the press. `:active` is the pseudo-class,
+   not the `.active` class above. */
+.link:active {
+  color: var(--ps1ui-color-primary-text-active);
 }
