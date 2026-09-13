@@ -40,12 +40,7 @@ export type Certification = {
 // by walking `workCategories`, so a work naming a category that isn't declared
 // there would be dropped from the page without a trace.
 export type WorkCategory =
-  | "Web"
-  | "CLI"
-  | "Library"
-  | "App"
-  | "Extension"
-  | "IME";
+  "Web" | "CLI" | "Library" | "App" | "Extension" | "IME";
 
 export type Work = {
   name: string;
